@@ -9,14 +9,14 @@ captured the phenomenon quite clearly when he said:
                Professional programming languages tend to make all things equally difficult.
 #+END_EXAMPLE
 
-=mrSCPI= aims to make it possible to easily integrate test equipment automation into /*my*/ day to day bench workflow.  The goal is to make it so easy that I
+=mrSCPI= aims to make it possible to easily integrate test equipment automation into *my* day to day bench workflow.  The goal is to make it so easy that I
 use it even for the hundreds of tiny, repetitive tasks I preform at the bench.
 
-If you are wondering if =mrSCPI= is for you, that emphasized "/*my*/" is a warning!  =mrSCPI= is very much designed around my personal workflow and
+If you are wondering if =mrSCPI= is for you, that emphasized "*my*" is a warning!  =mrSCPI= is very much designed around my personal workflow and
 tool preferences.  I very much like command line tools with UNIX'ish interfaces.  If this sounds like you, then =mrSCPI= might be for you.  OTOH, if you
-ware looking for a nice GUI to control your equipment, then you will most likely be quite disappointed with =mrSCPI=.
+were looking for a nice GUI to control your equipment, then you will most likely be quite disappointed with =mrSCPI=.
 
 Lastly, =mrSCPI= is simple to set-up so I can run it anyplace.  It has no dependencies beyond a standard Ruby install.  No drivers.  No modules.  No
-packages.  No GEMs.  Nothing to compile. Just a single script -- yes, the library and the executable are the *same file*!
+packages.  No PIPs. No GEMs.  Nothing to compile. Just a single script -- yes, the library and the executable are the *same file*!
 
 Read the docs: [[https://richmit.github.io/mrSCPI/][https://richmit.github.io/mrSCPI/]]
