@@ -1,0 +1,8 @@
+#!/usr/bin/env mrSCPI.rb
+
+:url @dho4k                                                                # Connect to my DHO4k
+:eval imgFileName=Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" # Filename for PNG
+:result_macro_block true                                                   # Expect/Extract a block
+:print_result true                                                         # Print the block
+:out_file ${imgFileName}                                                   #   into a filename
+:cmd :DISPlay:DATA? PNG                                                    # Send the command

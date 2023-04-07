@@ -1,0 +1,18 @@
+This directory contains the source code for mrSCPI as well as a few utility programs:
+
+ - mrSCPI Code
+   - mrSCPI.rb:: The primary mrSCPI program and library
+ - Utilities
+   - teAlias.rb:: Utility script to expand mrSCPI nicknames
+   - mrNetwork.rb:: Utility script to query host network name from the mrSCPI RC file
+   - mrOnBench.rb:: Utility script to query host location (on/off bench) from the mrSCPI RC file
+
+The last two utilities are probably not very interesting to anyone
+other than myself; however, the first one is handy if you have your RC
+file setup.  It allows you to use mrSCPI nicknames in shell scripts or
+on the command line.  For example, I open a browser (MSedge) on my
+Tektronix TDS3052B with a command like the following:
+
+#+begin_src sh
+edge.sh `teAlias.rb tek3kw`
+#+end_src

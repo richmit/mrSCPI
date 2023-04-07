@@ -1,0 +1,587 @@
+# -*- Mode:Org; Coding:utf-8; fill-column:158 -*-
+# ######################################################################################################################################################.H.S.##
+# FILE:        index.org
+#+TITLE:       mrSCPI
+#+SUBTITLE:    Instrument Control Software
+#+AUTHOR:      Mitch Richling
+#+EMAIL:       http://www.mitchr.me/
+#+DESCRIPTION: Documentation for mrSCPI
+#+KEYWORDS:    lxi gpib
+#+LANGUAGE:    en
+#+OPTIONS:     num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t skip:nil d:nil todo:t pri:nil H:5 p:t author:t html-scripts:nil 
+#+SEQ_TODO:    TODO:NEW(t)                         TODO:WORK(w)    TODO:HOLD(h)    | TODO:FUTURE(f)   TODO:DONE(d)    TODO:CANCELED(c)
+#+PROPERTY: header-args :eval never-export
+#+HTML_HEAD: <style>body { width: 95%; margin: 2% auto; font-size: 18px; line-height: 1.4em; font-family: Georgia, serif; color: black; background-color: white; }</style>
+#+HTML_HEAD: <style>body { min-width: 500px; max-width: 1024px; }</style>
+#+HTML_HEAD: <style>h1,h2,h3,h4,h5,h6 { color: #A5573E; line-height: 1em; font-family: Helvetica, sans-serif; }</style>
+#+HTML_HEAD: <style>h1,h2,h3 { line-height: 1.4em; }</style>
+#+HTML_HEAD: <style>h1.title { font-size: 3em; }</style>
+#+HTML_HEAD: <style>.subtitle { font-size: 0.6em; }</style>
+#+HTML_HEAD: <style>h4,h5,h6 { font-size: 1em; }</style>
+#+HTML_HEAD: <style>.org-src-container { border: 1px solid #ccc; box-shadow: 3px 3px 3px #eee; font-family: Lucida Console, monospace; font-size: 80%; margin: 0px; padding: 0px 0px; position: relative; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre { line-height: 1.2em; padding-top: 1.5em; margin: 0.5em; background-color: #404040; color: white; overflow: auto; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre:before { display: block; position: absolute; background-color: #b3b3b3; top: 0; right: 0; padding: 0 0.2em 0 0.4em; border-bottom-left-radius: 8px; border: 0; color: white; font-size: 100%; font-family: Helvetica, sans-serif;}</style>
+#+HTML_HEAD: <style>pre.example { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; font-family: Lucida Console, monospace; font-size: 80%; background: #404040; color: white; display: block; padding: 0em; border: 2px solid black; }</style>
+#+HTML_HEAD: <style>blockquote { margin-bottom: 0.5em; padding: 0.5em; background-color: #FFF8DC; border-left: 2px solid #A5573E; border-left-color: rgb(255, 228, 102); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 5em; margin-inline-end: 5em; } </style>
+#+HTML_LINK_HOME: https://www.mitchr.me/
+#+HTML_LINK_UP: https://www.mitchr.me/FIXME
+# ######################################################################################################################################################.H.E.##
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+|          <r> | <l>                                          |
+|    *Author:* | /{{{author}}}/                               |
+|   *Updated:* | /{{{modification-time(%Y-%m-%d %H:%M:%S)}}}/ |
+| *Generated:* | /{{{time(%Y-%m-%d %H:%M:%S)}}}/              |
+#+ATTR_HTML: :align center
+Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
+
+#+TOC: headlines 5
+
+#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
+#   00   #    10   #    20   #    30   #    40   #    50   #    60   #    70   #    80   #    90   #   100   #   110   #   120   #   130   #   140   #   150   #   160   #
+# 234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
+#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
+
+# To get org to evaluate all code blocks on export, add the following to the Emacs header on the first line of this file:
+#     org-export-babel-evaluate:t; org-confirm-babel-evaluate:nil5
+
+#+MACRO: MRSCPI =mrSCPI=
+#+MACRO: SCPI [[https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments][=SCPI=]]
+#+MACRO: EMACS [[https://www.gnu.org/software/emacs/][Emacs]]
+#+MACRO: ORGMODE [[https://orgmode.org/][=org-mode=]]
+#+MACRO: PROLOGIX Prologix
+#+MACRO: MRSCPISRC =mrSCPI.rb=
+#+MACRO: OCTAVE Octave/Matlab
+#+MACRO: PARAVIEW Paraview
+#+MACRO: SH Bourne shell
+
+* Introduction
+:PROPERTIES:
+:CUSTOM_ID: introduction
+:END:
+
+From the README:
+#+BEGIN_QUOTE
+------
+#+INCLUDE: "../README.org"
+------
+#+END_QUOTE
+
+* Interfaces
+:PROPERTIES:
+:CUSTOM_ID: interfaces
+:END:
+
+The {{{MRSCPI}}} ecosystem provides three distinct ways to control {{{SCPI}}} instruments:
+
+ - Ruby API ::
+   For complex test automation requiring a real programming language.  
+   This stateful API is unlike most test automation APIs and naturally compliments the way many {{{SCPI}}} tasks are preformed ... Or at least the way I tend to use {{{SCPI}}}. =;)=
+
+#+begin_src ruby
+require_relative 'mrSCPIlib'
+SCPIsession.new(:url => '@tek2k',
+                :cmd => '*IDN?')
+#+end_src
+
+ - {{{MRSCPISRC}}} command ::
+   A CLI command providing sophisticated {{{SCPI}}} functionality from the command line -- much like =lxi-tool=.
+
+#+begin_src bash
+mrSCPI.rb --url @tek2k --cmd '*IDN?'
+#+end_src
+
+ - {{{MRSCPI}}} Scripts ::
+   An efficient scripting language for simple {{{SCPI}}} tasks.  
+   Full {{{EMACS}}} {{{ORGMODE}}} Babel support is included enabling instrument control right from your laboratory notebook!
+
+#+begin_src mrscpi
+:url @tek2k
+:cmd *IDN?
+#+end_src
+
+All of these methods use the same underlying infrastructure, and mirror each other in the way they work.  So if you learn how to use one of them, you have
+learned how to use them all.
+
+* {{{EMACS}}} as a {{{MRSCPI}}} Interface
+:PROPERTIES:
+:CUSTOM_ID: emacs-interface
+:END:
+
+{{{MRSCPI}}} really has nothing to do with {{{EMACS}}}; however, as an enthusiastic {{{EMACS}}} user, I wanted to be able to use {{{MRSCPI}}} from inside
+{{{EMACS}}}!  To that end I have developed a bit of {{{EMACS}}} software to seamlessly integrate {{{MRSCPI}}} into {{{EMACS}}}.  For me, because {{{EMACS}}}
+plays a central role in my workflow, this is one of the most important aspects of {{{MRSCPI}}} -- 90% of my {{{MRSCPI}}} use is from within {{{EMACS}}}.  This
+section provides some insight into my workflow.  If you are not interested in {{{EMACS}}}, then you can safely skip this section.
+
+** The Laboratory Notebook
+I always have my laboratory notebook open at the bench -- just an {{{ORGMODE}}} document loaded up in {{{EMACS}}} running on my bench computer. I have
+implemented a major mode for {{{MRSCPI}}} scripts as well as {{{ORGMODE}}} Babel support.  This allows me to embed {{{SCPI}}} commands right inside my notes
+making those notes *EXECUTABLE*.  Here is an example excerpt from one of my notebooks:
+
+#+BEGIN_CENTER
+[[file:ex-nb01.org][file:pics/ex-nb01_50.png]] \\
+[[file:ex-nb01.org][Example Notebook]]
+#+END_CENTER 
+
+To make this sort of thing effortless, I have a few scripts that capture instrument configuration details and insert them into my {{{ORGMODE}}} notebook.
+Then, when I come back to my experiment some time later, I can have {{{ORGMODE}}} reconfigure all the equipment on my bench to where I left off.
+
+** Test Equipment Notes & Macro Buttons
+
+I keep general test equipment notes in a couple {{{ORGMODE}}} files.  Of cource I include in my notes littel bits of {{{MRSCPI}}} script code for common
+things I do with my test equipment.  I could simply put my cursor on those code bits in {{{ORGMODE}}} and execute them, but I wanted a quicker way to access
+these code snippits. So I added an {{{EMACS}}} function that finds all the {{{MRSCPI}}} code bits in an {{{ORGMODE}}} document, and produces a GUI window full
+of buttons to run them.  This has proven to be super handy, and saves me a ton of time at the bench.  Here is an example of one of my button buffers:
+
+#+BEGIN_CENTER
+[[file:pics/buttons.png][file:pics/buttons_50.png]] \\
+[[file:pics/buttons.png][Click To Enlarge]]
+#+END_CENTER
+
+** Integrated Data Capture and Analysis
+
+{{{ORGMODE}}} allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code & results
+from {{{MRSCPI}}}, {{{OCTAVE}}}, {{{SH}}}, and {{{PARAVIEW}}} in one document:
+
+#+BEGIN_CENTER
+[[file:ex-nb02.org][file:pics/lorenz_50.gif]] \\
+[[file:ex-nb02.org][Example Document]]
+#+END_CENTER
+
+
+** Setting Up Emacs
+
+I put the {{{MRSCPI}}} stuff in my {{{EMACS}}} dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
+If you have some other organizational structure for your auxiliary {{{EMACS}}} files, then feel free to use it!
+
+*** Editing {{{MRSCPI}}} Code: =mrscpi-mode=
+
+A simple mode for {{{MRSCPI}}} scripts is provided in file:emacs/mrscpi-mode.el.  This should be *before* your {{{ORGMODE}}} config.
+
+#+begin_src elisp
+(if (file-exists-p "~/.emacs.d/mrscpi-mode.el")
+    (progn (autoload 'mrscpi-mode "~/.emacs.d/mrscpi-mode.el" "Mode for mrSCPI files")
+           (add-to-list 'auto-mode-alist '("\\.mrscpi$" . mrscpi-mode))))
+#+end_src
+
+*** {{{ORGMODE}}} Babel Support: =ob-mrscpi.el= & =mrscpi-buttons.el=
+
+A language module for {{{ORGMODE}}} Babel may be found in file:emacs/ob-mrscpi.el.  The magical button maker may be found in file:emacs/mrscpi-buttons.el --
+you don't need this one for just basic {{{ORGMODE}}} support.  I load these things up at the very end of the {{{ORGMODE}}} setup block in my =init.el= file:
+
+#+begin_src elisp
+(if (and (file-exists-p "~/.emacs.d/ob-mrscpi.el") (file-exists-p "~/bin/mrSCPI.rb"))
+    (load "~/.emacs.d/ob-mrscpi.el"))
+(if (and (file-exists-p "~/.emacs.d/mrscpi-buttons.el") (file-exists-p "~/bin/mrSCPI.rb"))
+    (load "~/.emacs.d/mrscpi-buttons.el"))
+#+end_src
+
+* Ruby API
+:PROPERTIES:
+:CUSTOM_ID: ruby
+:END:
+
+** API Structure & Philosophy
+:PROPERTIES:
+:CUSTOM_ID: api-philosophy
+:END:
+
+In essence any {{{SCPI}}} program is about managing a communication session state between computer and instrument.  The heart of {{{MRSCPI}}} is the
+[[file:rdoc/SCPIsession.html][=SCPIsession=]] class encapsulates and manages session state.  Session state is represented by named parameters (key-value
+pairs).  For example the parameter =:ip_address= stores the IP address for the connection.  As another example, the =:print_results= parameter stores a
+boolean value that determines if the results from {{{SCPI}}} commands will be printed.  A few parameters, like =:ip_address=, may only be set when the
+[[file:rdoc/SCPIsession.html][=SCPIsession=]] is created.  Other parameters, like =:print_results= may be freely changed at any time.  Parameters are sticky
+in that they stay in effect until changed. Using the API always follows the same basic outline:
+
+  1) Create an [[file:rdoc/SCPIsession.html][=SCPIsession=]] object (The =:url=, =:ip_address=, =:net_protocol=, and =:net_port= parameters are used by new)
+  2) Set parameters regarding how you want to run {{{SCPI}}} commands
+  3) Set the =:cmd= parameter to execute an {{{SCPI}}} command
+  4) Go back to 2) till everything is done
+
+See the documentation for the [[file:rdoc/SCPIsession.html][=SCPIsession=]] class for information about all the parameters.
+
+** Example
+:PROPERTIES:
+:CUSTOM_ID: ruby-example
+:END:
+
+In the following example, we pull a PNG screenshot from a Rigol DHO2000/4000 series oscilloscope.  
+
+#+begin_src sh :results output verbatum :exports results :wrap "src ruby :eval never :tangle no"
+grep -EA 10000 '(!|#|\*|=|_|-|%|;|C|/){70,}\.H\.E\.' ../../my_prog/screenshot_dho4k.rb | grep -vE '(!|#|\*|=|_|-|%|;|C|/){70,}'
+#+end_src
+
+#+RESULTS:
+#+begin_src ruby :eval never :tangle no
+
+if ARGV[0] then
+  puts("This script will pull a PNG screenshot from a Rigol DHO2000/4000 series oscilloscope.")
+  puts("The screenshot file looks like DATESTAMP_DHO.png")
+  exit
+end
+
+require ENV['PATH'].split(File::PATH_SEPARATOR).map {|x| File.join(x, 'mrSCPI.rb')}.find {|x| FileTest.exist?(x)}
+
+imgFileName = "#{Time.now.localtime.strftime('%Y%m%d%H%M%S')}_DHO.png"
+theSPCIsession = SCPIsession.new(:url                => '@dho4k',
+                                 :result_macro_block => true,
+                                 :print_result       => true,
+                                 :out_file           => imgFileName,
+                                 :cmd                => ':DISPlay:DATA? PNG'
+                                )
+puts("screenshot_dho4k.rb: Screen image captured to: #{imgFileName}")
+#+end_src
+
+All the magic is in the =SCPIsession.new= call:
+ - First we tell it where to connect with =:url=
+ - Next we tell {{{MRSCPI}}} that we expect to get a IEEE 488.2 binary block, and that we want {{{MRSCPI}}} to extract that block.
+ - With the next two lines we tell {{{MRSCPI}}} to print the result into a file
+ - Lastly we tell it the command to use.
+   
+* {{{MRSCPI}}} Scripts
+:PROPERTIES:
+:CUSTOM_ID: mrscpi-scripts
+:END:
+
+Even if you only want to know about scripts, I encourage you to read the section on [[#api-philosophy][Ruby API Structure & Philosophy]].  To begin,
+here is a {{{MRSCPI}}} script version of the Ruby script given in that section:
+
+#+INCLUDE: "../examples/dho4ksc.mrscpi" src mrscpi
+
+Notice how the code parallels the Ruby script.  Essentially the {{{MRSCPI}}} script is what was inside the =SCPIsession.new= call in the Ruby script!  Also
+note the shebang line (=#!/usr/bin/env mrSCPI.rb=).  This is how we make a {{{MRSCPI}}} script executable on the command line -- just like a shell script.
+Note the above script may be found in the =example= directory named "=dho4ksc.mrscpi=".  Let's take a look at another simple script.
+
+#+INCLUDE: "../examples/example.mrscpi" src mrscpi
+
+If the above script may be found in the =example= directory named "=example.mrscpi=".  From that directory, we can run it like so:
+
+#+begin_src sh
+mrSCPI.rb -f example.mrscpi
+#+end_src
+
+Note that scripts can also be provided on =STDIN=.  If we continue with the previous example, then here is another way to run the script:
+
+#+begin_src sh
+mrSCPI.rb -f STDIN <example.mrscpi
+#+end_src
+
+Scripts can be described on the command line with arguments instead of being put in a script file.  You simply replace the {{{MRSCPI}}} script commands with
+arguments of the same name.  For small scripts with just a couple commands, this can be very handy.  What may be more useful is using command line script
+arguments *with* a script file.  When we do this it is as if we prepend the script file with the commands given as arguments.  One thing to note is that the
+first =:url= option will override any subsequent instances -- this is also true for =:ip_address=, =:net_port=, & =:net_protocol= as well.  For example we
+could do something like this to connect to an alternate DMM:
+
+#+begin_src sh
+mrSCPI.rb --url @dmm2 example.mrscpi
+#+end_src
+
+If we set the verbosity to level 2 (with -V 2), we will see a warning printed about the second =:url= command being ignored.
+
+A common technique is to parameterize things with variables, and then set those variables on the command line.  For example, suppose we wish to set our power
+supply up with the first two channels providing analog voltage rails and the third channel providing a voltage for a microcontroller.  We might use a script
+like the following:
+
+#+INCLUDE: "../examples/power_setup_example.mrscpi" src mrscpi
+
+If the above script may be found in the =example= directory named "=power_setup_example.mrscpi=".  From that directory, we could set the variables and call
+the script like this:
+
+#+begin_src sh
+mrSCPI.rb -D analog_voltage=15 -D digitial_voltage=3.3 power_setup_example.mrscpi
+#+end_src
+
+If we wanted the default values, then we could have just used this:
+
+#+begin_src sh
+mrSCPI.rb -f power_setup_example.mrscpi
+#+end_src
+
+Inside of {{{EMACS}}} in an {{{ORGMODE}}} code block, we could set these variables via the =src= header arguments like so:
+
+#+begin_example
+   #+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
+#+end_example
+
+Note that the "new" commands (=:url=, =:ip_address=, =:net_port=, & =:net_protocol=) can not be parameterized with variables, but they can be overridden.
+
+** {{{MRSCPI}}} Script Syntax
+
+Script syntax is very simple.  Each line starts with an {{{MRSCPI}}} command, and each command is a parameter for one of the following classes:
+
+  - [[file:rdoc/SCPIsession.html][=SCPIsession=]]
+  - [[file:rdoc/SCPIsequence.html][=SCPIsequence=]]
+
+* =SCPIrcFile= Class
+:PROPERTIES:
+:CUSTOM_ID: rcfile
+:END:
+
+{{{MRSCPI}}} can use a configuration file to keep track of things like IP addresses, port numbers, protocols, and firewall details.  The
+[[file:rdoc/SCPIrcFile.html][=SCPIrcFile=]] class is the primary interface to the information in the RC file.  For the details, see the class
+documentation.  The basics can be illustrated with a couple examples:
+
+** =mrNetwork.rb=
+
+#+begin_src sh :results output verbatum :exports results :wrap "src ruby :eval never :tangle no"
+grep -EA 10000 '(!|#|\*|=|_|-|%|;|C|/){70,}\.H\.E\.' ../src/mrNetwork.rb | grep -vE '(!|#|\*|=|_|-|%|;|C|/){70,}'
+#+end_src
+
+#+RESULTS:
+#+begin_src ruby :eval never :tangle no
+require 'mrSCPI.rb'
+
+puts(SCPIrcFile.instance.lookupNetwork.inspect)
+#+end_src
+
+** =teAlias.rb=
+
+#+begin_src sh :results output verbatum :exports results :wrap "src ruby :eval never :tangle no"
+grep -EA 10000 '(!|#|\*|=|_|-|%|;|C|/){70,}\.H\.E\.' ../src/teAlias.rb | grep -vE '(!|#|\*|=|_|-|%|;|C|/){70,}'
+#+end_src
+
+#+RESULTS:
+#+begin_src ruby :eval never :tangle no
+require 'mrSCPI.rb'
+
+if (ARGV.length < 1) || (ARGV.first.match(/^-+[hH]/)) then
+  puts("USE: teAlias.rb [format] thingy")
+  puts("       thingy is one of netqork@nickname, @nickname, or nickname")
+  puts("         network is a network name in the mrSCPIrc file")
+  puts("         nickname is a nickname name in the mrSCPIrc file")
+  puts("       format is a format string for how to print the result. Default: '%u'")
+  puts("         %s -- replaced by the scheme (http, https, soip, etc...)")
+  puts("         %h -- replaced by the IP address or DNS name")
+  puts("         %p -- replaced by the port number")
+  puts("         %u -- replaced by the full URL")
+  puts("       Example: telnet `teAlias '%h %p' @foobar`")
+  puts("       Example: ssh `teAlias '-p %p %h' @foobar`")
+  puts("       Example: chromium-browser `teAlias.rb @foobar`")
+  puts("                Works because '%u' is the default format.")
+  puts("")
+  puts("See SCPIrcFile.lookupURLnickname for full details.")
+  exit 0
+elsif (ARGV.length == 1) then
+  print(SCPIrcFile.instance.lookupURLnickname(ARGV[0]))
+elsif (ARGV.length == 2) then
+  urlBits = SCPIrcFile.instance.urlParser(ARGV[1])
+  print(ARGV[0].gsub('%h', urlBits[:ip_address]).gsub('%s', urlBits[:net_protocol].to_s).gsub('%u', urlBits[:url]).gsub('%p', urlBits[:net_port].to_s))
+end
+
+#+end_src
+
+** Example RC file
+
+Here is an example of what my RC file looks like.  I have two network subnets on my bench.  One for test equipment (192.168.42.X), and one for computers
+(192.168.43.X).  The only access from outside these networks is to an SSH bastion server on the 192.168.43.X network.  So when I'm on my bench I can access
+the test equipment directly, but otherwise I must access the equipment via SSH tunnels to the bastion server.  This configuration file makes it so that I can
+specify a connection URL like "=@awg=", and connect to my 33210a AWG regardless of where I'm running the script -- i.e. the library figures out what network
+I'm on, and expands "=@awg=" into the right thing.
+
+#+begin_src sh :results output verbatum :exports results :wrap "src txt :eval never :tangle no"
+cat ~/Documents/world/dotfiles/.mrSCPIrc--SS-X-X-X-HOME-X
+#+end_src
+
+#+RESULTS:
+#+begin_src txt :eval never :tangle no
+
+###########################################################################################################
+# SCPI Nicknames ##########################################################################################
+#........CNAME......nicknames.................Bench Network....................ssh to bench-gate...........
+nickname 33210ae    33210a    aawge  aawg  => bench@raw://172.16.42.40:5025    ssh@raw://127.0.0.1:9040    
+nickname 33210aw              aawgw        => bench@https://172.16.42.40:443   ssh@https://127.0.0.1:9041  
+nickname 34401as    34401a    dmms   dmm   => bench@soip://172.16.42.32:10001  ssh@soip://127.0.0.1:9033   
+nickname 34401ap              dmmp         => bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
+nickname dg2052e    dg2052    dg2ke  dg2k  => bench@raw://172.16.42.96:5555    ssh@raw://127.0.0.1:9096    
+nickname dg2052w              dg2kw        => bench@http://172.16.42.96:80     ssh@http://127.0.0.1:9097   
+nickname dho4204e   dho4204   dho4ke dho4k => bench@raw://172.16.42.104:5555   ssh@raw://127.0.0.1:9104    
+nickname dho4204w             dho4kw       => bench@http://172.16.42.104:80    ssh@http://127.0.0.1:9105   
+nickname dmm6500e   dmm6500   6500e  6500  => bench@raw://172.16.42.64:5025    ssh@raw://127.0.0.1:9064    
+nickname dmm6500w             6500w        => bench@http://172.16.42.64:80     ssh@http://127.0.0.1:9065   
+nickname hmc8043e   hmc8043   pse    ps    => bench@raw://172.16.42.72:5025    ssh@raw://127.0.0.1:9072    
+nickname hmc8043w             psw          => bench@http://172.16.42.72:80     ssh@http://127.0.0.1:9073   
+nickname sds2504xpe sds2504xp sig2ke sig2k => bench@raw://172.16.42.56:5025    ssh@raw://127.0.0.1:9056    
+nickname sds2504xpw           sig2kw       => bench@http://172.16.42.56:80     ssh@http://127.0.0.1:9057   
+nickname tds2024s             tek2ks tek2k => bench@soip://172.16.42.32:10002  ssh@soip://127.0.0.1:9034   
+nickname tds3052bh  tds3052b  tek3kh tek3k => bench@t3k://172.16.42.80:80      ssh@t3k://127.0.0.1:9081    
+nickname tds3052bs            tek3ks       => bench@soip://172.16.42.32:10003  ssh@soip://127.0.0.1:9035   
+nickname tds3052bw            tek3kw       => bench@http://172.16.42.80:80     ssh@http://127.0.0.1:9081   
+nickname tds3052bp            tek3kp       => bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
+nickname 53131ap    53131a    countp count => bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
+nickname router42             router       => bench@https://172.16.42.1:443    ssh@https://127.0.0.1:9001  
+#ickname router43                          => bench@https://172.16.43.1:443                                
+nickname serial               serial       => bench@http://172.16.42.32:80     ssh@http://127.0.0.1:9032   
+
+###########################################################################################################
+# Networks ################################################################################################
+#.......Name..Subnet.Mask......Comment.....................................................................
+network bench 172.16.43.0/23   # Bench network for the bench workstation/bastian
+network te    172.16.42.0/23   # Bench network for instruments (test equipment)
+network ssh   172.16.1.0/24    # Home office network
+
+###########################################################################################################
+# DNS #####################################################################################################
+#.......Device.......IP.............CNAME...........................Note...................................
+#host  nomad         172.16.43.24   bench-nomad.bench.mitchr.me     # My laptop on the bench
+#host  pi            172.16.43.32   bench-pi.bench.mitchr.me        # Bench Raspberry Pi
+#host  awg-agilent   172.16.42.40   awg-agilent.bench.mitchr.me     # Agilent 33210A AWG     
+#host  gpib-rover    172.16.42.88   gpib-rover.bench.mitchr.me      # HP 53131A Counter
+#host  awg-rigol     172.16.42.96   awg-rigol.bench.mitchr.me       # Rigol DG2052 AWG       
+#host  oscope-rigol  172.16.42.104  oscope-rigol.bench.mitchr.me    # Rigol DHO4204 HiRes Scope      
+#host  dmm-keithley  172.16.42.64   dmm-keithley.bench.mitchr.me    # Keithley/Tektronix DMM6500 DMM   
+#host  ps-rns        172.16.42.72   ps-rns.bench.mitchr.me          # R&S HMC8043 Power Supply        
+#host  oscope-sig    172.16.42.56   oscope-sig.bench.mitchr.me      # Siglent SDS2504X+ MSO Scope  
+#host  oscope-tek    172.16.42.80   oscope-tek.bench.mitchr.me      # Tektronix TDS3052B DPO Scope            
+#host  bench-router4 172.16.42.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite
+#host  bench-router4 172.16.43.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite
+#host  serial        172.16.42.32   serial.bench.mitchr.me          # Lantronix EDS4100 Serial Console     
+
+###########################################################################################################
+# Serial Console Ports ####################################################################################
+#.....Device..Line..Interface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device.........
+#scon serial     1      RS232    Tunnel 10001   9600    Even      7      2  SOFT   ^Q   ^S   34401A
+#scon serial     2      RS232    Tunnel 10002  19200    Even      2      2  HARD   ^Q   ^S   TDS2024
+#scon serial     3      RS232    Tunnel 10003  38400    None      8      1  HARD   ^Q   ^S   TDS3052B
+#scon serial     4   DISABLED        --    --     --      --     --     --    --   --   --   --
+
+###########################################################################################################
+# GPIB/ETH ################################################################################################
+#......Device.......Instrument....Note.....................................................................
+#geth  gpib-rover   53131a        # HP 53131A Counter
+
+###########################################################################################################
+# Layer 3 IP Router Ports #################################################################################
+#..............Device.............Interface......Subnet.............Note...................................
+#L3router      bench-router4      eth0           172.16.1.0/24      
+#L3router      bench-router4      eth1           172.16.42.0/23     
+#L3router      bench-router4      eth2           172.16.43.0/23
+
+###########################################################################################################
+# Layer 2 Ethernet Switch Ports ###########################################################################
+#..............Device.............Interface......Device.............Note...................................
+#L2switch      bench-switch42             1      bench-router4
+#L2switch      bench-switch42             2      nomad              # Long, sheilded, yellow cable
+#L2switch      bench-switch42             3      NC
+#L2switch      bench-switch42             4      NC
+#L2switch      bench-switch42             5      NC
+#L2switch      bench-switch42             6      NC
+#L2switch      bench-switch42             7      NC
+#L2switch      bench-switch42             8      NC
+#L2switch      bench-switch42             9      NC
+#L2switch      bench-switch42            10      oscope-rigol       # Red Cable
+#L2switch      bench-switch42            11      gpib-rover         # Yellow Cable
+#L2switch      bench-switch42            12      dmm-keithley       # Bright blue
+#L2switch      bench-switch42            13      oscope-sig         # Grey cable
+#L2switch      bench-switch42            14      ps-rns             # Dark Blue
+#L2switch      bench-switch42            15      NC                 # Grey
+#L2switch      bench-switch42            16      serial
+#+end_src
+
+* Features (current & future)
+:PROPERTIES:
+:CUSTOM_ID: features
+:END:
+
+  - Broad platform support
+    - Minimal runtime requirements (base ruby install)
+    - Broad OS compatibility (Windows, OSX, Linux, Raspberry Pi OS, etc...)
+  - Modern Ruby API for interacting with instruments via SCPI
+    - Stateful programming model that compliments the structure of {{{SCPI}}} itself
+    - Good control over output (commands, debug, results, etc...)
+  - Simple {{{MRSCPI}}} scripting language
+    - All the goodness of the Ruby API, but for simple applications
+    - Usage that parallels how the Ruby API is used in practice
+    - Shebang support for "executable" scripts on UNIX/Linux/Windows MSYS2
+    - Support simple programming constructs
+      - Conditionals
+      - Goto/labels
+      - Variables (with variable interpolation)
+      - Evaluate ruby one liners and assign results to a variable
+      - Stop execution with optional message
+      - Print things
+    - {{{EMACS}}} {{{ORGMODE}}} Babel support (execution and header variables)
+    - {{{EMACS}}} language mode (highlight {{{MRSCPI}}} script code & identify common syntax errors)
+  - Protocol/Communication Features
+    - {{{SCPI}}} over raw TCP/IP sockets (which =lxi-tool= can do very well)
+      - Support for instruments that don't close the TCP connection after the client closes for write
+    - Serial (RS-232/RS-485) {{{SCPI}}} over Ethernet via a network attached serial console server
+      - Correctly control DTE via TCP/IP socket close
+      - Console server port mapping is directly supported via instrument nicknames
+    - GPIB {{{SCPI}}} over Ethernet with a {{{PROLOGIX}}} lan controller
+      - Correctly configures {{{PROLOGIX}}} controllers to provide :raw mode access
+      - Preserves {{{PROLOGIX}}} EPROM values -- and extends life of device memory
+      - Uses =:read_timeout_first_byte= to set {{{PROLOGIX}}} =++read_tmo_ms=
+      - Uses =:eol= to set {{{PROLOGIX}}} =++eos=
+      - Transparently avoids "Query Unterminated" and "-420" errors by using =++auto 0= and calling =++read=
+      - Support {{{PROLOGIX}}} specific commands for when to do GPIB reads
+    - {{{SCPI}}} over HTTP for TDS3000B series oscilloscopes
+      - Works around the lack of raw sockets support by scraping the instrument's web server
+  - Flexible timing control
+    - Delay after sending a command but before doing a read on the line
+    - Timeout to wait for a response to start
+    - Timeout to for more data after a successful read
+    - Delay before retrying an I/O operation
+    - Delay after a command is run and all I/O processed, but before returning a value (or running the next command)
+  - Features for {{{EMACS}}} {{{ORGMODE}}} support
+    - Option to always return an exit code of 0 -- =org= throws away output from commands with a non-zero exit code
+    - Option to not send things to =STDERR= -- =org= only captures =STDOUT=
+    - Option for running {{{SCPI}}} scripts on =STDIN=
+    - Support for prepending script options/commands via command line
+  - A set of standard post-processing steps for results
+    - Standard string processing operations:
+      - chop (end of line characters)
+      - trim white space
+      - Extract last word
+      - Extract a 488.2 binary block data payload
+      - split into an array
+        - Binary data can be unpack'ed into native types
+        - Binary return blocks can be split into header and payload
+        - Strings can be split on 
+          - commas
+          - semicolons
+          - whitespace
+          - vertical whitespace
+          - regular expressions
+          - fixed strings or character sets
+          - scan (TODO: future feature)
+      - compress sequences of one or more white-space characters into single spaces
+      - regex to extract (TODO: future feature)
+    - Convert results into numeric Ruby types
+      - float or array of floats
+      - integer or array of integers
+      - boolean or array of booleans (actually tri-state: true, false, or nil)
+  - Global Configuration File
+    - Keeping track of instrument IP addresses or DNS names
+    - Keeping track of port mappings so I can get through the firewall isolating my bench
+    - Avoiding the need to type full DNS names or IP addresses
+  - A library of regular expression strings for matching 488.2 results and program elements
+
+* FAQ
+:PROPERTIES:
+:CUSTOM_ID: faq
+:END:
+
+** Why don't you use a simple =require= to load {{{MRSCPI}}} in Ruby scripts?
+:PROPERTIES:
+:CUSTOM_ID: faq-require
+:END:
+
+In my scripts, I normally load {{{MRSCPI}}} by searching my =PATH= environment variable like this:
+
+#+begin_src ruby
+require ENV['PATH'].split(File::PATH_SEPARATOR).map {|x| File.join(x, 'mrSCPI.rb')}.find {|x| FileTest.exist?(x)}
+#+end_src
+
+Why?  I normally put {{{MRSCPI}}} on my path, but I don't want to contaminate my Ruby =LOAD_PATH= by including a generic =bin= directory.  This is just a
+personal preference in the way I set up my operating environment.  I expect most people will just do a =require_relative= or =require= to load {{{MRSCPI}}}.
+
+
+** Where can I find more examples?
+:PROPERTIES:
+:CUSTOM_ID: faq-examples
+:END:
+
+I have [[http://gh][another repository] for scripts related to test equipment that contains several {{{MRSCPI}}} scripts.
+
+

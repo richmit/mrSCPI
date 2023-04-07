@@ -1,0 +1,7 @@
+:url @hmc8043
+:result_type nil
+:delay_after_complete 100
+:cmd :OUTPut:MASTer:STATe OFF'
+:cmd :INSTrument:NSELect 1; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${analog_voltage:10}; :OUTPut:CHANnel:STATe ON
+:cmd :INSTrument:NSELect 2; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${analog_voltage:10}; :OUTPut:CHANnel:STATe ON
+:cmd :INSTrument:NSELect 3; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${digital_voltage:5}; :OUTPut:CHANnel:STATe ON

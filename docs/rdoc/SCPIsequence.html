@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class SCPIsequence - mrSCPI</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-SCPIsequence-label-Introduction">Introduction</a>
+    <li><a href="#class-SCPIsequence-label-Additional+-22options-22+for+an+SCPIsequence">Additional “options” for an SCPIsequence</a>
+    <li><a href="#class-SCPIsequence-label-Use">Use</a>
+    <li><a href="#class-SCPIsequence-label-How+mrSCPI+uses+SCPIsequence">How mrSCPI uses SCPIsequence</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Object
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-add">#add</a>
+    <li ><a href="#method-i-execute">#execute</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-SCPIsequence">
+  <h1 id="class-SCPIsequence" class="class">
+    class SCPIsequence
+  </h1>
+
+  <section class="description">
+    
+<h1 id="class-SCPIsequence-label-Introduction">Introduction<span><a href="#class-SCPIsequence-label-Introduction">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><a href="SCPIsequence.html"><code>SCPIsequence</code></a> is essentially a container for an ordered sequence of <a href="SCPIsession.html"><code>SCPIsession</code></a> options (added via SCPIsequence.add) that may eventually be applied to an <a href="SCPIsession.html"><code>SCPIsession</code></a> in order (via <a href="SCPIsequence.html#method-i-execute"><code>SCPIsequence.execute</code></a>).  In addition to <a href="SCPIsession.html"><code>SCPIsession</code></a> options, this class may also house a few additional parameters which provide various programming constructs: variables (with comprehensive substitution &amp; ruby code execution), conditionals, &amp; jumps.  With these additions, the mrSCPI scripting language becomes Turing complete, and an <a href="SCPIsequence.html"><code>SCPIsequence</code></a> can used to house full scripts.</p>
+
+<h1 id="class-SCPIsequence-label-Additional+-22options-22+for+an+SCPIsequence">Additional “options” for an <a href="SCPIsequence.html"><code>SCPIsequence</code></a><span><a href="#class-SCPIsequence-label-Additional+-22options-22+for+an+SCPIsequence">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<ul><li><dl class="rdoc-list note-list"><dt><code>:eval</code>
+<dd>
+<p><code>{VAR}={RUBY_CODE}</code></p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:var</code>
+<dd>
+<p><code>{VAR}={VALUE}</code></p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:skip_if</code>
+<dd>
+<p><code>{LHS}{=|!=|~|!~}{RHS}</code></p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:next_if</code>
+<dd>
+<p><code>{LHS}{=|!=|~|!~}{RHS}</code></p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:stop</code>
+<dd>
+<p><code>[MESSAGE]</code> – <code>MESSAGE</code> is required when <code>:stop</code> is given on the command line!</p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:print</code>
+<dd>
+<p><code>[MESSAGE]</code> – <code>MESSAGE</code> is required when <code>:stop</code> is given on the command line!</p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:goto</code>
+<dd>
+<p><code>{LABEL}</code></p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:lab</code>
+<dd>
+<p><code>{LABEL}</code></p>
+</dd></dl>
+</li></ul>
+
+<h2 id="class-SCPIsequence-label-Use">Use<span><a href="#class-SCPIsequence-label-Use">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Create a new <a href="SCPIsequence.html"><code>SCPIsequence</code></a> object.</p>
+</li><li>
+<p>Repeatedly call the <a href="SCPIsequence.html#method-i-add"><code>add</code></a> method to add options.</p>
+</li><li>
+<p>When done adding options, call the <a href="SCPIsequence.html#method-i-execute"><code>execute</code></a> method to run the sequence.</p>
+</li></ul>
+
+<h3 id="class-SCPIsequence-label-How+mrSCPI+uses+SCPIsequence">How mrSCPI uses <a href="SCPIsequence.html"><code>SCPIsequence</code></a><span><a href="#class-SCPIsequence-label-How+mrSCPI+uses+SCPIsequence">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li><dl class="rdoc-list note-list"><dt>For mrSCPI scripts
+<dd>
+<p>The script file is read, and <a href="SCPIsequence.html#method-i-add"><code>add</code></a> is called for each line.  Once the file is read, the <a href="SCPIsequence.html#method-i-execute"><code>execute</code></a> method is called.</p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt>For command line scripts
+<dd>
+<p>Command line arguments added to an <a href="SCPIsequence.html"><code>SCPIsequence</code></a> in order.  Once all the arguments are processed, the <a href="SCPIsequence.html#method-i-execute"><code>execute</code></a> method is called.</p>
+</dd></dl>
+</li></ul>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(convertStrings=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1030</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> (<span class="ruby-identifier">convertStrings</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-comment"># Store the instance to shorten lines referencing it</span>
+  <span class="ruby-ivar">@re</span>           = <span class="ruby-constant">SCPIregexLibrary</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-comment"># These are only passed to the session constructor</span>
+  <span class="ruby-ivar">@optsForNew</span>  = <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>([<span class="ruby-value">:ip_address</span>, <span class="ruby-value">:net_port</span>, <span class="ruby-value">:net_protocol</span>, <span class="ruby-value">:url</span>])
+  <span class="ruby-comment"># These are sequence options not session options</span>
+  <span class="ruby-ivar">@optsForSeq</span>  = <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>([<span class="ruby-value">:skip_if</span>, <span class="ruby-value">:next_if</span>, <span class="ruby-value">:stop</span>, <span class="ruby-value">:print</span>, <span class="ruby-value">:goto</span>, <span class="ruby-value">:lab</span>, <span class="ruby-value">:var</span>, <span class="ruby-value">:eval</span>])
+  <span class="ruby-comment"># How we convert strings to option values.</span>
+  <span class="ruby-ivar">@optValToStr</span> = { <span class="ruby-value">:cmd</span>                     <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         }, <span class="ruby-comment"># Properties</span>
+                   <span class="ruby-value">:delay_after_complete</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                   <span class="ruby-value">:delay_before_first_read</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                   <span class="ruby-value">:echo</span>                    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_macro_bin</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_macro_block</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_macro_ascii</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_macro_debug</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_macro_csv</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:good_std_eot</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:eol</span>                     <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\&quot;#{x}\&quot;&quot;</span>.<span class="ruby-identifier">undump</span>                                         },
+                   <span class="ruby-value">:eval</span>                    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">md</span>=<span class="ruby-identifier">x</span>.<span class="ruby-identifier">match</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_assign</span>)); [<span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">2</span>]]            },
+                   <span class="ruby-value">:execute_on_cmd</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:exit_0</span>                  <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:exit_on_error</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:goto</span>                    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:ip_address</span>              <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         }, <span class="ruby-comment"># new properties</span>
+                   <span class="ruby-value">:lab</span>                     <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:log_file</span>                <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:name</span>                    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span><span class="ruby-operator">==</span><span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>)                                         },
+                   <span class="ruby-value">:net_port</span>                <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                   <span class="ruby-value">:net_protocol</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^:/</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">to_sym</span>                                    },
+                   <span class="ruby-value">:next_if</span>                 <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">md</span>=<span class="ruby-identifier">x</span>.<span class="ruby-identifier">match</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_branch</span>)); [<span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">2</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">3</span>]]     },
+                   <span class="ruby-value">:out_file</span>                <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:print</span>                   <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:print_cmd</span>               <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:print_raw_result</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:print_result</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:read_buffer_size</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                   <span class="ruby-value">:read_eot_sentinel</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> ( [<span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;nil&#39;</span>].<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">x</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;\&quot;#{x}\&quot;&quot;</span>.<span class="ruby-identifier">undump</span> )      },
+                   <span class="ruby-value">:read_max_bytes</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> ( [<span class="ruby-string">&#39;0&#39;</span>, <span class="ruby-string">&#39;nil&#39;</span>].<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">x</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span> )                },
+                   <span class="ruby-value">:print_max_len</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> ( [<span class="ruby-string">&#39;0&#39;</span>, <span class="ruby-string">&#39;nil&#39;</span>].<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">x</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span> )                },
+                   <span class="ruby-value">:print_debug</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:read_retry_delay</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                   <span class="ruby-value">:read_timeout_first_byte</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                   <span class="ruby-value">:read_timeout_next_byte</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                   <span class="ruby-value">:result_squeeze</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_chomp</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_last_word</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_extract_block</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_split</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^:/</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">to_sym</span>)                   },
+                   <span class="ruby-value">:result_split_arg</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\&quot;#{x}\&quot;&quot;</span>.<span class="ruby-identifier">undump</span>                                         },
+                   <span class="ruby-value">:result_strip</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:result_type</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-regexp">/^n/i</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^:/</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">to_sym</span>)          },
+                   <span class="ruby-value">:scpi_prefix</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:seq_verbose</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:skip_if</span>                 <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">md</span>=<span class="ruby-identifier">x</span>.<span class="ruby-identifier">match</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_branch</span>)); [<span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">2</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">3</span>]]     },
+                   <span class="ruby-value">:socket_close</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:socket_close_write</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:stop</span>                    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:store_cmd</span>               <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:store_raw_results</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:store_results</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:store_named_in_var</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:store_last_in_ans</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:url</span>                     <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>                                                         },
+                   <span class="ruby-value">:var</span>                     <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">md</span>=<span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_assign</span>)); [<span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">2</span>]]           },
+                   <span class="ruby-value">:verbose</span>                 <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>                                                    },
+                 }
+  <span class="ruby-ivar">@newOpts</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@seqOpts</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@convertStringsP</span> = <span class="ruby-identifier">convertStrings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-add" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">add</span><span
+            class="method-args">(property, value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return true if property is valid, and nil if not – note :execute_on_cmd is not allowed</p>
+
+          <div class="method-source-code" id="add-source">
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span> (<span class="ruby-identifier">property</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@convertStringsP</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">property</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)) <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">property</span> = <span class="ruby-identifier">property</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^(--|:)/</span>, <span class="ruby-string">&#39;&#39;</span>)
+    <span class="ruby-identifier">property</span> = <span class="ruby-identifier">property</span>.<span class="ruby-identifier">to_sym</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">property</span> <span class="ruby-operator">!=</span> <span class="ruby-value">:execute_on_cmd</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@optValToStr</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">property</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@convertStringsP</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)) <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-ivar">@optValToStr</span>[<span class="ruby-identifier">property</span>].<span class="ruby-identifier">call</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">strip</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@optsForNew</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">property</span>) <span class="ruby-keyword">then</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@newOpts</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">property</span>) <span class="ruby-keyword">then</span>
+        <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">2</span>, <span class="ruby-node">&quot;WARNING: Ignoring: #{property.inspect} =&gt; #{value.inspect}.  Using value: #{@newOpts[property].inspect}&quot;</span>, <span class="ruby-keyword">self</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@newOpts</span>[<span class="ruby-identifier">property</span>] = <span class="ruby-identifier">value</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@seqOpts</span>.<span class="ruby-identifier">push</span>([<span class="ruby-identifier">property</span>, <span class="ruby-identifier">value</span>])
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-execute" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">execute</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Execute the sequence of stored parameters</p>
+
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span> ()
+  <span class="ruby-identifier">theSession</span> = <span class="ruby-constant">SCPIsession</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@newOpts</span>)
+  <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value">:execute_on_cmd</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">labelIndex</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">lookingForLab</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">skipStep</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">currentLineNumber</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">currentLineNumber</span> <span class="ruby-operator">&lt;=</span> (<span class="ruby-ivar">@seqOpts</span>.<span class="ruby-identifier">length</span><span class="ruby-value">-1</span>) <span class="ruby-keyword">do</span>
+    (<span class="ruby-identifier">par</span>, <span class="ruby-identifier">val</span>) = <span class="ruby-ivar">@seqOpts</span>[<span class="ruby-identifier">currentLineNumber</span>]
+    <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">4</span>, <span class="ruby-node">&quot;DEBUG-4: LINE: #{currentLineNumber} : #{@seqOpts[currentLineNumber].inspect}&quot;</span>, <span class="ruby-keyword">self</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">skipStep</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">skipStep</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">lookingForLab</span>) <span class="ruby-operator">||</span> ((<span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:lab</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">lookingForLab</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">val</span>)) <span class="ruby-keyword">then</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@optsForSeq</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">par</span>) <span class="ruby-keyword">then</span>
+          <span class="ruby-keyword">if</span> (<span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:skip_if</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:next_if</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">tmpLHS</span> = <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">val</span>[<span class="ruby-value">0</span>])
+            <span class="ruby-identifier">tmpRHS</span> = <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">val</span>[<span class="ruby-value">2</span>])
+            <span class="ruby-identifier">pred</span> = ( <span class="ruby-identifier">val</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">match?</span>(<span class="ruby-string">&quot;=&quot;</span>) <span class="ruby-operator">?</span> (<span class="ruby-identifier">tmpLHS</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tmpRHS</span>) <span class="ruby-operator">:</span> <span class="ruby-operator">!</span><span class="ruby-operator">!</span>(<span class="ruby-identifier">tmpLHS</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-identifier">tmpRHS</span>)) )
+            <span class="ruby-identifier">pred</span> = ( <span class="ruby-identifier">val</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">match?</span>(<span class="ruby-string">&quot;!&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">pred</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">pred</span> )
+            <span class="ruby-identifier">skipStep</span> = ((<span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:skip_if</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">pred</span>) <span class="ruby-operator">||</span> ((<span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:next_if</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">pred</span>))
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">par</span> <span class="ruby-operator">==</span>  <span class="ruby-value">:stop</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">val</span>.<span class="ruby-identifier">empty?</span>) <span class="ruby-keyword">then</span>
+              <span class="ruby-identifier">tmpMSG</span> = <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">val</span>)
+              <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">outPrinter</span>(<span class="ruby-identifier">tmpMSG</span>, <span class="ruby-identifier">newline</span>=<span class="ruby-keyword">true</span>)
+            <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">break</span>
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">par</span> <span class="ruby-operator">==</span>  <span class="ruby-value">:print</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">tmpMSG</span> = <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">val</span>)
+            <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">outPrinter</span>(<span class="ruby-identifier">tmpMSG</span>, <span class="ruby-identifier">newline</span>=<span class="ruby-keyword">true</span>)
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">par</span> <span class="ruby-operator">==</span>  <span class="ruby-value">:goto</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">labelIndex</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">val</span>) <span class="ruby-keyword">then</span>
+              <span class="ruby-identifier">currentLineNumber</span> = <span class="ruby-identifier">labelIndex</span>[<span class="ruby-identifier">val</span>] <span class="ruby-comment"># Jump back</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">lookingForLab</span> = <span class="ruby-identifier">val</span>                 <span class="ruby-comment"># Jump forward</span>
+            <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">next</span>
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">par</span> <span class="ruby-operator">==</span>  <span class="ruby-value">:lab</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">lookingForLab</span> = <span class="ruby-keyword">nil</span>
+            <span class="ruby-identifier">labelIndex</span>[<span class="ruby-identifier">val</span>] = <span class="ruby-identifier">currentLineNumber</span>
+          <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:var</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:eval</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">tmpVAL</span> = <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">val</span>[<span class="ruby-value">1</span>])
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">par</span> <span class="ruby-operator">==</span> <span class="ruby-value">:eval</span> <span class="ruby-keyword">then</span>
+              <span class="ruby-identifier">tmpVAL</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-identifier">tmpVAL</span>).<span class="ruby-identifier">to_s</span>
+            <span class="ruby-keyword">end</span>
+            <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">variable</span>(<span class="ruby-identifier">val</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">tmpVAL</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">tmpVal</span> = (<span class="ruby-identifier">val</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">val</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">val</span>)
+          <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">set</span>(<span class="ruby-identifier">par</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">tmpVal</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">currentLineNumber</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

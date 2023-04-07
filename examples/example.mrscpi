@@ -1,0 +1,9 @@
+# This little script pulls the identifier string from an instrument, matches
+# matches it against a regular expression, and prints the results.
+
+:url @34401a                      # @34401a is an instrument connection "nickname"
+:name ids                         # We name the next :cmd that will run
+:cmd *IDN?                        # Creates ids variable and stores command result in it
+:skip_if ${ids}~34401[aA]         # Checks the result against a regular expression, and skips the next command if it matches
+:stop Unknown Device: ${ids}      # This line is skipped if the previous one was true.  Note :stop ends the script.
+:print Known Device: 34401A       # The normal script end -- when the regex above matches indicating a recognized device

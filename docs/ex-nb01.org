@@ -1,0 +1,88 @@
+# -*- Mode:Org; Coding:utf-8; fill-column:158 -*-
+# ######################################################################################################################################################.H.S.##
+# FILE:        ex-nb01.org
+#+TITLE:       Excerpt From Lab Notebook
+#+AUTHOR:      Mitch Richling
+#+EMAIL:       http://www.mitchr.me/
+#+DESCRIPTION: mrSCPI example org-mode notebook
+#+LANGUAGE:    en
+#+OPTIONS:     num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t skip:nil d:nil todo:t pri:nil H:5 p:t author:t html-scripts:nil 
+#+SEQ_TODO:    TODO:NEW(t)                         TODO:WORK(w)    TODO:HOLD(h)    | TODO:FUTURE(f)   TODO:DONE(d)    TODO:CANCELED(c)
+#+PROPERTY: header-args :eval never-export
+#+HTML_HEAD: <style>body { width: 95%; margin: 2% auto; font-size: 18px; line-height: 1.4em; font-family: Georgia, serif; color: black; background-color: white; }</style>
+#+HTML_HEAD: <style>body { min-width: 500px; max-width: 1024px; }</style>
+#+HTML_HEAD: <style>h1,h2,h3,h4,h5,h6 { color: #A5573E; line-height: 1em; font-family: Helvetica, sans-serif; }</style>
+#+HTML_HEAD: <style>h1,h2,h3 { line-height: 1.4em; }</style>
+#+HTML_HEAD: <style>h1.title { font-size: 3em; }</style>
+#+HTML_HEAD: <style>.subtitle { font-size: 0.6em; }</style>
+#+HTML_HEAD: <style>h4,h5,h6 { font-size: 1em; }</style>
+#+HTML_HEAD: <style>.org-src-container { border: 1px solid #ccc; box-shadow: 3px 3px 3px #eee; font-family: Lucida Console, monospace; font-size: 80%; margin: 0px; padding: 0px 0px; position: relative; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre { line-height: 1.2em; padding-top: 1.5em; margin: 0.5em; background-color: #404040; color: white; overflow: auto; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre:before { display: block; position: absolute; background-color: #b3b3b3; top: 0; right: 0; padding: 0 0.2em 0 0.4em; border-bottom-left-radius: 8px; border: 0; color: white; font-size: 100%; font-family: Helvetica, sans-serif;}</style>
+#+HTML_HEAD: <style>pre.example { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; font-family: Lucida Console, monospace; font-size: 80%; background: #404040; color: white; display: block; padding: 0em; border: 2px solid black; }</style>
+#+HTML_HEAD: <style>blockquote { margin-bottom: 0.5em; padding: 0.5em; background-color: #FFF8DC; border-left: 2px solid #A5573E; border-left-color: rgb(255, 228, 102); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 5em; margin-inline-end: 5em; } </style>
+#+HTML_LINK_HOME: https://www.mitchr.me/
+#+HTML_LINK_UP: https://www.mitchr.me/FIXME
+# ######################################################################################################################################################.H.E.##
+
+#+MACRO: MRSCPI =mrSCPI=
+#+MACRO: EMACS [[https://www.gnu.org/software/emacs/][Emacs]]
+#+MACRO: ORGMODE [[https://orgmode.org/][=org-mode=]]
+
+What follows is an excerpt from my lab notebook.  At the time I was working on an hybrid analog computer that used a microcontroller & DAC to provide the
+fixed analog voltages traditionally provided by "parameter" potentiometers in older systems.  The DAC was controlled by an SPI interface connected to the
+microcontroller.  The microcontroller would /sometimes/ come up faster than the DAC and start sending SPI signals to the DAC before the DAC was fully
+initialized -- which burned up the DAC.  I lost two DACs before I realized what was happening.
+
+Having the {{{MRSCPI}}} code in my notebook like this allows me to reproduce my bench hardware configuration by simply having {{{ORGMODE}}} evaluate the code.
+And I can do that right in my editor while I'm reading my notes.
+
+A lot of people talk about how important *[[https://en.wikipedia.org/wiki/Reproducibility][Reproducibility]]* is to the scientific process, and that it is
+worth the extra work.  The example below illustrates that reproducibility isn't necessarily a burden at all.  It can, in fact, be a productivity gain in the
+long run.
+
+\\
+-----
+-----
+#+BEGIN_CENTER
+=.. BEGIN Excerpt .. BEGIN Excerpt .. BEGIN Excerpt .. BEGIN Excerpt .. BEGIN Excerpt ..=
+#+END_CENTER
+-----
+-----
+\\
+
+*** Power Sequenceing
+
+The DAC will be bricked if a voltage over 3V is applied to an SPI intput before the DAC is powered up and initializes.  The initialization takes about 30ms.
+For this reason it is critical that I power up the DAC before I power up the microcontorler board:
+
+#+begin_src mrscpi :output verbatum
+:url @hmc8043
+:result_type nil
+:delay_after_complete 200
+:cmd :OUTPut:MASTer:STATe OFF
+# Set 9V & 08mA on Ch1 & Ch2.  Set 5V @ 60mA on Ch1.
+:cmd :INSTrument:NSELect 1; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude 9.0; :SOURce:CURRent:LEVel:IMMediate:AMPLitude 80.0e-3;
+:cmd :INSTrument:NSELect 2; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude 9.0; :SOURce:CURRent:LEVel:IMMediate:AMPLitude 80.0e-3;
+:cmd :INSTrument:NSELect 3; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude 5.0; :SOURce:CURRent:LEVel:IMMediate:AMPLitude 60.0e-3;
+# Set Ch1 & Ch2 to start first, and then Ch3 90ms later.
+:cmd :SEQuence:STATe OFF
+:cmd :INSTrument:NSELect 1; :SEQuence:CHANnel:STATe ON; :SEQuence:DELay 10.0;  :SEQuence:TRIGgered OFF
+:cmd :INSTrument:NSELect 2; :SEQuence:CHANnel:STATe ON; :SEQuence:DELay 10.0;  :SEQuence:TRIGgered OFF
+:cmd :INSTrument:NSELect 3; :SEQuence:CHANnel:STATe ON; :SEQuence:DELay 100.0; :SEQuence:TRIGgered OFF
+:cmd :SEQuence:STATe ON
+# Activate all the channels
+:cmd :INSTrument:NSELect 1; :OUTPut:CHANnel:STATe ON
+:cmd :INSTrument:NSELect 2; :OUTPut:CHANnel:STATe ON
+:cmd :INSTrument:NSELect 3; :OUTPut:CHANnel:STATe ON
+# At this point, the master enable needs to be pressed.
+#+end_src
+
+\\
+-----
+-----
+#+BEGIN_CENTER
+=.. END Excerpt .. END Excerpt .. END Excerpt .. END Excerpt .. END Excerpt ..=
+#+END_CENTER
+-----
+-----

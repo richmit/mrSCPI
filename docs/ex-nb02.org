@@ -1,0 +1,177 @@
+# -*- Mode:Org; Coding:utf-8; fill-column:158 -*-
+# ######################################################################################################################################################.H.S.##
+# FILE:        ex-nb01.org
+#+TITLE:       Excerpt From Lab Notebook
+#+AUTHOR:      Mitch Richling
+#+EMAIL:       http://www.mitchr.me/
+#+DESCRIPTION: mrSCPI example org-mode notebook
+#+LANGUAGE:    en
+#+OPTIONS:     num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t skip:nil d:nil todo:t pri:nil H:5 p:t author:t html-scripts:nil 
+#+SEQ_TODO:    TODO:NEW(t)                         TODO:WORK(w)    TODO:HOLD(h)    | TODO:FUTURE(f)   TODO:DONE(d)    TODO:CANCELED(c)
+#+PROPERTY: header-args :eval never-export
+#+HTML_HEAD: <style>body { width: 95%; margin: 2% auto; font-size: 18px; line-height: 1.4em; font-family: Georgia, serif; color: black; background-color: white; }</style>
+#+HTML_HEAD: <style>body { min-width: 500px; max-width: 1024px; }</style>
+#+HTML_HEAD: <style>h1,h2,h3,h4,h5,h6 { color: #A5573E; line-height: 1em; font-family: Helvetica, sans-serif; }</style>
+#+HTML_HEAD: <style>h1,h2,h3 { line-height: 1.4em; }</style>
+#+HTML_HEAD: <style>h1.title { font-size: 3em; }</style>
+#+HTML_HEAD: <style>.subtitle { font-size: 0.6em; }</style>
+#+HTML_HEAD: <style>h4,h5,h6 { font-size: 1em; }</style>
+#+HTML_HEAD: <style>.org-src-container { border: 1px solid #ccc; box-shadow: 3px 3px 3px #eee; font-family: Lucida Console, monospace; font-size: 80%; margin: 0px; padding: 0px 0px; position: relative; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre { line-height: 1.2em; padding-top: 1.5em; margin: 0.5em; background-color: #404040; color: white; overflow: auto; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre:before { display: block; position: absolute; background-color: #b3b3b3; top: 0; right: 0; padding: 0 0.2em 0 0.4em; border-bottom-left-radius: 8px; border: 0; color: white; font-size: 100%; font-family: Helvetica, sans-serif;}</style>
+#+HTML_HEAD: <style>pre.example { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; font-family: Lucida Console, monospace; font-size: 80%; background: #404040; color: white; display: block; padding: 0em; border: 2px solid black; }</style>
+#+HTML_HEAD: <style>blockquote { margin-bottom: 0.5em; padding: 0.5em; background-color: #FFF8DC; border-left: 2px solid #A5573E; border-left-color: rgb(255, 228, 102); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 5em; margin-inline-end: 5em; } </style>
+#+HTML_LINK_HOME: https://www.mitchr.me/
+#+HTML_LINK_UP: https://www.mitchr.me/FIXME
+# ######################################################################################################################################################.H.E.##
+
+#+MACRO: MRSCPI =mrSCPI=
+#+MACRO: EMACS [[https://www.gnu.org/software/emacs/][Emacs]]
+#+MACRO: ORGMODE [[https://orgmode.org/][=org-mode=]]
+#+MACRO: OCTAVE Octave/Matlab
+#+MACRO: PARAVIEW Paraview
+#+MACRO: SH Bourne shell
+
+* Introduction
+
+If you are reading this in a web browser, then you are looking at an exported {{{EMACS}}} {{{ORGMODE}}} file.  The original {{{ORGMODE}}} file is just a text
+file loaded in my editor ({{{EMACS}}}).  In the editor things are live.  For example, if I click in one of the source code blocks below I can evaluate them
+and get results pulled back into the document.  In a real way, {{{ORGMODE}}} allows us to integrate different tools together into one worksheet-like workflow.
+In this example we integrate {{{MRSCPI}}} code, {{{OCTAVE}}} code, and {{{SH}}} code in one document.
+
+What we have below is actually an excerpt from one of my laboratory notebooks.  The topic of the notebook in question was a sequence of experiments with
+a homemade analogue computer.  In this excerpt, the analog computer is running a Lorenz program:
+
+#+BEGIN_CENTER
+[[file:pics/aq-bench.jpg][file:pics/aq-bench_25.jpg]]
+#+END_CENTER
+
+In order to demonstrate how data acquisition and analysis can be unified within {{{EMACS}}} with {{{ORGMODE}}} I have left out some of the "laboratory notebook"
+stuff.  In particular, the original notebook had a section with {{{MRSCPI}}} code to setup the power supply & oscilloscope.  With this section missing it
+makes some of the {{{MRSCPI}}} code seem incomplete -- the way =:WAVeform:POINts= is hardwired to =100000= seems strange without seeing the preceding
+=:ACQuire:MDEPth= call for example.
+
+\\
+-----
+-----
+#+BEGIN_CENTER
+=.. BEGIN Excerpt .. BEGIN Excerpt .. BEGIN Excerpt .. BEGIN Excerpt .. BEGIN Excerpt ..=
+#+END_CENTER
+-----
+-----
+\\
+
+* {{{MRSCPI}}}: Acquire Data
+
+#+begin_src mrscpi :output verbatum
+:url @dho4k
+:print_cmd false
+:result_type nil
+:cmd :STOP
+:result_type nil
+:cmd :WAVeform:MODE RAW
+:cmd :WAVeform:FORMat WORD
+:cmd :WAVeform:POINts 100000
+:cmd :WAVeform:STARt 1
+:cmd :WAVeform:SOURce CHANnel1
+:result_type :string
+:out_file ch1.pre
+:cmd :WAVeform:PREamble?
+:out_file ch1.dat
+:cmd :WAVeform:DATA?
+:result_type nil
+:cmd :WAVeform:SOURce CHANnel2
+:result_type :string
+:out_file ch2.pre
+:cmd :WAVeform:PREamble?
+:out_file ch2.dat
+:cmd :WAVeform:DATA?
+:result_type nil
+:cmd :WAVeform:SOURce CHANnel3
+:result_type :string
+:out_file ch3.pre
+:cmd :WAVeform:PREamble?
+:out_file ch3.dat
+:cmd :WAVeform:DATA?
+#+end_src
+
+#+RESULTS:
+
+This will produce several files:
+
+ - [[file:ch1.dat][=ch1.dat=]] & [[file:ch1.pre][=ch1.pre=]] : Channel 1 data & preamble
+ - [[file:ch2.dat][=ch2.dat=]] & [[file:ch2.pre][=ch2.pre=]] : Channel 2 data & preamble
+ - [[file:ch3.dat][=ch3.dat=]] & [[file:ch3.pre][=ch3.pre=]] : Channel 3 data & preamble
+
+* {{{OCTAVE}}}: The Waveforms
+
+#+begin_src octave :results file :exports both
+figure(1, "visible", "off");
+[ch1d, per, tdat] = readDHO4k("ch1.pre", "ch1.dat");
+[ch2d] = readDHO4k("ch2.pre", "ch2.dat");
+[ch3d] = readDHO4k("ch3.pre", "ch3.dat");
+plot(tdat, ch1d);
+hold on;
+plot(tdat, ch2d);
+plot(tdat, ch3d);
+title("Lorenz strange attractor data captured from oscilloscope");
+legend("Channel 1", "Channel 2", "Channel 3");
+hold off;
+print -dpng ex-nb02-ts.png;
+ans = "ex-nb02-ts.png";
+#+end_src
+
+#+RESULTS:
+[[file:ex-nb02-ts.png]]
+
+* {{{OCTAVE}}}: The Waveforms in 3D
+
+#+begin_src octave :results file :exports both
+figure(1, "visible", "off");
+[ch1d, per, tdat] = readDHO4k("ch1.pre", "ch1.dat");
+[ch2d] = readDHO4k("ch2.pre", "ch2.dat");
+[ch3d] = readDHO4k("ch3.pre", "ch3.dat");
+scatter3(ch1d, ch3d, ch2d, 1, 'filled')
+title("Lorenz strange attractor data captured from oscilloscope");
+print -dpng ex-nb02-3d.png;
+ans = "ex-nb02-3d.png";
+#+end_src
+
+#+RESULTS:
+[[file:ex-nb02-3d.png]]
+
+* Animate via {{{PARAVIEW}}}
+
+Before we can load the data up into {{{PARAVIEW}}} we need to convert it from the raw oscilloscope data into something {{{PARAVIEW}}} can read.  Probably the
+easiest thing is CSV.  The following bit of {{{SH}}} code will do the trick:
+
+#+begin_src bash :exports code
+dhoRAW2CSV.rb -p ch1.pre ch1.dat -o ch1.csv
+dhoRAW2CSV.rb -p ch2.pre ch2.dat -o ch2.csv
+dhoRAW2CSV.rb -p ch3.pre ch3.dat -o ch3.csv
+paste.exe ch1.csv ch2.csv ch3.csv | sed 's/\t/,/g' | cut -d, -f1,2,4,6 | sed 's/v,v,v/c1,c2,c3/' > ch123.csv
+#+end_src
+
+This will produce several files:
+
+ - [[file:ch1.csv][=ch1.csv=]] : CSV with Channel 1 data
+ - [[file:ch2.csv][=ch2.csv=]] : CSV with Channel 2 data
+ - [[file:ch3.csv][=ch3.csv=]] : CSV with Channel 3 data
+ - [[file:ch123.csv][=ch123.csv=]] : Combined CSV with Channel 1 to 3 data
+
+Now we can load up that last file into {{{PARAVIEW}}}, and see a pretty animation of our data:
+
+#+BEGIN_CENTER
+[[file:pics/lorenz.gif][file:pics/lorenz_50.gif]]
+#+END_CENTER
+
+#+RESULTS:
+
+\\
+-----
+-----
+#+BEGIN_CENTER
+=.. END Excerpt .. END Excerpt .. END Excerpt .. END Excerpt .. END Excerpt ..=
+#+END_CENTER
+-----
+-----

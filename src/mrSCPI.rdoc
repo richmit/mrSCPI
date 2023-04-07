@@ -1,0 +1,4 @@
+= +mrSCPI+
+
+For a brief overview of +mrSCPI+, check out the {readme}[link:../index.html]
+

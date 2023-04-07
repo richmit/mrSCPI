@@ -1,0 +1,13 @@
+This directory contains instrument response data used to test mrSCPI.
+
+ - test result_split
+   - csv.txt
+   - lsv.txt
+   - tmc.txt
+   - usv.txt
+   - wssv.txt
+ - long100.txt -- one long line
+ - sig.bmp -- Siglent BMP output
+ - sqz.txt -- Test result_squeeze
+
+
