@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-04-07 Fri 17:19 -->
+<!-- 2023-04-07 Fri 17:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>mrSCPI</title>
@@ -234,12 +234,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2023-04-07 17:19:02</i></td>
+<td class="org-left"><i>2023-04-07 17:20:56</i></td>
 </tr>
 
 <tr>
 <td class="org-right"><b>Generated:</b></td>
-<td class="org-left"><i>2023-04-07 17:19:03</i></td>
+<td class="org-left"><i>2023-04-07 17:20:57</i></td>
 </tr>
 </tbody>
 </table>
@@ -255,13 +255,13 @@ Copyright 2023 Mitch Richling. All rights reserved.
 <li><a href="#interfaces">2. Interfaces</a></li>
 <li><a href="#emacs-interface">3. Emacs as a <code>mrSCPI</code> Interface</a>
 <ul>
-<li><a href="#org4a6d7cb">3.1. The Laboratory Notebook</a></li>
-<li><a href="#org911bc7f">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
-<li><a href="#org7243b17">3.3. Integrated Data Capture and Analysis</a></li>
-<li><a href="#org56cacdc">3.4. Setting Up Emacs</a>
+<li><a href="#org70a5980">3.1. The Laboratory Notebook</a></li>
+<li><a href="#orgfa0b204">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
+<li><a href="#orgc82bd49">3.3. Integrated Data Capture and Analysis</a></li>
+<li><a href="#orgb92c0f7">3.4. Setting Up Emacs</a>
 <ul>
-<li><a href="#org7b7c72d">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
-<li><a href="#orgbad3443">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
+<li><a href="#org4c68fa2">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
+<li><a href="#org2e2997e">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
 </ul>
 </li>
 </ul>
@@ -274,14 +274,14 @@ Copyright 2023 Mitch Richling. All rights reserved.
 </li>
 <li><a href="#mrscpi-scripts">5. <code>mrSCPI</code> Scripts</a>
 <ul>
-<li><a href="#orgd69b7f5">5.1. <code>mrSCPI</code> Script Syntax</a></li>
+<li><a href="#orgb2b8567">5.1. <code>mrSCPI</code> Script Syntax</a></li>
 </ul>
 </li>
 <li><a href="#rcfile">6. <code>SCPIrcFile</code> Class</a>
 <ul>
-<li><a href="#org77fad3a">6.1. <code>mrNetwork.rb</code></a></li>
-<li><a href="#orgf949aa9">6.2. <code>teAlias.rb</code></a></li>
-<li><a href="#orgc42247c">6.3. Example RC file</a></li>
+<li><a href="#orgae0f064">6.1. <code>mrNetwork.rb</code></a></li>
+<li><a href="#org9aab4e5">6.2. <code>teAlias.rb</code></a></li>
+<li><a href="#orgc6218ab">6.3. Example RC file</a></li>
 </ul>
 </li>
 <li><a href="#features">7. Features (current &amp; future)</a></li>
@@ -313,7 +313,7 @@ Systems designed from the ground up to support very complex use cases frequently
 captured the phenomenon quite clearly when he said:
 </p>
 
-<pre class="example" id="orgc5045f8">
+<pre class="example" id="orgf834f67">
 Perl makes easy things easy and hard things possible. 
 Professional programming languages tend to make all things equally difficult.
 </pre>
@@ -399,8 +399,8 @@ section provides some insight into my workflow.  If you are not interested in <a
 </p>
 </div>
 
-<div id="outline-container-org4a6d7cb" class="outline-3">
-<h3 id="org4a6d7cb"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
+<div id="outline-container-org70a5980" class="outline-3">
+<h3 id="org70a5980"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I always have my laboratory notebook open at the bench &#x2013; just an <a href="https://orgmode.org/"><code>org-mode</code></a> document loaded up in <a href="https://www.gnu.org/software/emacs/">Emacs</a> running on my bench computer. I have
@@ -422,8 +422,8 @@ Then, when I come back to my experiment some time later, I can have <a href="htt
 </div>
 </div>
 
-<div id="outline-container-org911bc7f" class="outline-3">
-<h3 id="org911bc7f"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
+<div id="outline-container-orgfa0b204" class="outline-3">
+<h3 id="orgfa0b204"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of cource I include in my notes littel bits of <code>mrSCPI</code> script code for common
@@ -441,8 +441,8 @@ of buttons to run them.  This has proven to be super handy, and saves me a ton o
 </div>
 </div>
 
-<div id="outline-container-org7243b17" class="outline-3">
-<h3 id="org7243b17"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
+<div id="outline-container-orgc82bd49" class="outline-3">
+<h3 id="orgc82bd49"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code &amp; results
@@ -459,8 +459,8 @@ from <code>mrSCPI</code>, Octave/Matlab, Bourne shell, and Paraview in one docum
 </div>
 
 
-<div id="outline-container-org56cacdc" class="outline-3">
-<h3 id="org56cacdc"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
+<div id="outline-container-orgb92c0f7" class="outline-3">
+<h3 id="orgb92c0f7"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 I put the <code>mrSCPI</code> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
@@ -468,8 +468,8 @@ If you have some other organizational structure for your auxiliary <a href="http
 </p>
 </div>
 
-<div id="outline-container-org7b7c72d" class="outline-4">
-<h4 id="org7b7c72d"><span class="section-number-4">3.4.1.</span> Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></h4>
+<div id="outline-container-org4c68fa2" class="outline-4">
+<h4 id="org4c68fa2"><span class="section-number-4">3.4.1.</span> Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 A simple mode for <code>mrSCPI</code> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
@@ -484,8 +484,8 @@ A simple mode for <code>mrSCPI</code> scripts is provided in <a href="https://gi
 </div>
 </div>
 
-<div id="outline-container-orgbad3443" class="outline-4">
-<h4 id="orgbad3443"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
+<div id="outline-container-org2e2997e" class="outline-4">
+<h4 id="org2e2997e"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 A language module for <a href="https://orgmode.org/"><code>org-mode</code></a> Babel may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el">emacs/ob-mrscpi.el</a>.  The magical
@@ -690,7 +690,7 @@ If we wanted the default values, then we could have just used this:
 Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href="https://orgmode.org/"><code>org-mode</code></a> code block, we could set these variables via the <code>src</code> header arguments like so:
 </p>
 
-<pre class="example" id="orgae967f7">
+<pre class="example" id="org67afcdc">
 #+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
 </pre>
 
@@ -699,8 +699,8 @@ Note that the "new" commands (<code>:url</code>, <code>:ip_address</code>, <code
 </p>
 </div>
 
-<div id="outline-container-orgd69b7f5" class="outline-3">
-<h3 id="orgd69b7f5"><span class="section-number-3">5.1.</span> <code>mrSCPI</code> Script Syntax</h3>
+<div id="outline-container-orgb2b8567" class="outline-3">
+<h3 id="orgb2b8567"><span class="section-number-3">5.1.</span> <code>mrSCPI</code> Script Syntax</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Script syntax is very simple.  Each line starts with an <code>mrSCPI</code> command, and each command is a parameter for one of the following classes:
@@ -724,8 +724,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </p>
 </div>
 
-<div id="outline-container-org77fad3a" class="outline-3">
-<h3 id="org77fad3a"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
+<div id="outline-container-orgae0f064" class="outline-3">
+<h3 id="orgae0f064"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -736,8 +736,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 
-<div id="outline-container-orgf949aa9" class="outline-3">
-<h3 id="orgf949aa9"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
+<div id="outline-container-org9aab4e5" class="outline-3">
+<h3 id="org9aab4e5"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -771,8 +771,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 
-<div id="outline-container-orgc42247c" class="outline-3">
-<h3 id="orgc42247c"><span class="section-number-3">6.3.</span> Example RC file</h3>
+<div id="outline-container-orgc6218ab" class="outline-3">
+<h3 id="orgc6218ab"><span class="section-number-3">6.3.</span> Example RC file</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Here is an example of what my RC file looks like.  I have two network subnets on my bench.  One for test equipment (192.168.42.X), and one for computers
@@ -1024,7 +1024,7 @@ personal preference in the way I set up my operating environment.  I expect most
 <h3 id="faq-examples"><span class="section-number-3">8.2.</span> Where can I find more examples?</h3>
 <div class="outline-text-3" id="text-faq-examples">
 <p>
-I have [[<a href="https://github.com/richmit/TestEquipmentScripts">https://github.com/richmit/TestEquipmentScripts</a>][another repository] for scripts related to test equipment that contains several <code>mrSCPI</code> scripts.
+I have <a href="https://github.com/richmit/TestEquipmentScripts">another repository</a> for scripts related to test equipment that contains several <code>mrSCPI</code> scripts.
 </p>
 </div>
 </div>

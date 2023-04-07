@@ -583,6 +583,6 @@ personal preference in the way I set up my operating environment.  I expect most
 :CUSTOM_ID: faq-examples
 :END:
 
-I have [[https://github.com/richmit/TestEquipmentScripts][another repository] for scripts related to test equipment that contains several {{{MRSCPI}}} scripts.
+I have [[https://github.com/richmit/TestEquipmentScripts][another repository]] for scripts related to test equipment that contains several {{{MRSCPI}}} scripts.
 
 
