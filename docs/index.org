@@ -157,7 +157,7 @@ If you have some other organizational structure for your auxiliary {{{EMACS}}} f
 
 *** Editing {{{MRSCPI}}} Code: =mrscpi-mode=
 
-A simple mode for {{{MRSCPI}}} scripts is provided in file:emacs/mrscpi-mode.el.  This should be *before* your {{{ORGMODE}}} config.
+A simple mode for {{{MRSCPI}}} scripts is provided in [[https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el][emacs/mrscpi-mode.el]].  This should be *before* your {{{ORGMODE}}} config.
 
 #+begin_src elisp
 (if (file-exists-p "~/.emacs.d/mrscpi-mode.el")
@@ -167,8 +167,9 @@ A simple mode for {{{MRSCPI}}} scripts is provided in file:emacs/mrscpi-mode.el.
 
 *** {{{ORGMODE}}} Babel Support: =ob-mrscpi.el= & =mrscpi-buttons.el=
 
-A language module for {{{ORGMODE}}} Babel may be found in file:emacs/ob-mrscpi.el.  The magical button maker may be found in file:emacs/mrscpi-buttons.el --
-you don't need this one for just basic {{{ORGMODE}}} support.  I load these things up at the very end of the {{{ORGMODE}}} setup block in my =init.el= file:
+A language module for {{{ORGMODE}}} Babel may be found in [[https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el][emacs/ob-mrscpi.el]].  The magical
+button maker may be found in [[https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-buttons.el][emacs/mrscpi-buttons.el]] -- you don't need this one for
+just basic {{{ORGMODE}}} support.  I load these things up at the very end of the {{{ORGMODE}}} setup block in my =init.el= file:
 
 #+begin_src elisp
 (if (and (file-exists-p "~/.emacs.d/ob-mrscpi.el") (file-exists-p "~/bin/mrSCPI.rb"))
