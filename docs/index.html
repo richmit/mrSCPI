@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-04-07 Fri 17:20 -->
+<!-- 2023-04-07 Fri 21:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>mrSCPI</title>
@@ -234,12 +234,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2023-04-07 17:20:56</i></td>
+<td class="org-left"><i>2023-04-07 21:13:10</i></td>
 </tr>
 
 <tr>
 <td class="org-right"><b>Generated:</b></td>
-<td class="org-left"><i>2023-04-07 17:20:57</i></td>
+<td class="org-left"><i>2023-04-07 21:13:11</i></td>
 </tr>
 </tbody>
 </table>
@@ -255,13 +255,13 @@ Copyright 2023 Mitch Richling. All rights reserved.
 <li><a href="#interfaces">2. Interfaces</a></li>
 <li><a href="#emacs-interface">3. Emacs as a <code>mrSCPI</code> Interface</a>
 <ul>
-<li><a href="#org70a5980">3.1. The Laboratory Notebook</a></li>
-<li><a href="#orgfa0b204">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
-<li><a href="#orgc82bd49">3.3. Integrated Data Capture and Analysis</a></li>
-<li><a href="#orgb92c0f7">3.4. Setting Up Emacs</a>
+<li><a href="#org2082ad9">3.1. The Laboratory Notebook</a></li>
+<li><a href="#org0d23180">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
+<li><a href="#orgf369162">3.3. Integrated Data Capture and Analysis</a></li>
+<li><a href="#orge427f00">3.4. Setting Up Emacs</a>
 <ul>
-<li><a href="#org4c68fa2">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
-<li><a href="#org2e2997e">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
+<li><a href="#orgc31ea7a">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
+<li><a href="#org48f13e9">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
 </ul>
 </li>
 </ul>
@@ -274,14 +274,14 @@ Copyright 2023 Mitch Richling. All rights reserved.
 </li>
 <li><a href="#mrscpi-scripts">5. <code>mrSCPI</code> Scripts</a>
 <ul>
-<li><a href="#orgb2b8567">5.1. <code>mrSCPI</code> Script Syntax</a></li>
+<li><a href="#orgddb33cc">5.1. <code>mrSCPI</code> Script Syntax</a></li>
 </ul>
 </li>
 <li><a href="#rcfile">6. <code>SCPIrcFile</code> Class</a>
 <ul>
-<li><a href="#orgae0f064">6.1. <code>mrNetwork.rb</code></a></li>
-<li><a href="#org9aab4e5">6.2. <code>teAlias.rb</code></a></li>
-<li><a href="#orgc6218ab">6.3. Example RC file</a></li>
+<li><a href="#orgb44f04f">6.1. <code>mrNetwork.rb</code></a></li>
+<li><a href="#org527cd23">6.2. <code>teAlias.rb</code></a></li>
+<li><a href="#org0173b5d">6.3. Example RC file</a></li>
 </ul>
 </li>
 <li><a href="#features">7. Features (current &amp; future)</a></li>
@@ -313,7 +313,7 @@ Systems designed from the ground up to support very complex use cases frequently
 captured the phenomenon quite clearly when he said:
 </p>
 
-<pre class="example" id="orgf834f67">
+<pre class="example" id="org34bbba4">
 Perl makes easy things easy and hard things possible. 
 Professional programming languages tend to make all things equally difficult.
 </pre>
@@ -335,8 +335,13 @@ packages.  No PIPs. No GEMs.  Nothing to compile. Just a single script &#x2013; 
 </p>
 
 <p>
-Read the docs: <a href="https://richmit.github.io/mrSCPI/">https://richmit.github.io/mrSCPI/</a>
+Read more:
 </p>
+
+<ul class="org-ul">
+<li>Documentation: <a href="https://richmit.github.io/mrSCPI/">https://richmit.github.io/mrSCPI/</a></li>
+<li>Additional examples: <a href="https://github.com/richmit/TestEquipmentScripts">https://github.com/richmit/TestEquipmentScripts</a></li>
+</ul>
 <hr />
 </blockquote>
 </div>
@@ -346,7 +351,7 @@ Read the docs: <a href="https://richmit.github.io/mrSCPI/">https://richmit.githu
 <h2 id="interfaces"><span class="section-number-2">2.</span> Interfaces</h2>
 <div class="outline-text-2" id="text-interfaces">
 <p>
-The <code>mrSCPI</code> ecosystem provides three distinct ways to control <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> instruments:
+The <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> ecosystem provides three distinct ways to control <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> instruments:
 </p>
 
 <dl class="org-dl">
@@ -362,7 +367,7 @@ This stateful API is unlike most test automation APIs and naturally compliments 
 </div>
 
 <dl class="org-dl">
-<dt><code>mrSCPI.rb</code> command</dt><dd>A CLI command providing sophisticated <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> functionality from the command line &#x2013; much like <code>lxi-tool</code>.</dd>
+<dt><a href="https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb"><code>mrSCPI.rb</code></a> command</dt><dd>A CLI command providing sophisticated <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> functionality from the command line &#x2013; much like <code>lxi-tool</code>.</dd>
 </dl>
 
 <div class="org-src-container">
@@ -371,7 +376,7 @@ This stateful API is unlike most test automation APIs and naturally compliments 
 </div>
 
 <dl class="org-dl">
-<dt><code>mrSCPI</code> Scripts</dt><dd>An efficient scripting language for simple <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks.  
+<dt><a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts</dt><dd>An efficient scripting language for simple <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks.  
 Full <a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support is included enabling instrument control right from your laboratory notebook!</dd>
 </dl>
 
@@ -389,22 +394,22 @@ learned how to use them all.
 </div>
 
 <div id="outline-container-emacs-interface" class="outline-2">
-<h2 id="emacs-interface"><span class="section-number-2">3.</span> <a href="https://www.gnu.org/software/emacs/">Emacs</a> as a <code>mrSCPI</code> Interface</h2>
+<h2 id="emacs-interface"><span class="section-number-2">3.</span> <a href="https://www.gnu.org/software/emacs/">Emacs</a> as a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Interface</h2>
 <div class="outline-text-2" id="text-emacs-interface">
 <p>
-<code>mrSCPI</code> really has nothing to do with <a href="https://www.gnu.org/software/emacs/">Emacs</a>; however, as an enthusiastic <a href="https://www.gnu.org/software/emacs/">Emacs</a> user, I wanted to be able to use <code>mrSCPI</code> from inside
-<a href="https://www.gnu.org/software/emacs/">Emacs</a>!  To that end I have developed a bit of <a href="https://www.gnu.org/software/emacs/">Emacs</a> software to seamlessly integrate <code>mrSCPI</code> into <a href="https://www.gnu.org/software/emacs/">Emacs</a>.  For me, because <a href="https://www.gnu.org/software/emacs/">Emacs</a>
-plays a central role in my workflow, this is one of the most important aspects of <code>mrSCPI</code> &#x2013; 90% of my <code>mrSCPI</code> use is from within <a href="https://www.gnu.org/software/emacs/">Emacs</a>.  This
+<a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> really has nothing to do with <a href="https://www.gnu.org/software/emacs/">Emacs</a>; however, as an enthusiastic <a href="https://www.gnu.org/software/emacs/">Emacs</a> user, I wanted to be able to use <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> from inside
+<a href="https://www.gnu.org/software/emacs/">Emacs</a>!  To that end I have developed a bit of <a href="https://www.gnu.org/software/emacs/">Emacs</a> software to seamlessly integrate <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> into <a href="https://www.gnu.org/software/emacs/">Emacs</a>.  For me, because <a href="https://www.gnu.org/software/emacs/">Emacs</a>
+plays a central role in my workflow, this is one of the most important aspects of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> &#x2013; 90% of my <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> use is from within <a href="https://www.gnu.org/software/emacs/">Emacs</a>.  This
 section provides some insight into my workflow.  If you are not interested in <a href="https://www.gnu.org/software/emacs/">Emacs</a>, then you can safely skip this section.
 </p>
 </div>
 
-<div id="outline-container-org70a5980" class="outline-3">
-<h3 id="org70a5980"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
+<div id="outline-container-org2082ad9" class="outline-3">
+<h3 id="org2082ad9"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I always have my laboratory notebook open at the bench &#x2013; just an <a href="https://orgmode.org/"><code>org-mode</code></a> document loaded up in <a href="https://www.gnu.org/software/emacs/">Emacs</a> running on my bench computer. I have
-implemented a major mode for <code>mrSCPI</code> scripts as well as <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support.  This allows me to embed <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> commands right inside my notes
+implemented a major mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts as well as <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support.  This allows me to embed <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> commands right inside my notes
 making those notes <b>EXECUTABLE</b>.  Here is an example excerpt from one of my notebooks:
 </p>
 
@@ -422,13 +427,13 @@ Then, when I come back to my experiment some time later, I can have <a href="htt
 </div>
 </div>
 
-<div id="outline-container-orgfa0b204" class="outline-3">
-<h3 id="orgfa0b204"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
+<div id="outline-container-org0d23180" class="outline-3">
+<h3 id="org0d23180"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of cource I include in my notes littel bits of <code>mrSCPI</code> script code for common
+I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of cource I include in my notes littel bits of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code for common
 things I do with my test equipment.  I could simply put my cursor on those code bits in <a href="https://orgmode.org/"><code>org-mode</code></a> and execute them, but I wanted a quicker way to access
-these code snippits. So I added an <a href="https://www.gnu.org/software/emacs/">Emacs</a> function that finds all the <code>mrSCPI</code> code bits in an <a href="https://orgmode.org/"><code>org-mode</code></a> document, and produces a GUI window full
+these code snippits. So I added an <a href="https://www.gnu.org/software/emacs/">Emacs</a> function that finds all the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> code bits in an <a href="https://orgmode.org/"><code>org-mode</code></a> document, and produces a GUI window full
 of buttons to run them.  This has proven to be super handy, and saves me a ton of time at the bench.  Here is an example of one of my button buffers:
 </p>
 
@@ -441,12 +446,12 @@ of buttons to run them.  This has proven to be super handy, and saves me a ton o
 </div>
 </div>
 
-<div id="outline-container-orgc82bd49" class="outline-3">
-<h3 id="orgc82bd49"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
+<div id="outline-container-orgf369162" class="outline-3">
+<h3 id="orgf369162"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code &amp; results
-from <code>mrSCPI</code>, Octave/Matlab, Bourne shell, and Paraview in one document:
+from <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, <a href="https://octave.org/">Octave</a>/<a href="https://www.mathworks.com/">Matlab</a>, Bourne shell, and <a href="https://www.paraview.org/">Paraview</a> in one document:
 </p>
 
 <div class="org-center">
@@ -459,20 +464,20 @@ from <code>mrSCPI</code>, Octave/Matlab, Bourne shell, and Paraview in one docum
 </div>
 
 
-<div id="outline-container-orgb92c0f7" class="outline-3">
-<h3 id="orgb92c0f7"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
+<div id="outline-container-orge427f00" class="outline-3">
+<h3 id="orge427f00"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-I put the <code>mrSCPI</code> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
+I put the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
 If you have some other organizational structure for your auxiliary <a href="https://www.gnu.org/software/emacs/">Emacs</a> files, then feel free to use it!
 </p>
 </div>
 
-<div id="outline-container-org4c68fa2" class="outline-4">
-<h4 id="org4c68fa2"><span class="section-number-4">3.4.1.</span> Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></h4>
+<div id="outline-container-orgc31ea7a" class="outline-4">
+<h4 id="orgc31ea7a"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
-A simple mode for <code>mrSCPI</code> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
+A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
 </p>
 
 <div class="org-src-container">
@@ -484,8 +489,8 @@ A simple mode for <code>mrSCPI</code> scripts is provided in <a href="https://gi
 </div>
 </div>
 
-<div id="outline-container-org2e2997e" class="outline-4">
-<h4 id="org2e2997e"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
+<div id="outline-container-org48f13e9" class="outline-4">
+<h4 id="org48f13e9"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 A language module for <a href="https://orgmode.org/"><code>org-mode</code></a> Babel may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el">emacs/ob-mrscpi.el</a>.  The magical
@@ -514,7 +519,7 @@ just basic <a href="https://orgmode.org/"><code>org-mode</code></a> support.  I 
 <h3 id="api-philosophy"><span class="section-number-3">4.1.</span> API Structure &amp; Philosophy</h3>
 <div class="outline-text-3" id="text-api-philosophy">
 <p>
-In essence any <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> program is about managing a communication session state between computer and instrument.  The heart of <code>mrSCPI</code> is the
+In essence any <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> program is about managing a communication session state between computer and instrument.  The heart of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> is the
 <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> class encapsulates and manages session state.  Session state is represented by named parameters (key-value
 pairs).  For example the parameter <code>:ip_address</code> stores the IP address for the connection.  As another example, the <code>:print_results</code> parameter stores a
 boolean value that determines if the results from <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> commands will be printed.  A few parameters, like <code>:ip_address</code>, may only be set when the
@@ -568,8 +573,8 @@ All the magic is in the <code>SCPIsession.new</code> call:
 </p>
 <ul class="org-ul">
 <li>First we tell it where to connect with <code>:url</code></li>
-<li>Next we tell <code>mrSCPI</code> that we expect to get a IEEE 488.2 binary block, and that we want <code>mrSCPI</code> to extract that block.</li>
-<li>With the next two lines we tell <code>mrSCPI</code> to print the result into a file</li>
+<li>Next we tell <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> that we expect to get a IEEE 488.2 binary block, and that we want <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> to extract that block.</li>
+<li>With the next two lines we tell <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> to print the result into a file</li>
 <li>Lastly we tell it the command to use.</li>
 </ul>
 </div>
@@ -577,11 +582,11 @@ All the magic is in the <code>SCPIsession.new</code> call:
 </div>
 
 <div id="outline-container-mrscpi-scripts" class="outline-2">
-<h2 id="mrscpi-scripts"><span class="section-number-2">5.</span> <code>mrSCPI</code> Scripts</h2>
+<h2 id="mrscpi-scripts"><span class="section-number-2">5.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts</h2>
 <div class="outline-text-2" id="text-mrscpi-scripts">
 <p>
 Even if you only want to know about scripts, I encourage you to read the section on <a href="#api-philosophy">Ruby API Structure &amp; Philosophy</a>.  To begin,
-here is a <code>mrSCPI</code> script version of the Ruby script given in that section:
+here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script version of the Ruby script given in that section:
 </p>
 
 <div class="org-src-container">
@@ -597,8 +602,8 @@ here is a <code>mrSCPI</code> script version of the Ruby script given in that se
 </div>
 
 <p>
-Notice how the code parallels the Ruby script.  Essentially the <code>mrSCPI</code> script is what was inside the <code>SCPIsession.new</code> call in the Ruby script!  Also
-note the shebang line (<code>#!/usr/bin/env mrSCPI.rb</code>).  This is how we make a <code>mrSCPI</code> script executable on the command line &#x2013; just like a shell script.
+Notice how the code parallels the Ruby script.  Essentially the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script is what was inside the <code>SCPIsession.new</code> call in the Ruby script!  Also
+note the shebang line (<code>#!/usr/bin/env mrSCPI.rb</code>).  This is how we make a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script executable on the command line &#x2013; just like a shell script.
 Note the above script may be found in the <code>example</code> directory named "<code>dho4ksc.mrscpi</code>".  Let's take a look at another simple script.
 </p>
 
@@ -634,7 +639,7 @@ Note that scripts can also be provided on <code>STDIN</code>.  If we continue wi
 </div>
 
 <p>
-Scripts can be described on the command line with arguments instead of being put in a script file.  You simply replace the <code>mrSCPI</code> script commands with
+Scripts can be described on the command line with arguments instead of being put in a script file.  You simply replace the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script commands with
 arguments of the same name.  For small scripts with just a couple commands, this can be very handy.  What may be more useful is using command line script
 arguments <b>with</b> a script file.  When we do this it is as if we prepend the script file with the commands given as arguments.  One thing to note is that the
 first <code>:url</code> option will override any subsequent instances &#x2013; this is also true for <code>:ip_address</code>, <code>:net_port</code>, &amp; <code>:net_protocol</code> as well.  For example we
@@ -690,7 +695,7 @@ If we wanted the default values, then we could have just used this:
 Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href="https://orgmode.org/"><code>org-mode</code></a> code block, we could set these variables via the <code>src</code> header arguments like so:
 </p>
 
-<pre class="example" id="org67afcdc">
+<pre class="example" id="org1c8c0a1">
 #+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
 </pre>
 
@@ -699,11 +704,11 @@ Note that the "new" commands (<code>:url</code>, <code>:ip_address</code>, <code
 </p>
 </div>
 
-<div id="outline-container-orgb2b8567" class="outline-3">
-<h3 id="orgb2b8567"><span class="section-number-3">5.1.</span> <code>mrSCPI</code> Script Syntax</h3>
+<div id="outline-container-orgddb33cc" class="outline-3">
+<h3 id="orgddb33cc"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
-Script syntax is very simple.  Each line starts with an <code>mrSCPI</code> command, and each command is a parameter for one of the following classes:
+Script syntax is very simple.  Each line starts with an <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> command, and each command is a parameter for one of the following classes:
 </p>
 
 <ul class="org-ul">
@@ -718,14 +723,14 @@ Script syntax is very simple.  Each line starts with an <code>mrSCPI</code> comm
 <h2 id="rcfile"><span class="section-number-2">6.</span> <code>SCPIrcFile</code> Class</h2>
 <div class="outline-text-2" id="text-rcfile">
 <p>
-<code>mrSCPI</code> can use a configuration file to keep track of things like IP addresses, port numbers, protocols, and firewall details.  The
+<a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> can use a configuration file to keep track of things like IP addresses, port numbers, protocols, and firewall details.  The
 <a href="rdoc/SCPIrcFile.html"><code>SCPIrcFile</code></a> class is the primary interface to the information in the RC file.  For the details, see the class
 documentation.  The basics can be illustrated with a couple examples:
 </p>
 </div>
 
-<div id="outline-container-orgae0f064" class="outline-3">
-<h3 id="orgae0f064"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
+<div id="outline-container-orgb44f04f" class="outline-3">
+<h3 id="orgb44f04f"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -736,8 +741,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 
-<div id="outline-container-org9aab4e5" class="outline-3">
-<h3 id="org9aab4e5"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
+<div id="outline-container-org527cd23" class="outline-3">
+<h3 id="org527cd23"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -771,8 +776,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 
-<div id="outline-container-orgc6218ab" class="outline-3">
-<h3 id="orgc6218ab"><span class="section-number-3">6.3.</span> Example RC file</h3>
+<div id="outline-container-org0173b5d" class="outline-3">
+<h3 id="org0173b5d"><span class="section-number-3">6.3.</span> Example RC file</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Here is an example of what my RC file looks like.  I have two network subnets on my bench.  One for test equipment (192.168.42.X), and one for computers
@@ -894,7 +899,7 @@ network ssh   172.16.1.0/24    # Home office network
 <li>Stateful programming model that compliments the structure of <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> itself</li>
 <li>Good control over output (commands, debug, results, etc&#x2026;)</li>
 </ul></li>
-<li>Simple <code>mrSCPI</code> scripting language
+<li>Simple <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripting language
 <ul class="org-ul">
 <li>All the goodness of the Ruby API, but for simple applications</li>
 <li>Usage that parallels how the Ruby API is used in practice</li>
@@ -909,7 +914,7 @@ network ssh   172.16.1.0/24    # Home office network
 <li>Print things</li>
 </ul></li>
 <li><a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support (execution and header variables)</li>
-<li><a href="https://www.gnu.org/software/emacs/">Emacs</a> language mode (highlight <code>mrSCPI</code> script code &amp; identify common syntax errors)</li>
+<li><a href="https://www.gnu.org/software/emacs/">Emacs</a> language mode (highlight <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code &amp; identify common syntax errors)</li>
 </ul></li>
 <li>Protocol/Communication Features
 <ul class="org-ul">
@@ -1001,10 +1006,10 @@ network ssh   172.16.1.0/24    # Home office network
 </div>
 
 <div id="outline-container-faq-require" class="outline-3">
-<h3 id="faq-require"><span class="section-number-3">8.1.</span> Why don't you use a simple <code>require</code> to load <code>mrSCPI</code> in Ruby scripts?</h3>
+<h3 id="faq-require"><span class="section-number-3">8.1.</span> Why don't you use a simple <code>require</code> to load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> in Ruby scripts?</h3>
 <div class="outline-text-3" id="text-faq-require">
 <p>
-In my scripts, I normally load <code>mrSCPI</code> by searching my <code>PATH</code> environment variable like this:
+In my scripts, I normally load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> by searching my <code>PATH</code> environment variable like this:
 </p>
 
 <div class="org-src-container">
@@ -1013,8 +1018,8 @@ In my scripts, I normally load <code>mrSCPI</code> by searching my <code>PATH</c
 </div>
 
 <p>
-Why?  I normally put <code>mrSCPI</code> on my path, but I don't want to contaminate my Ruby <code>LOAD_PATH</code> by including a generic <code>bin</code> directory.  This is just a
-personal preference in the way I set up my operating environment.  I expect most people will just do a <code>require_relative</code> or <code>require</code> to load <code>mrSCPI</code>.
+Why?  I normally put <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> on my path, but I don't want to contaminate my Ruby <code>LOAD_PATH</code> by including a generic <code>bin</code> directory.  This is just a
+personal preference in the way I set up my operating environment.  I expect most people will just do a <code>require_relative</code> or <code>require</code> to load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>.
 </p>
 </div>
 </div>
@@ -1024,7 +1029,7 @@ personal preference in the way I set up my operating environment.  I expect most
 <h3 id="faq-examples"><span class="section-number-3">8.2.</span> Where can I find more examples?</h3>
 <div class="outline-text-3" id="text-faq-examples">
 <p>
-I have <a href="https://github.com/richmit/TestEquipmentScripts">another repository</a> for scripts related to test equipment that contains several <code>mrSCPI</code> scripts.
+I have <a href="https://github.com/richmit/TestEquipmentScripts">another repository</a> for scripts related to test equipment that contains several <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts.
 </p>
 </div>
 </div>

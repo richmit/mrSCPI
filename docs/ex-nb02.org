@@ -25,11 +25,11 @@
 #+HTML_LINK_UP: https://richmit.github.io/mrSCPI/
 # ######################################################################################################################################################.H.E.##
 
-#+MACRO: MRSCPI =mrSCPI=
+#+MACRO: MRSCPI [[https://richmit.github.io/mrSCPI/][=mrSCPI=]]
 #+MACRO: EMACS [[https://www.gnu.org/software/emacs/][Emacs]]
 #+MACRO: ORGMODE [[https://orgmode.org/][=org-mode=]]
-#+MACRO: OCTAVE Octave/Matlab
-#+MACRO: PARAVIEW Paraview
+#+MACRO: OCTAVE [[https://octave.org/][Octave]]/[[https://www.mathworks.com/][Matlab]]
+#+MACRO: PARAVIEW [[https://www.paraview.org/][Paraview]]
 #+MACRO: SH Bourne shell
 
 * Introduction
@@ -37,7 +37,7 @@
 If you are reading this in a web browser, then you are looking at an exported {{{EMACS}}} {{{ORGMODE}}} file.  The original {{{ORGMODE}}} file is just a text
 file loaded in my editor ({{{EMACS}}}).  In the editor things are live.  For example, if I click in one of the source code blocks below I can evaluate them
 and get results pulled back into the document.  In a real way, {{{ORGMODE}}} allows us to integrate different tools together into one worksheet-like workflow.
-In this example we integrate {{{MRSCPI}}} code, {{{OCTAVE}}} code, and {{{SH}}} code in one document.
+In this example we integrate code/results from {{{MRSCPI}}}, {{{OCTAVE}}}, {{{PARAVIEW}}}, and {{{SH}}} in one document.
 
 What we have below is actually an excerpt from one of my laboratory notebooks.  The topic of the notebook in question was a sequence of experiments with
 a homemade analogue computer.  In this excerpt, the analog computer is running a Lorenz program:

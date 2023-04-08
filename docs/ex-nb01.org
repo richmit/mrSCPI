@@ -25,9 +25,12 @@
 #+HTML_LINK_UP: https://richmit.github.io/mrSCPI/
 # ######################################################################################################################################################.H.E.##
 
-#+MACRO: MRSCPI =mrSCPI=
+#+MACRO: MRSCPI [[https://richmit.github.io/mrSCPI/][=mrSCPI=]]
 #+MACRO: EMACS [[https://www.gnu.org/software/emacs/][Emacs]]
 #+MACRO: ORGMODE [[https://orgmode.org/][=org-mode=]]
+#+MACRO: OCTAVE [[https://octave.org/][Octave]]/[[https://www.mathworks.com/][Matlab]]
+#+MACRO: PARAVIEW [[https://www.paraview.org/][Paraview]]
+#+MACRO: SH Bourne shell
 
 What follows is an excerpt from my lab notebook.  At the time I was working on an hybrid analog computer that used a microcontroller & DAC to provide the
 fixed analog voltages traditionally provided by "parameter" potentiometers in older systems.  The DAC was controlled by an SPI interface connected to the

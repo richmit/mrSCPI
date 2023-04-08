@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-04-07 Fri 15:39 -->
+<!-- 2023-04-07 Fri 21:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Excerpt From Lab Notebook</title>
@@ -215,14 +215,14 @@
 </div><div id="content" class="content">
 <h1 class="title">Excerpt From Lab Notebook</h1>
 
-<div id="outline-container-org020bc10" class="outline-2">
-<h2 id="org020bc10"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org653f3e9" class="outline-2">
+<h2 id="org653f3e9"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 If you are reading this in a web browser, then you are looking at an exported <a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> file.  The original <a href="https://orgmode.org/"><code>org-mode</code></a> file is just a text
 file loaded in my editor (<a href="https://www.gnu.org/software/emacs/">Emacs</a>).  In the editor things are live.  For example, if I click in one of the source code blocks below I can evaluate them
 and get results pulled back into the document.  In a real way, <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate different tools together into one worksheet-like workflow.
-In this example we integrate <code>mrSCPI</code> code, Octave/Matlab code, and Bourne shell code in one document.
+In this example we integrate code/results from <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, <a href="https://octave.org/">Octave</a>/<a href="https://www.mathworks.com/">Matlab</a>, <a href="https://www.paraview.org/">Paraview</a>, and Bourne shell in one document.
 </p>
 
 <p>
@@ -232,7 +232,7 @@ a homemade analogue computer.  In this excerpt, the analog computer is running a
 
 <div class="org-center">
 
-<div id="orgd7f5cf5" class="figure">
+<div id="org499ac75" class="figure">
 <p><a href="pics/aq-bench.jpg"><img src="pics/aq-bench_25.jpg" alt="aq-bench_25.jpg" /></a>
 </p>
 </div>
@@ -240,8 +240,8 @@ a homemade analogue computer.  In this excerpt, the analog computer is running a
 
 <p>
 In order to demonstrate how data acquisition and analysis can be unified within <a href="https://www.gnu.org/software/emacs/">Emacs</a> with <a href="https://orgmode.org/"><code>org-mode</code></a> I have left out some of the "laboratory notebook"
-stuff.  In particular, the original notebook had a section with <code>mrSCPI</code> code to setup the power supply &amp; oscilloscope.  With this section missing it
-makes some of the <code>mrSCPI</code> code seem incomplete &#x2013; the way <code>:WAVeform:POINts</code> is hardwired to <code>100000</code> seems strange without seeing the preceding
+stuff.  In particular, the original notebook had a section with <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> code to setup the power supply &amp; oscilloscope.  With this section missing it
+makes some of the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> code seem incomplete &#x2013; the way <code>:WAVeform:POINts</code> is hardwired to <code>100000</code> seems strange without seeing the preceding
 <code>:ACQuire:MDEPth</code> call for example.
 </p>
 
@@ -263,8 +263,8 @@ makes some of the <code>mrSCPI</code> code seem incomplete &#x2013; the way <cod
 </div>
 </div>
 
-<div id="outline-container-org1dda7ef" class="outline-2">
-<h2 id="org1dda7ef"><span class="section-number-2">2.</span> <code>mrSCPI</code>: Acquire Data</h2>
+<div id="outline-container-org0c445f4" class="outline-2">
+<h2 id="org0c445f4"><span class="section-number-2">2.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>: Acquire Data</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k</span>
@@ -311,8 +311,8 @@ This will produce several files:
 </div>
 </div>
 
-<div id="outline-container-orgbcf19e6" class="outline-2">
-<h2 id="orgbcf19e6"><span class="section-number-2">3.</span> Octave/Matlab: The Waveforms</h2>
+<div id="outline-container-orgc6efdde" class="outline-2">
+<h2 id="orgc6efdde"><span class="section-number-2">3.</span> <a href="https://octave.org/">Octave</a>/<a href="https://www.mathworks.com/">Matlab</a>: The Waveforms</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-octave">figure(1<span style="color: #b0c4de;">,</span> <span style="color: #fa8072;">"visible"</span><span style="color: #b0c4de;">,</span> <span style="color: #fa8072;">"off"</span>)<span style="color: #b0c4de;">;</span>
@@ -332,15 +332,15 @@ ans <span style="color: #b0c4de;">=</span> <span style="color: #fa8072;">"ex-nb0
 </div>
 
 
-<div id="orgd17e3df" class="figure">
+<div id="org947fecc" class="figure">
 <p><img src="ex-nb02-ts.png" alt="ex-nb02-ts.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0e5bfe8" class="outline-2">
-<h2 id="org0e5bfe8"><span class="section-number-2">4.</span> Octave/Matlab: The Waveforms in 3D</h2>
+<div id="outline-container-orgba7b88a" class="outline-2">
+<h2 id="orgba7b88a"><span class="section-number-2">4.</span> <a href="https://octave.org/">Octave</a>/<a href="https://www.mathworks.com/">Matlab</a>: The Waveforms in 3D</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-octave">figure(1<span style="color: #b0c4de;">,</span> <span style="color: #fa8072;">"visible"</span><span style="color: #b0c4de;">,</span> <span style="color: #fa8072;">"off"</span>)<span style="color: #b0c4de;">;</span>
@@ -355,18 +355,18 @@ ans <span style="color: #b0c4de;">=</span> <span style="color: #fa8072;">"ex-nb0
 </div>
 
 
-<div id="org6ff0bf6" class="figure">
+<div id="orgf12073e" class="figure">
 <p><img src="ex-nb02-3d.png" alt="ex-nb02-3d.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org09b3cd6" class="outline-2">
-<h2 id="org09b3cd6"><span class="section-number-2">5.</span> Animate via Paraview</h2>
+<div id="outline-container-orga097cfa" class="outline-2">
+<h2 id="orga097cfa"><span class="section-number-2">5.</span> Animate via <a href="https://www.paraview.org/">Paraview</a></h2>
 <div class="outline-text-2" id="text-5">
 <p>
-Before we can load the data up into Paraview we need to convert it from the raw oscilloscope data into something Paraview can read.  Probably the
+Before we can load the data up into <a href="https://www.paraview.org/">Paraview</a> we need to convert it from the raw oscilloscope data into something <a href="https://www.paraview.org/">Paraview</a> can read.  Probably the
 easiest thing is CSV.  The following bit of Bourne shell code will do the trick:
 </p>
 
@@ -390,12 +390,12 @@ This will produce several files:
 </ul>
 
 <p>
-Now we can load up that last file into Paraview, and see a pretty animation of our data:
+Now we can load up that last file into <a href="https://www.paraview.org/">Paraview</a>, and see a pretty animation of our data:
 </p>
 
 <div class="org-center">
 
-<div id="org7530e55" class="figure">
+<div id="org8d35916" class="figure">
 <p><a href="pics/lorenz.gif"><img src="pics/lorenz_50.gif" alt="lorenz_50.gif" /></a>
 </p>
 </div>

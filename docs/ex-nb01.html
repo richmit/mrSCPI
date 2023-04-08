@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-04-07 Fri 15:39 -->
+<!-- 2023-04-07 Fri 21:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Excerpt From Lab Notebook</title>
@@ -222,7 +222,7 @@ initialized &#x2013; which burned up the DAC.  I lost two DACs before I realized
 </p>
 
 <p>
-Having the <code>mrSCPI</code> code in my notebook like this allows me to reproduce my bench hardware configuration by simply having <a href="https://orgmode.org/"><code>org-mode</code></a> evaluate the code.
+Having the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> code in my notebook like this allows me to reproduce my bench hardware configuration by simply having <a href="https://orgmode.org/"><code>org-mode</code></a> evaluate the code.
 And I can do that right in my editor while I'm reading my notes.
 </p>
 
@@ -248,8 +248,8 @@ long run.
 <br />
 </p>
 
-<div id="outline-container-org6f0e56d" class="outline-2">
-<h2 id="org6f0e56d"><span class="section-number-2">1.</span> Power Sequenceing</h2>
+<div id="outline-container-orga1a8f61" class="outline-2">
+<h2 id="orga1a8f61"><span class="section-number-2">1.</span> Power Sequenceing</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The DAC will be bricked if a voltage over 3V is applied to an SPI intput before the DAC is powered up and initializes.  The initialization takes about 30ms.

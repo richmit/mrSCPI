@@ -46,15 +46,15 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 # To get org to evaluate all code blocks on export, add the following to the Emacs header on the first line of this file:
 #     org-export-babel-evaluate:t; org-confirm-babel-evaluate:nil5
 
-#+MACRO: MRSCPI =mrSCPI=
-#+MACRO: SCPI [[https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments][=SCPI=]]
+#+MACRO: MRSCPI [[https://richmit.github.io/mrSCPI/][=mrSCPI=]]
 #+MACRO: EMACS [[https://www.gnu.org/software/emacs/][Emacs]]
 #+MACRO: ORGMODE [[https://orgmode.org/][=org-mode=]]
-#+MACRO: PROLOGIX Prologix
-#+MACRO: MRSCPISRC =mrSCPI.rb=
-#+MACRO: OCTAVE Octave/Matlab
-#+MACRO: PARAVIEW Paraview
+#+MACRO: OCTAVE [[https://octave.org/][Octave]]/[[https://www.mathworks.com/][Matlab]]
+#+MACRO: PARAVIEW [[https://www.paraview.org/][Paraview]]
 #+MACRO: SH Bourne shell
+#+MACRO: SCPI [[https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments][=SCPI=]]
+#+MACRO: PROLOGIX Prologix
+#+MACRO: MRSCPISRC [[https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb][=mrSCPI.rb=]]
 
 * Introduction
 :PROPERTIES:
