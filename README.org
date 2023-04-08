@@ -19,9 +19,10 @@ were looking for a nice GUI to control your equipment, then you will most likely
 Lastly, =mrSCPI= is simple to set-up so I can run it anyplace.  It has no dependencies beyond a standard Ruby install.  No drivers.  No modules.  No
 packages.  No PIPs. No GEMs.  Nothing to compile. Just a single script -- yes, the library and the executable are the *same file*!
 
-Read more:
+Links:
 
   - Documentation: https://richmit.github.io/mrSCPI/
   - Additional examples: https://github.com/richmit/TestEquipmentScripts
+  - Github repo:: https://github.com/richmit/mrSCPI
 
 
