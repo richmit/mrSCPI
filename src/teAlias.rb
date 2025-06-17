@@ -1,5 +1,5 @@
 #!/usr/bin/env -S ruby
-# -*- Mode:ruby; Coding:us-ascii-unix; fill-column:158 -*-
+# -*- Mode:ruby; Coding:us-ascii; fill-column:158 -*-
 #########################################################################################################################################################.H.S.##
 ##
 # @file      teAlias.rb
