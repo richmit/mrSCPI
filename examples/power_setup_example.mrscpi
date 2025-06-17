@@ -1,3 +1,7 @@
+# This script configures my Rohde Schwarz HMC 8843 power supply to power up my "hotel chaos" project.  This project
+# has an analog processing component that requires +15v and -15v, and a digital component that requires a +5v.  This
+# script leaves the power supply configured, but the master enable OFF.
+
 :url @hmc8043
 :result_type nil
 :delay_after_complete 100

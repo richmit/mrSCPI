@@ -1,5 +1,12 @@
 #!/usr/bin/env mrSCPI.rb
 
+# Note the shebang line at the top.  That allows this script to be run on a UNIX'ish from the command
+# line by just invoking the script name.  The reason for the "env" part is two fold: 1) On BSD derived
+# UNIX systems, the thing in a shebang must be a binary, and 2) it searches the user's path for
+# mrSCPI.rb.
+
+# This script pulls a screen dump for a Rigol DHO4804 oscilloscope.
+
 :url @dho4k                                                                # Connect to my DHO4k
 :eval imgFileName=Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" # Filename for PNG
 :result_macro_block true                                                   # Expect/Extract a block

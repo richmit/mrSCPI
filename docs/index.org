@@ -381,7 +381,7 @@ specify a connection URL like "=@awg=", and connect to my 33210a AWG regardless 
 I'm on, and expands "=@awg=" into the right thing.
 
 #+begin_src sh :results output verbatum :exports results :wrap "src txt :eval never :tangle no"
-cat ~/Documents/world/dotfiles/.mrSCPIrc--SS-X-X-X-HOME-X
+cat ~/MJR/world/dotfiles/.mrSCPIrc--SS-X-X-X-HOME-X
 #+end_src
 
 #+RESULTS:
@@ -440,11 +440,11 @@ network ssh   172.16.1.0/24    # Home office network
 
 ###########################################################################################################
 # Serial Console Ports ####################################################################################
-#.....Device..Line..Interface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device.........
-#scon serial     1      RS232    Tunnel 10001   9600    Even      7      2  SOFT   ^Q   ^S   34401A
-#scon serial     2      RS232    Tunnel 10002  19200    Even      2      2  HARD   ^Q   ^S   TDS2024
-#scon serial     3      RS232    Tunnel 10003  38400    None      8      1  HARD   ^Q   ^S   TDS3052B
-#scon serial     4   DISABLED        --    --     --      --     --     --    --   --   --   --
+#.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag....
+#scon serial     1    RS232    Tunnel 10001  9600    Even      7      2  SOFT   ^Q   ^S   34401A    Pink
+#scon serial     2    RS232    Tunnel 10002 19200    Even      2      2  HARD   ^Q   ^S   TDS2024   Blue
+#scon serial     3    RS232    Tunnel 10003 38400    None      8      1  HARD   ^Q   ^S   TDS3052B  Orange
+#scon serial     4 DISABLED        --    --     --      --     --     --    --   --   --   --
 
 ###########################################################################################################
 # GPIB/ETH ################################################################################################
@@ -454,29 +454,29 @@ network ssh   172.16.1.0/24    # Home office network
 ###########################################################################################################
 # Layer 3 IP Router Ports #################################################################################
 #..............Device.............Interface......Subnet.............Note...................................
-#L3router      bench-router4      eth0           172.16.1.0/24      
-#L3router      bench-router4      eth1           172.16.42.0/23     
-#L3router      bench-router4      eth2           172.16.43.0/23
+#L3router      bench-router4      eth0           172.16.1.2/24      # Long, white wire
+#L3router      bench-router4      eth1           172.16.42.0/23     # Grey cable to L2switch
+#L3router      bench-router4      eth2           172.16.43.0/23     # Bright blue cable to pi
 
 ###########################################################################################################
 # Layer 2 Ethernet Switch Ports ###########################################################################
-#..............Device.............Interface......Device.............Note...................................
-#L2switch      bench-switch42             1      bench-router4
-#L2switch      bench-switch42             2      nomad              # Long, sheilded, yellow cable
-#L2switch      bench-switch42             3      NC
-#L2switch      bench-switch42             4      NC
-#L2switch      bench-switch42             5      NC
-#L2switch      bench-switch42             6      NC
-#L2switch      bench-switch42             7      NC
-#L2switch      bench-switch42             8      NC
-#L2switch      bench-switch42             9      NC
-#L2switch      bench-switch42            10      oscope-rigol       # Red Cable
-#L2switch      bench-switch42            11      gpib-rover         # Yellow Cable
-#L2switch      bench-switch42            12      dmm-keithley       # Bright blue
-#L2switch      bench-switch42            13      oscope-sig         # Grey cable
-#L2switch      bench-switch42            14      ps-rns             # Dark Blue
-#L2switch      bench-switch42            15      NC                 # Grey
-#L2switch      bench-switch42            16      serial
+#..............Device.............Interface......Device.............Cable............Tag...................
+#L2switch      bench-switch42             1      bench-router4    # Short grey       -
+#L2switch      bench-switch42             2      nomad            # Shielded Yellow  -
+#L2switch      bench-switch42             3      NC               # Grey             Pink
+#L2switch      bench-switch42             4      NC               # Grey             Orange
+#L2switch      bench-switch42             5      oscope-tek       # white            Grey 
+#L2switch      bench-switch42             6      oscope-sig       # red              Grey   
+#L2switch      bench-switch42             7      oscope-rigol     # black            Grey
+#L2switch      bench-switch42             8      NC               # green            Grey
+#L2switch      bench-switch42             9      NC               # blue             Grey
+#L2switch      bench-switch42            10      gpib-rover       # Sleeved Yellow    -
+#L2switch      bench-switch42            11      NC               # white            Black
+#L2switch      bench-switch42            12      awg-agilent      # red              Black
+#L2switch      bench-switch42            13      awg-rigol        # black            Black
+#L2switch      bench-switch42            14      dmm-keithley     # green            Black
+#L2switch      bench-switch42            15      ps-rns           # blue             Black
+#L2switch      bench-switch42            16      serial           # Short grey       -
 #+end_src
 
 * Features (current & future)
@@ -504,7 +504,7 @@ network ssh   172.16.1.0/24    # Home office network
     - {{{EMACS}}} {{{ORGMODE}}} Babel support (execution and header variables)
     - {{{EMACS}}} language mode (highlight {{{MRSCPI}}} script code & identify common syntax errors)
   - Protocol/Communication Features
-    - {{{SCPI}}} over raw TCP/IP sockets (which =lxi-tool= can do very well)
+    - {{{SCPI}}} over raw TCP/IP sockets
       - Support for instruments that don't close the TCP connection after the client closes for write
     - Serial (RS-232/RS-485) {{{SCPI}}} over Ethernet via a network attached serial console server
       - Correctly control DTE via TCP/IP socket close

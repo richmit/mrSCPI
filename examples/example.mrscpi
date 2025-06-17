@@ -1,5 +1,4 @@
-# This little script pulls the identifier string from an instrument, matches
-# matches it against a regular expression, and prints the results.
+# Pull the identifier string from an instrument, match it against a regular expression, and prints the results.
 
 :url @34401a                      # @34401a is an instrument connection "nickname"
 :name ids                         # We name the next :cmd that will run

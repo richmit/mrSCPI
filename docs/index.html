@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-04-07 Fri 21:14 -->
+<!-- 2025-06-17 Tue 15:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>mrSCPI</title>
@@ -11,7 +11,7 @@
 <meta name="description" content="Documentation for mrSCPI" />
 <meta name="keywords" content="lxi gpib" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -234,17 +234,17 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2023-04-07 21:13:10</i></td>
+<td class="org-left"><i>2025-06-17 15:43:30</i></td>
 </tr>
 
 <tr>
 <td class="org-right"><b>Generated:</b></td>
-<td class="org-left"><i>2023-04-07 21:14:59</i></td>
+<td class="org-left"><i>2025-06-17 15:43:35</i></td>
 </tr>
 </tbody>
 </table>
 <p align="center">
-Copyright 2023 Mitch Richling. All rights reserved.
+Copyright 2025 Mitch Richling. All rights reserved.
 </p>
 
 <div id="table-of-contents" role="doc-toc">
@@ -255,13 +255,13 @@ Copyright 2023 Mitch Richling. All rights reserved.
 <li><a href="#interfaces">2. Interfaces</a></li>
 <li><a href="#emacs-interface">3. Emacs as a <code>mrSCPI</code> Interface</a>
 <ul>
-<li><a href="#orgef05085">3.1. The Laboratory Notebook</a></li>
-<li><a href="#orgec17118">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
-<li><a href="#org32b856a">3.3. Integrated Data Capture and Analysis</a></li>
-<li><a href="#org09f91ec">3.4. Setting Up Emacs</a>
+<li><a href="#orgbc83d89">3.1. The Laboratory Notebook</a></li>
+<li><a href="#orgbde7137">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
+<li><a href="#org1e30a94">3.3. Integrated Data Capture and Analysis</a></li>
+<li><a href="#org2b882ad">3.4. Setting Up Emacs</a>
 <ul>
-<li><a href="#org78b22e1">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
-<li><a href="#orgb80ed03">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
+<li><a href="#org68d234a">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
+<li><a href="#org8e6e779">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
 </ul>
 </li>
 </ul>
@@ -274,14 +274,14 @@ Copyright 2023 Mitch Richling. All rights reserved.
 </li>
 <li><a href="#mrscpi-scripts">5. <code>mrSCPI</code> Scripts</a>
 <ul>
-<li><a href="#org37218f9">5.1. <code>mrSCPI</code> Script Syntax</a></li>
+<li><a href="#org3a097fc">5.1. <code>mrSCPI</code> Script Syntax</a></li>
 </ul>
 </li>
 <li><a href="#rcfile">6. <code>SCPIrcFile</code> Class</a>
 <ul>
-<li><a href="#org05a06fe">6.1. <code>mrNetwork.rb</code></a></li>
-<li><a href="#orge983a98">6.2. <code>teAlias.rb</code></a></li>
-<li><a href="#orgb600a56">6.3. Example RC file</a></li>
+<li><a href="#org9217e3d">6.1. <code>mrNetwork.rb</code></a></li>
+<li><a href="#orgf3e3a84">6.2. <code>teAlias.rb</code></a></li>
+<li><a href="#org92c0677">6.3. Example RC file</a></li>
 </ul>
 </li>
 <li><a href="#features">7. Features (current &amp; future)</a></li>
@@ -294,7 +294,6 @@ Copyright 2023 Mitch Richling. All rights reserved.
 </ul>
 </div>
 </div>
-
 <div id="outline-container-introduction" class="outline-2">
 <h2 id="introduction"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-introduction">
@@ -313,7 +312,7 @@ Systems designed from the ground up to support very complex use cases frequently
 captured the phenomenon quite clearly when he said:
 </p>
 
-<pre class="example" id="orgbf1eec0">
+<pre class="example" id="org6213024">
 Perl makes easy things easy and hard things possible. 
 Professional programming languages tend to make all things equally difficult.
 </pre>
@@ -347,7 +346,6 @@ Links:
 </blockquote>
 </div>
 </div>
-
 <div id="outline-container-interfaces" class="outline-2">
 <h2 id="interfaces"><span class="section-number-2">2.</span> Interfaces</h2>
 <div class="outline-text-2" id="text-interfaces">
@@ -393,7 +391,6 @@ learned how to use them all.
 </p>
 </div>
 </div>
-
 <div id="outline-container-emacs-interface" class="outline-2">
 <h2 id="emacs-interface"><span class="section-number-2">3.</span> <a href="https://www.gnu.org/software/emacs/">Emacs</a> as a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Interface</h2>
 <div class="outline-text-2" id="text-emacs-interface">
@@ -404,9 +401,8 @@ plays a central role in my workflow, this is one of the most important aspects o
 section provides some insight into my workflow.  If you are not interested in <a href="https://www.gnu.org/software/emacs/">Emacs</a>, then you can safely skip this section.
 </p>
 </div>
-
-<div id="outline-container-orgef05085" class="outline-3">
-<h3 id="orgef05085"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
+<div id="outline-container-orgbc83d89" class="outline-3">
+<h3 id="orgbc83d89"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I always have my laboratory notebook open at the bench &#x2013; just an <a href="https://orgmode.org/"><code>org-mode</code></a> document loaded up in <a href="https://www.gnu.org/software/emacs/">Emacs</a> running on my bench computer. I have
@@ -427,9 +423,8 @@ Then, when I come back to my experiment some time later, I can have <a href="htt
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgec17118" class="outline-3">
-<h3 id="orgec17118"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
+<div id="outline-container-orgbde7137" class="outline-3">
+<h3 id="orgbde7137"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of cource I include in my notes littel bits of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code for common
@@ -446,9 +441,8 @@ of buttons to run them.  This has proven to be super handy, and saves me a ton o
 </div>
 </div>
 </div>
-
-<div id="outline-container-org32b856a" class="outline-3">
-<h3 id="org32b856a"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
+<div id="outline-container-org1e30a94" class="outline-3">
+<h3 id="org1e30a94"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code &amp; results
@@ -463,19 +457,16 @@ from <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, <a hre
 </div>
 </div>
 </div>
-
-
-<div id="outline-container-org09f91ec" class="outline-3">
-<h3 id="org09f91ec"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
+<div id="outline-container-org2b882ad" class="outline-3">
+<h3 id="org2b882ad"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 I put the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
 If you have some other organizational structure for your auxiliary <a href="https://www.gnu.org/software/emacs/">Emacs</a> files, then feel free to use it!
 </p>
 </div>
-
-<div id="outline-container-org78b22e1" class="outline-4">
-<h4 id="org78b22e1"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
+<div id="outline-container-org68d234a" class="outline-4">
+<h4 id="org68d234a"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
@@ -489,9 +480,8 @@ A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgb80ed03" class="outline-4">
-<h4 id="orgb80ed03"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
+<div id="outline-container-org8e6e779" class="outline-4">
+<h4 id="org8e6e779"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 A language module for <a href="https://orgmode.org/"><code>org-mode</code></a> Babel may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el">emacs/ob-mrscpi.el</a>.  The magical
@@ -510,12 +500,10 @@ just basic <a href="https://orgmode.org/"><code>org-mode</code></a> support.  I 
 </div>
 </div>
 </div>
-
 <div id="outline-container-ruby" class="outline-2">
 <h2 id="ruby"><span class="section-number-2">4.</span> Ruby API</h2>
 <div class="outline-text-2" id="text-ruby">
 </div>
-
 <div id="outline-container-api-philosophy" class="outline-3">
 <h3 id="api-philosophy"><span class="section-number-3">4.1.</span> API Structure &amp; Philosophy</h3>
 <div class="outline-text-3" id="text-api-philosophy">
@@ -540,7 +528,6 @@ See the documentation for the <a href="rdoc/SCPIsession.html"><code>SCPIsession<
 </p>
 </div>
 </div>
-
 <div id="outline-container-ruby-example" class="outline-3">
 <h3 id="ruby-example"><span class="section-number-3">4.2.</span> Example</h3>
 <div class="outline-text-3" id="text-ruby-example">
@@ -581,7 +568,6 @@ All the magic is in the <code>SCPIsession.new</code> call:
 </div>
 </div>
 </div>
-
 <div id="outline-container-mrscpi-scripts" class="outline-2">
 <h2 id="mrscpi-scripts"><span class="section-number-2">5.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts</h2>
 <div class="outline-text-2" id="text-mrscpi-scripts">
@@ -592,6 +578,13 @@ here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> sc
 
 <div class="org-src-container">
 <pre class="src src-mrscpi"><span style="color: #ffa500;">#!/usr/bin/env mrSCPI.rb</span>
+
+<span style="color: #ffa500;"># Note the shebang line at the top.  That allows this script to be run on a UNIX'ish from the command</span>
+<span style="color: #ffa500;"># line by just invoking the script name.  The reason for the "env" part is two fold: 1) On BSD derived</span>
+<span style="color: #ffa500;"># UNIX systems, the thing in a shebang must be a binary, and 2) it searches the user's path for</span>
+<span style="color: #ffa500;"># mrSCPI.rb.</span>
+
+<span style="color: #ffa500;"># This script pulls a screen dump for a Rigol DHO4804 oscilloscope.</span>
 
 <span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
 <span style="color: #00ffff;">:eval</span> <span style="color: #7fffd4;">imgFileName</span>=<span style="color: #6495ed;">Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" </span><span style="color: #ffa500;"># Filename for PNG</span>
@@ -609,8 +602,7 @@ Note the above script may be found in the <code>example</code> directory named "
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #ffa500;"># This little script pulls the identifier string from an instrument, matches</span>
-<span style="color: #ffa500;"># matches it against a regular expression, and prints the results.</span>
+<pre class="src src-mrscpi"><span style="color: #ffa500;"># Pull the identifier string from an instrument, match it against a regular expression, and prints the results.</span>
 
 <span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a                      </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname"</span>
 <span style="color: #00ffff;">:name</span> <span style="color: #fa8072;">ids                         </span><span style="color: #ffa500;"># We name the next :cmd that will run</span>
@@ -663,7 +655,11 @@ like the following:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@hmc8043</span>
+<pre class="src src-mrscpi"><span style="color: #ffa500;"># This script configures my Rohde Schwarz HMC 8843 power supply to power up my "hotel chaos" project.  This project</span>
+<span style="color: #ffa500;"># has an analog processing component that requires +15v and -15v, and a digital component that requires a +5v.  This</span>
+<span style="color: #ffa500;"># script leaves the power supply configured, but the master enable OFF.</span>
+
+<span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@hmc8043</span>
 <span style="color: #00ffff;">:result_type</span> <span style="color: #8470ff; font-weight: bold;">nil</span>
 <span style="color: #00ffff;">:delay_after_complete</span> <span style="color: #fa8072;">100</span>
 <span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">:OUTPut:MASTer:STATe OFF'</span>
@@ -696,7 +692,7 @@ If we wanted the default values, then we could have just used this:
 Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href="https://orgmode.org/"><code>org-mode</code></a> code block, we could set these variables via the <code>src</code> header arguments like so:
 </p>
 
-<pre class="example" id="org743be95">
+<pre class="example" id="org159ebb5">
 #+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
 </pre>
 
@@ -704,9 +700,8 @@ Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href=
 Note that the "new" commands (<code>:url</code>, <code>:ip_address</code>, <code>:net_port</code>, &amp; <code>:net_protocol</code>) can not be parameterized with variables, but they can be overridden.
 </p>
 </div>
-
-<div id="outline-container-org37218f9" class="outline-3">
-<h3 id="org37218f9"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
+<div id="outline-container-org3a097fc" class="outline-3">
+<h3 id="org3a097fc"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Script syntax is very simple.  Each line starts with an <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> command, and each command is a parameter for one of the following classes:
@@ -719,7 +714,6 @@ Script syntax is very simple.  Each line starts with an <a href="https://richmit
 </div>
 </div>
 </div>
-
 <div id="outline-container-rcfile" class="outline-2">
 <h2 id="rcfile"><span class="section-number-2">6.</span> <code>SCPIrcFile</code> Class</h2>
 <div class="outline-text-2" id="text-rcfile">
@@ -729,9 +723,8 @@ Script syntax is very simple.  Each line starts with an <a href="https://richmit
 documentation.  The basics can be illustrated with a couple examples:
 </p>
 </div>
-
-<div id="outline-container-org05a06fe" class="outline-3">
-<h3 id="org05a06fe"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
+<div id="outline-container-org9217e3d" class="outline-3">
+<h3 id="org9217e3d"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -741,9 +734,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 </div>
-
-<div id="outline-container-orge983a98" class="outline-3">
-<h3 id="orge983a98"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
+<div id="outline-container-orgf3e3a84" class="outline-3">
+<h3 id="orgf3e3a84"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -776,9 +768,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgb600a56" class="outline-3">
-<h3 id="orgb600a56"><span class="section-number-3">6.3.</span> Example RC file</h3>
+<div id="outline-container-org92c0677" class="outline-3">
+<h3 id="org92c0677"><span class="section-number-3">6.3.</span> Example RC file</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Here is an example of what my RC file looks like.  I have two network subnets on my bench.  One for test equipment (192.168.42.X), and one for computers
@@ -843,11 +834,11 @@ network ssh   172.16.1.0/24    # Home office network
 
 ###########################################################################################################
 # Serial Console Ports ####################################################################################
-#.....Device..Line..Interface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device.........
-#scon serial     1      RS232    Tunnel 10001   9600    Even      7      2  SOFT   ^Q   ^S   34401A
-#scon serial     2      RS232    Tunnel 10002  19200    Even      2      2  HARD   ^Q   ^S   TDS2024
-#scon serial     3      RS232    Tunnel 10003  38400    None      8      1  HARD   ^Q   ^S   TDS3052B
-#scon serial     4   DISABLED        --    --     --      --     --     --    --   --   --   --
+#.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag....
+#scon serial     1    RS232    Tunnel 10001  9600    Even      7      2  SOFT   ^Q   ^S   34401A    Pink
+#scon serial     2    RS232    Tunnel 10002 19200    Even      2      2  HARD   ^Q   ^S   TDS2024   Blue
+#scon serial     3    RS232    Tunnel 10003 38400    None      8      1  HARD   ^Q   ^S   TDS3052B  Orange
+#scon serial     4 DISABLED        --    --     --      --     --     --    --   --   --   --
 
 ###########################################################################################################
 # GPIB/ETH ################################################################################################
@@ -857,35 +848,34 @@ network ssh   172.16.1.0/24    # Home office network
 ###########################################################################################################
 # Layer 3 IP Router Ports #################################################################################
 #..............Device.............Interface......Subnet.............Note...................................
-#L3router      bench-router4      eth0           172.16.1.0/24      
-#L3router      bench-router4      eth1           172.16.42.0/23     
-#L3router      bench-router4      eth2           172.16.43.0/23
+#L3router      bench-router4      eth0           172.16.1.2/24      # Long, white wire
+#L3router      bench-router4      eth1           172.16.42.0/23     # Grey cable to L2switch
+#L3router      bench-router4      eth2           172.16.43.0/23     # Bright blue cable to pi
 
 ###########################################################################################################
 # Layer 2 Ethernet Switch Ports ###########################################################################
-#..............Device.............Interface......Device.............Note...................................
-#L2switch      bench-switch42             1      bench-router4
-#L2switch      bench-switch42             2      nomad              # Long, sheilded, yellow cable
-#L2switch      bench-switch42             3      NC
-#L2switch      bench-switch42             4      NC
-#L2switch      bench-switch42             5      NC
-#L2switch      bench-switch42             6      NC
-#L2switch      bench-switch42             7      NC
-#L2switch      bench-switch42             8      NC
-#L2switch      bench-switch42             9      NC
-#L2switch      bench-switch42            10      oscope-rigol       # Red Cable
-#L2switch      bench-switch42            11      gpib-rover         # Yellow Cable
-#L2switch      bench-switch42            12      dmm-keithley       # Bright blue
-#L2switch      bench-switch42            13      oscope-sig         # Grey cable
-#L2switch      bench-switch42            14      ps-rns             # Dark Blue
-#L2switch      bench-switch42            15      NC                 # Grey
-#L2switch      bench-switch42            16      serial
+#..............Device.............Interface......Device.............Cable............Tag...................
+#L2switch      bench-switch42             1      bench-router4    # Short grey       -
+#L2switch      bench-switch42             2      nomad            # Shielded Yellow  -
+#L2switch      bench-switch42             3      NC               # Grey             Pink
+#L2switch      bench-switch42             4      NC               # Grey             Orange
+#L2switch      bench-switch42             5      oscope-tek       # white            Grey 
+#L2switch      bench-switch42             6      oscope-sig       # red              Grey   
+#L2switch      bench-switch42             7      oscope-rigol     # black            Grey
+#L2switch      bench-switch42             8      NC               # green            Grey
+#L2switch      bench-switch42             9      NC               # blue             Grey
+#L2switch      bench-switch42            10      gpib-rover       # Sleeved Yellow    -
+#L2switch      bench-switch42            11      NC               # white            Black
+#L2switch      bench-switch42            12      awg-agilent      # red              Black
+#L2switch      bench-switch42            13      awg-rigol        # black            Black
+#L2switch      bench-switch42            14      dmm-keithley     # green            Black
+#L2switch      bench-switch42            15      ps-rns           # blue             Black
+#L2switch      bench-switch42            16      serial           # Short grey       -
 </pre>
 </div>
 </div>
 </div>
 </div>
-
 <div id="outline-container-features" class="outline-2">
 <h2 id="features"><span class="section-number-2">7.</span> Features (current &amp; future)</h2>
 <div class="outline-text-2" id="text-features">
@@ -919,7 +909,7 @@ network ssh   172.16.1.0/24    # Home office network
 </ul></li>
 <li>Protocol/Communication Features
 <ul class="org-ul">
-<li><a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over raw TCP/IP sockets (which <code>lxi-tool</code> can do very well)
+<li><a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over raw TCP/IP sockets
 <ul class="org-ul">
 <li>Support for instruments that don't close the TCP connection after the client closes for write</li>
 </ul></li>
@@ -1000,12 +990,10 @@ network ssh   172.16.1.0/24    # Home office network
 </ul>
 </div>
 </div>
-
 <div id="outline-container-faq" class="outline-2">
 <h2 id="faq"><span class="section-number-2">8.</span> FAQ</h2>
 <div class="outline-text-2" id="text-faq">
 </div>
-
 <div id="outline-container-faq-require" class="outline-3">
 <h3 id="faq-require"><span class="section-number-3">8.1.</span> Why don't you use a simple <code>require</code> to load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> in Ruby scripts?</h3>
 <div class="outline-text-3" id="text-faq-require">
@@ -1024,8 +1012,6 @@ personal preference in the way I set up my operating environment.  I expect most
 </p>
 </div>
 </div>
-
-
 <div id="outline-container-faq-examples" class="outline-3">
 <h3 id="faq-examples"><span class="section-number-3">8.2.</span> Where can I find more examples?</h3>
 <div class="outline-text-3" id="text-faq-examples">
