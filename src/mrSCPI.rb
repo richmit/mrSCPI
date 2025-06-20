@@ -51,7 +51,7 @@
 #   - 83 Failed to open RC file!
 #   - 84 Failed to open file (:out_file or :err_file)
 #   - 85 Failed to open script file (only happens when running mrSCPI.rb)
-#   - 86 :lxi is not currently supported -- it will be someday!! (TODO: Future Feature)
+#   - 86 :lxi is not supported.
 #   - 87 Unable to read SCPI file response (:net_protocol == :file)          
 #   - 88 Unknown variable without default value! -- used when interpolateing vairable values
 #   - 89 Unknown regexp
@@ -88,8 +88,8 @@ $stderr.sync = true
 # = Introduction
 #
 # SCPIregexLibrary provides access to regular expressions used across mrSCPI.  Many of them are related to SCPI and IEEE 488.2-1992, and are thus useful for
-# scripts using mrSCPI.  Others are related to generic text processing as it related to SCPI results, or even mrSCPI internals. Regular expressions may be
-# naturally anchored (available via the #a member) or unanchored (available via the #u member).
+# scripts using mrSCPI.  Others are related to generic text processing as it relates to SCPI results or internals. Regular expressions may be naturally
+# anchored (available via the #a member) or unanchored (available via the #u member).
 #
 # = Use
 #
@@ -309,7 +309,8 @@ end
 #     Sends SCPI commands via an HTTP form, and scrapes the result out of the returned HTML document.  Do
 #     not use commands that return binary data.  Also note that TCP/IP read loop is bypassed for this mode,
 #     and so read timeouts and delays are ignored.
-#   - +:lxi+:: VX11/LXI over IP (TODO: Future Feature)
+#   - +:lxi+:: VX11/LXI over IP
+#     LXI is not supported; however, we recognize the protocol in order to provide a meaningful error message.
 #   - +:plgx+:: SCPI via a Prologix Ethernet adapter
 #     The Prologix adapter configured with the following commands when the TCP/IP port is opened:
 #          ++savecfg 0 ..... Prevents permanent adapter config changes, and extends EPROM life
@@ -611,8 +612,8 @@ class SCPIsession
           PrintyPrintyBangBang.instance.logPrinter(1, "ERROR: Option required by new is invalid: #{k} = #{@gblOpt[k].inspect}!", self, 73)
         end
       end
-      if [:lxi].member?(@gblOpt[:net_protocol]) then # (TODO: Future Feature)
-        PrintyPrintyBangBang.instance.logPrinter(1, "ERROR: :lxi is not currently supported -- it will be someday!!", self, 86)
+      if [:lxi].member?(@gblOpt[:net_protocol]) then
+        PrintyPrintyBangBang.instance.logPrinter(1, "ERROR: :lxi is not supported by mrSCPI!!", self, 86)
       end
       PrintyPrintyBangBang.instance.logPrinter(4, "DEBUG-4: Object fully constructed.", self)
     else

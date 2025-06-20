@@ -3,8 +3,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>class SCPIsession - mrSCPI</title>
+
+  <meta name="keywords" content="ruby,class,SCPIsession">
+
+    <meta name="description" content="class SCPIsession: Introduction SCPIsession manages network connections and connection state for SPCI sessions. SCPIsession State Parameters The object is controlled v">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -22,7 +27,12 @@
 
 
 <body id="top" role="document" class="class">
-<nav role="navigation">
+<div id="navigation-toggle" role="button" tabindex="0" aria-label="Toggle sidebar" aria-expanded="true" aria-controls="navigation">
+  <span aria-hidden="true">&#9776;</span>
+</div>
+
+
+<nav id="navigation" role="navigation">
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
   <h2>
@@ -41,7 +51,7 @@
     <div id="search-field-wrapper">
       <input id="search-field" role="combobox" aria-label="Search"
              aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
@@ -57,53 +67,73 @@
 <div class="nav-section">
   <h3>Table of Contents</h3>
 
+
+
   <ul class="link-list" role="directory">
-    <li><a href="#class-SCPIsession-label-Introduction">Introduction</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters">SCPIsession State Parameters</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Global+behavior">SCPIsession State Parameters: Global behavior</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Command+string+specification">SCPIsession State Parameters: Command string specification</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+I-2FO+tuning">SCPIsession State Parameters: Instrument I/O tuning</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Connection+Parameters">SCPIsession State Parameters: Connection Parameters</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Output+Control">SCPIsession State Parameters: Output Control</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+processing">SCPIsession State Parameters: Result processing</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+storage">SCPIsession State Parameters: Result storage</a>
-    <li><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Macros">SCPIsession State Parameters: Macros</a>
+              <li>      <a href="#class-SCPIsession-label-Introduction">Introduction</a>
+          <li>
+            <details open>
+              <summary>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters">SCPIsession State Parameters</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Global+behavior">SCPIsession State Parameters: Global behavior</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Command+string+specification">SCPIsession State Parameters: Command string specification</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+I-2FO+tuning">SCPIsession State Parameters: Instrument I/O tuning</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Connection+Parameters">SCPIsession State Parameters: Connection Parameters</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Output+Control">SCPIsession State Parameters: Output Control</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+processing">SCPIsession State Parameters: Result processing</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+storage">SCPIsession State Parameters: Result storage</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Macros">SCPIsession State Parameters: Macros</a>
+
+              </ul>
+            </details>
+          </li>
+
   </ul>
 </div>
 
-
-  <div id="class-metadata">
-    
-    
-<div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
-
-  <p class="link">Object
+  
+  <div id="parent-class-section" class="nav-section">
+  <h3>Ancestors</h3>
+  <ul><li>Object</li></ul>
 </div>
 
-    
-    
-    
-<!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
-    <li ><a href="#method-c-new">::new</a>
-    <li ><a href="#method-i-command">#command</a>
-    <li ><a href="#method-i-execute">#execute</a>
-    <li ><a href="#method-i-expand">#expand</a>
-    <li ><a href="#method-i-result">#result</a>
-    <li ><a href="#method-i-set">#set</a>
-    <li ><a href="#method-i-variable">#variable</a>
-  </ul>
-</div>
-
+  
+  
+  
+  <div class="nav-section">
+    <h3>Class Methods</h3>
+    <ul class="link-list" role="directory">
+      <li ><a href="#method-c-new">new</a></li>
+    </ul>
   </div>
+
+
+
+  <div class="nav-section">
+    <h3>Instance Methods</h3>
+    <ul class="link-list" role="directory">
+      <li ><a href="#method-i-command">command</a></li>
+      <li ><a href="#method-i-execute">execute</a></li>
+      <li ><a href="#method-i-expand">expand</a></li>
+      <li ><a href="#method-i-result">result</a></li>
+      <li ><a href="#method-i-set">set</a></li>
+      <li ><a href="#method-i-variable">variable</a></li>
+    </ul>
+  </div>
+
+
+
+  <footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.10.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
 </nav>
 
 <main role="main" aria-labelledby="class-SCPIsession">
-  <h1 id="class-SCPIsession" class="class">
+  <h1 id="class-SCPIsession" class="anchor-link class">
     class SCPIsession
   </h1>
 
@@ -118,7 +148,7 @@
 <p>The object is controlled via changing the object’s state parameters. I know, that’s not much to go on.  It’s really pretty simple.  A few examples are probably the best way to understand it.  See the mrSCPI readme.</p>
 
 <h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Global+behavior"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Global behavior<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Global+behavior">&para;</a> <a href="#top">&uarr;</a></span></h2>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:verbose</code>(P/Integer)
+<ul><li><dl class="rdoc-list note-list"><dt><code>:verbose</code>(P/Integer)</dt>
 <dd>
 <p>How much to print to <code>:log_file</code> (DEFAULT: <code>1</code>)</p>
 </dd></dl>
@@ -143,25 +173,25 @@
 </li><li>
 <p><code>8</code>: Debug-8 Print out data structures</p>
 </li></ul>
-</li><li><dl class="rdoc-list note-list"><dt><code>:exit_on_error</code>(L/Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:exit_on_error</code>(L/Boolean)</dt>
 <dd>
 <p>Exit if an error is encountered (DEFAULT: true)</p>
 </dd></dl>
 
 <p>See: <a href="PrintyPrintyBangBang.html"><code>PrintyPrintyBangBang</code></a></p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:exit_0</code>(L/Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:exit_0</code>(L/Boolean)</dt>
 <dd>
 <p>Abnormal exits are always zero – required for org-mode (DEFAULT: <code>false</code>)</p>
 </dd></dl>
 
 <p>See: <a href="PrintyPrintyBangBang.html"><code>PrintyPrintyBangBang</code></a></p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:execute_on_cmd</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:execute_on_cmd</code>(Boolean)</dt>
 <dd>
 <p>Immediately execute when :cmd is updated (DEFAULT: <code>true</code>)</p>
 </dd></dl>
 
 <p>If false, then the <a href="SCPIsession.html#method-i-execute"><code>execute</code></a> method must be used to force command execution</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:log_file</code>(L/String)
+</li><li><dl class="rdoc-list note-list"><dt><code>:log_file</code>(L/String)</dt>
 <dd>
 <p>Name of file for log messages (DEFAULT: <code>&quot;STDERR&quot;</code>)</p>
 </dd></dl>
@@ -170,146 +200,146 @@
 </li></ul>
 
 <h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Command+string+specification"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Command string specification<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Command+string+specification">&para;</a> <a href="#top">&uarr;</a></span></h2>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:cmd</code>(String)
+<ul><li><dl class="rdoc-list note-list"><dt><code>:cmd</code>(String)</dt>
 <dd>
 <p>The current command string</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:scpi_prefix</code>(String)
+</li><li><dl class="rdoc-list note-list"><dt><code>:scpi_prefix</code>(String)</dt>
 <dd>
 <p>An SCPI prefix to be added when :cmd is sent to instrument (DEFAULT: <code>&quot;&quot;</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:eol</code>(String)
+</li><li><dl class="rdoc-list note-list"><dt><code>:eol</code>(String)</dt>
 <dd>
 <p>End of line string to append to command strings sent to instrument (DEFAULT: <code>&quot;\n&quot;</code>)</p>
 </dd></dl>
 </li></ul>
 
 <h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+I-2FO+tuning"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Instrument I/O tuning<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+I-2FO+tuning">&para;</a> <a href="#top">&uarr;</a></span></h2>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:read_timeout_first_byte</code>(Integer/milliseconds)
+<ul><li><dl class="rdoc-list note-list"><dt><code>:read_timeout_first_byte</code>(Integer/milliseconds)</dt>
 <dd>
 <p>Timeout for first byte of data from instrument.</p>
 </dd></dl>
 
-<p>Default depends on :net_protocol: </p>
-<dl class="rdoc-list note-list"><dt><code>:raw</code>
+<p>Default depends on :net_protocol:</p>
+<dl class="rdoc-list note-list"><dt><code>:raw</code></dt>
 <dd>
 <p>1000</p>
-</dd><dt><code>:soip</code>
+</dd><dt><code>:soip</code></dt>
 <dd>
 <p>500</p>
-</dd><dt><code>:plgx</code>
+</dd><dt><code>:plgx</code></dt>
 <dd>
 <p>500</p>
-</dd><dt><code>:file</code>
+</dd><dt><code>:file</code></dt>
 <dd>
 <p>0</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:read_timeout_next_byte</code>(Integer/milliseconds)
+</li><li><dl class="rdoc-list note-list"><dt><code>:read_timeout_next_byte</code>(Integer/milliseconds)</dt>
 <dd>
 <p>Timeout for more data after receiving a response from instrument</p>
 </dd></dl>
 
-<p>Default depends on :net_protocol: </p>
-<dl class="rdoc-list note-list"><dt><code>:raw</code>
+<p>Default depends on :net_protocol:</p>
+<dl class="rdoc-list note-list"><dt><code>:raw</code></dt>
 <dd>
 <p>2000</p>
-</dd><dt><code>:soip</code>
+</dd><dt><code>:soip</code></dt>
 <dd>
 <p>100</p>
-</dd><dt><code>:plgx</code>
+</dd><dt><code>:plgx</code></dt>
 <dd>
 <p>100</p>
-</dd><dt><code>:file</code>
+</dd><dt><code>:file</code></dt>
 <dd>
 <p>0</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:delay_before_first_read</code>(Integer/milliseconds)
+</li><li><dl class="rdoc-list note-list"><dt><code>:delay_before_first_read</code>(Integer/milliseconds)</dt>
 <dd>
 <p>Time to wait before trying to read a result from instrument</p>
 </dd></dl>
 
-<p>Default depends on :net_protocol: </p>
-<dl class="rdoc-list note-list"><dt><code>:raw</code>
+<p>Default depends on :net_protocol:</p>
+<dl class="rdoc-list note-list"><dt><code>:raw</code></dt>
 <dd>
 <p>100</p>
-</dd><dt><code>:soip</code>
+</dd><dt><code>:soip</code></dt>
 <dd>
 <p>50</p>
-</dd><dt><code>:plgx</code>
+</dd><dt><code>:plgx</code></dt>
 <dd>
 <p>50</p>
-</dd><dt><code>:file</code>
+</dd><dt><code>:file</code></dt>
 <dd>
 <p>0</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:delay_after_complete</code>(Integer/milliseconds)
+</li><li><dl class="rdoc-list note-list"><dt><code>:delay_after_complete</code>(Integer/milliseconds)</dt>
 <dd>
 <p>Time to wait after a command has completed before returning</p>
 </dd></dl>
 
-<p>Default depends on :net_protocol: </p>
-<dl class="rdoc-list note-list"><dt><code>:raw</code>
+<p>Default depends on :net_protocol:</p>
+<dl class="rdoc-list note-list"><dt><code>:raw</code></dt>
 <dd>
 <p>0</p>
-</dd><dt><code>:soip</code>
+</dd><dt><code>:soip</code></dt>
 <dd>
 <p>100</p>
-</dd><dt><code>:plgx</code>
+</dd><dt><code>:plgx</code></dt>
 <dd>
 <p>50</p>
-</dd><dt><code>:t3k</code>
+</dd><dt><code>:t3k</code></dt>
 <dd>
 <p>200</p>
-</dd><dt><code>:file</code>
+</dd><dt><code>:file</code></dt>
 <dd>
 <p>0</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:read_retry_delay</code>(Integer/milliseconds)
+</li><li><dl class="rdoc-list note-list"><dt><code>:read_retry_delay</code>(Integer/milliseconds)</dt>
 <dd>
 <p>Time to wait before retrying a read operation</p>
 </dd></dl>
 
-<p>Default depends on :net_protocol: </p>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:raw</code>
+<p>Default depends on :net_protocol:</p>
+<ul><li><dl class="rdoc-list note-list"><dt><code>:raw</code></dt>
 <dd>
 <p>200</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:soip</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:soip</code></dt>
 <dd>
 <p>200</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:plgx</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:plgx</code></dt>
 <dd>
 <p>100</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:file</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:file</code></dt>
 <dd>
 <p>0</p>
 </dd></dl>
 </li></ul>
-</li><li><dl class="rdoc-list note-list"><dt><code>:read_eot_sentinel</code>(nil|String)
+</li><li><dl class="rdoc-list note-list"><dt><code>:read_eot_sentinel</code>(nil|String)</dt>
 <dd>
 <p>Stop reading when the character appears on the input stream (DEFAULT: <code>nil</code>)</p>
 </dd></dl>
 
 <p>This can dramatically speed up query commands, but requires the instrument send an “end of transmission” character. Frequently we can exploit the fact that an instrument will terminate some responses with a newline character, and thus use the newline as an EOT character.  For Prologix devices, an EOT character may be defined; however, this can interfere when binary data is to be transmitted from an instrument.</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:good_std_eot</code>(P/Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:good_std_eot</code>(P/Boolean)</dt>
 <dd>
 <p>Set <code>:read_eot_sentinel</code> to <code>&quot;\n&quot;</code> if <code>true</code>, and to <code>nil</code> if <code>false</code>.</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:socket_close_write</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:socket_close_write</code>(Boolean)</dt>
 <dd>
 <p>For raw &amp; soip do a write_close on the TCP socket after sending command string (DEFAULT: <code>false</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:socket_close</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:socket_close</code>(Boolean)</dt>
 <dd>
 <p>For raw &amp; soip do a close on the TCP socket after reading is complete (DEFAULT: <code>false</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:read_buffer_size</code>(Integer/bytes)
+</li><li><dl class="rdoc-list note-list"><dt><code>:read_buffer_size</code>(Integer/bytes)</dt>
 <dd>
 <p>Maximum number of bytes to attempt to read at once (DEFAULT: <code>1048576</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:read_max_bytes</code>(Integer/bytes)
+</li><li><dl class="rdoc-list note-list"><dt><code>:read_max_bytes</code>(Integer/bytes)</dt>
 <dd>
 <p>Stop reading after we get this many bytes or more (DEFAULT: <code>nil</code>)</p>
 </dd></dl>
@@ -320,12 +350,12 @@
 <h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Connection+Parameters"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Connection Parameters<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Connection+Parameters">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <p>Connection parameters may only be set when an <a href="SCPIsession.html"><code>SCPIsession</code></a> object is created (via new).</p>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:url</code>(P/String)
+<ul><li><dl class="rdoc-list note-list"><dt><code>:url</code>(P/String)</dt>
 <dd>
-<p>Used to set <code>:ip_address</code> and potentially <code>:net_protocol</code> &amp; <code>:net_port</code>. If any of these options are explicitly set, then the explicitly set value wins. </p>
+<p>Used to set <code>:ip_address</code> and potentially <code>:net_protocol</code> &amp; <code>:net_port</code>. If any of these options are explicitly set, then the explicitly set value wins.</p>
 </dd></dl>
 
-<p>URL formats: </p>
+<p>URL formats:</p>
 <ul><li>
 <p><code>[net_protocol://]ip_address[:net_port]</code></p>
 </li><li>
@@ -333,23 +363,23 @@
 </li></ul>
 
 <p>See: <a href="SCPIrcFile.html#method-i-urlParser"><code>SCPIrcFile.urlParser</code></a> &amp; <a href="SCPIrcFile.html#method-i-lookupURLnickname"><code>SCPIrcFile.lookupURLnickname</code></a></p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:ip_address</code>(String)
+</li><li><dl class="rdoc-list note-list"><dt><code>:ip_address</code>(String)</dt>
 <dd>
 <p>IP address</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:net_protocol</code>(Symbol)
+</li><li><dl class="rdoc-list note-list"><dt><code>:net_protocol</code>(Symbol)</dt>
 <dd>
-<p>Network protocol. </p>
+<p>Network protocol.</p>
 </dd></dl>
 
-<p>Values: </p>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:raw</code>
+<p>Values:</p>
+<ul><li><dl class="rdoc-list note-list"><dt><code>:raw</code></dt>
 <dd>
 <p>Raw socket connection (DEFAULT)</p>
 </dd></dl>
 
 <p>By far the most well tested mode as most of my equipment has an Ethernet port.</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:soip</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:soip</code></dt>
 <dd>
 <p>Serial Over IP</p>
 </dd></dl>
@@ -364,17 +394,19 @@
 </li><li>
 <p>Tektronix TDS2024 Digital Storage Oscilloscope</p>
 </li></ul>
-</li><li><dl class="rdoc-list note-list"><dt><code>:t3k</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:t3k</code></dt>
 <dd>
 <p>SCPI over HTTP for TDS3000B series</p>
 </dd></dl>
 
 <p>Sends SCPI commands via an HTTP form, and scrapes the result out of the returned HTML document.  Do not use commands that return binary data.  Also note that TCP/IP read loop is bypassed for this mode, and so read timeouts and delays are ignored.</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:lxi</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:lxi</code></dt>
 <dd>
-<p>VX11/LXI over IP (TODO: Future Feature)</p>
+<p>VX11/LXI over IP</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:plgx</code>
+
+<p>LXI is not supported; however, we recognize the protocol in order to provide a meaningful error message.</p>
+</li><li><dl class="rdoc-list note-list"><dt><code>:plgx</code></dt>
 <dd>
 <p>SCPI via a Prologix Ethernet adapter</p>
 </dd></dl>
@@ -396,57 +428,57 @@
 </li></ul>
 
 <p>If <code>:read_timeout_first_byte</code> or <code>:eol</code> is changed after the socket is opened, set <code>:socket_close</code> to close the socket after the next command.  This will be fixed someday.</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:file</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:file</code></dt>
 <dd>
 <p>Read response from a file with the same name as :cmd parameter</p>
 </dd></dl>
 
 <p>This feature is used for simulating SCPI responce strings without a physical device.  It is used for testing.</p>
 </li></ul>
-</li><li><dl class="rdoc-list note-list"><dt><code>:net_port</code>(Integer)
+</li><li><dl class="rdoc-list note-list"><dt><code>:net_port</code>(Integer)</dt>
 <dd>
 <p>TCP/IP Port number (DEFAULT: 0 for <code>:file</code>, <code>:soip</code>, &amp; <code>:lxi</code>.  5025 for <code>:raw</code>. 1234 for <code>:plgx</code>. 80 for <code>:t3k</code>)</p>
 </dd></dl>
 </li></ul>
 
 <h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Output+Control"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Output Control<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Output+Control">&para;</a> <a href="#top">&uarr;</a></span></h2>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:out_file</code>(L/String)
+<ul><li><dl class="rdoc-list note-list"><dt><code>:out_file</code>(L/String)</dt>
 <dd>
 <p>Filename for print operations – not log operations (DEFAULT: <code>&quot;STDOUT&quot;</code>)</p>
 </dd></dl>
 
 <p>Some file names are special: <code>&quot;STDOUT&quot;</code>, <code>&quot;STDERR&quot;</code>, &amp; <code>&quot;/dev/null&quot;</code> See: <a href="PrintyPrintyBangBang.html"><code>PrintyPrintyBangBang</code></a></p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:print_raw_result</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:print_raw_result</code>(Boolean)</dt>
 <dd>
 <p>Output raw results (the raw string returned from the instrument) to :out_file (DEFAULT: <code>false</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:print_result</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:print_result</code>(Boolean)</dt>
 <dd>
 <p>Output post processed results to :out_file (DEFAULT: <code>false</code>)</p>
 </dd></dl>
 
 <p>Nothing is printed when <code>:result_type</code> is <code>nil</code> WARNING: <a href="SCPIsequence.html"><code>SCPIsequence</code></a> sets this to true when it constructs an <a href="SCPIsession.html"><code>SCPIsession</code></a> object</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:print_result_puts</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:print_result_puts</code>(Boolean)</dt>
 <dd>
 <p>Use <code>puts</code> for prints – i.e. insure all prints have a newline at the end</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:print_cmd</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:print_cmd</code>(Boolean)</dt>
 <dd>
 <p>Output command to :out_file (DEFAULT: <code>false</code>)</p>
 </dd></dl>
 
 <p>Output is prefixed and postfixed by <code>&#39;&gt;&gt;&#39;</code> and followed by a newline WARNING: <a href="SCPIsequence.html"><code>SCPIsequence</code></a> sets this to true when it constructs an <a href="SCPIsession.html"><code>SCPIsession</code></a> object</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:echo</code>(P/Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:echo</code>(P/Boolean)</dt>
 <dd>
 <p>Sets both <code>:print_cmd</code> &amp; <code>:print_result</code> at the same time (DEFAULT: <code>false</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:print_debug</code>(L/Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:print_debug</code>(L/Boolean)</dt>
 <dd>
 <p>All printed results are in Ruby <code>.inspect</code> format and followed by a newline</p>
 </dd></dl>
 
 <p>See: <a href="PrintyPrintyBangBang.html"><code>PrintyPrintyBangBang</code></a></p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:print_max_len</code>(L/Integer or nil)
+</li><li><dl class="rdoc-list note-list"><dt><code>:print_max_len</code>(L/Integer or nil)</dt>
 <dd>
 <p>Limit the number of characters printed (DEFAULT: <code>nil</code>)</p>
 </dd></dl>
@@ -461,7 +493,7 @@
 <h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+processing"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Result processing<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+processing">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <p>Strings returned from instruments can be processed via a standard set of transformations controlled by the options in this section.  The actions occur in the order they are documented in this section.  For example, operations after <code>:result_split</code> are applied each array element resulting from the split. If <code>:result_type</code> is <code>nil</code>, none of these actions are taken.</p>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:result_extract_block</code>(Boolean)
+<ul><li><dl class="rdoc-list note-list"><dt><code>:result_extract_block</code>(Boolean)</dt>
 <dd>
 <p>If true and a block header is present, then replace the result sting with the data payload.  Otherwise leave the string unmodified.</p>
 </dd></dl>
@@ -471,130 +503,130 @@
 <p>If this digit is zero, then we have a variable sized block that ends with an EOL terminator.</p>
 
 <p>If the digit is non-zero, then it tells us the number of ASCII decimal digits that follow it indicate the length of the data payload.</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:result_split</code>(Symbol)
+</li><li><dl class="rdoc-list note-list"><dt><code>:result_split</code>(Symbol)</dt>
 <dd>
 <p>If non-nil, then split the result sting into an array. (DEFAULT: <code>nil</code>)</p>
 </dd></dl>
 
 <p>Values:</p>
-<ul><li><dl class="rdoc-list note-list"><dt><code>nil</code>
+<ul><li><dl class="rdoc-list note-list"><dt><code>nil</code></dt>
 <dd>
 <p>Don’t do anything – no split at all</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:char</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:char</code></dt>
 <dd>
 <p>Split on the characters in <code>:result_split_arg</code></p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:string</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:string</code></dt>
 <dd>
 <p>Split on the <strong>string</strong> in  <code>:result_split_arg</code></p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:unpack</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:unpack</code></dt>
 <dd>
 <p>Split via an unpack string in <code>:result_split_arg</code></p>
 </dd></dl>
 
 <p>WARNING: unpack may produce an array containing non-strings, and thus :result_type must usually be set to :mixed!</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:block</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:block</code></dt>
 <dd>
 <p>Split into two element array containing block header and block payload</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:regex</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:regex</code></dt>
 <dd>
 <p>Split via the regex string in <code>:result_split_arg</code></p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:line</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:line</code></dt>
 <dd>
 <p>Split on horizontal whitespace</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:space</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:space</code></dt>
 <dd>
 <p>Split on /s+/ (i.e. whitespace separated values)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:csv</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:csv</code></dt>
 <dd>
 <p>Split on /s*,s*/ (i.e. comma separated values)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:ssv</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:ssv</code></dt>
 <dd>
 <p>Split on /s*;s*/ (i.e. semicolon separated values)</p>
 </dd></dl>
 
-<p>Handy for devices (R&amp;S) that return semicolon separated values on compound SCPI statements Example: </p>
+<p>Handy for devices (R&amp;S) that return semicolon separated values on compound SCPI statements Example:</p>
 
 <pre>:measure: SCALar:VOLTage:DC?; :MEASure:SCALar:CURRent:DC?
 &quot;0.0; 0.0&quot;</pre>
 </li></ul>
-</li><li><dl class="rdoc-list note-list"><dt><code>:result_split_arg</code>(String or nil)
+</li><li><dl class="rdoc-list note-list"><dt><code>:result_split_arg</code>(String or nil)</dt>
 <dd>
 <p>Argument required for the <code>:result_split</code> parameter.  (DEFAULT: <code>nil</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:result_squeeze</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:result_squeeze</code>(Boolean)</dt>
 <dd>
 <p>If true, adjacent whitespace characters are squeezed into a single character – a single space or newline</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:result_chomp</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:result_chomp</code>(Boolean)</dt>
 <dd>
 <p>If true, the stored/returned result string is chomped (DEFAULT: <code>false</code>)</p>
 </dd></dl>
 
 <p>Note overlap with <code>:result_strip</code>!</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:result_strip</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:result_strip</code>(Boolean)</dt>
 <dd>
 <p>If true, the stored/returned result string is stripped of whitespace (DEFAULT: <code>false</code>)</p>
 </dd></dl>
 
 <p>Zaps <code>NL</code> (null), <code>HT</code> (horizontal tab), <code>LF</code> (line feed), <code>VT</code> (vertical tab), <code>FF</code> (form feed), <code>CR</code> (carriage return), &amp; <code>SP</code> (space)</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:result_last_word</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:result_last_word</code>(Boolean)</dt>
 <dd>
 <p>If true, the stored/returned result string is right stripped and only the last word is returned (DEFAULT: <code>false</code>)</p>
 </dd></dl>
 
-<p>Some instruments return the query command string followed by the value, and this can be a handy way to get just the value. Example: </p>
+<p>Some instruments return the query command string followed by the value, and this can be a handy way to get just the value. Example:</p>
 
 <pre>MEASUrement:IMMed:VALue?
 :measurement: IMMED:VALUE 9.9E37</pre>
-</li><li><dl class="rdoc-list note-list"><dt><code>:result_type</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:result_type</code>(Boolean)</dt>
 <dd>
 <p>Expected return from SCPI command (DEFAULT: <code>nil</code>)</p>
 </dd></dl>
 
 <p>Used to coerce values into Ruby types Values:</p>
-<ul><li><dl class="rdoc-list note-list"><dt><code>nil</code>
+<ul><li><dl class="rdoc-list note-list"><dt><code>nil</code></dt>
 <dd>
 <p>no data – A response is not even read from instrument</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:mixed</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:mixed</code></dt>
 <dd>
 <p>When <code>:result_split</code> is non-NIL, leave returned data as is.</p>
 </dd></dl>
 
 <p>NOTE: Usually the correct value when <code>:result_split</code> is :unpack!</p>
-</li><li><dl class="rdoc-list note-list"><dt><code>:string</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:string</code></dt>
 <dd>
 <p>string.  Usually a NOP except, when <code>:result_split</code> values of :unpack.  In the :unpack case, this will convert any non-string elements in an array into strings.</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:float</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:float</code></dt>
 <dd>
 <p>float (NR2, NR3, NRf) – NRf is only partly supported in that whitespace is not allowed around the “E”.</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:int</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:int</code></dt>
 <dd>
 <p>integer (NR1)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:bool</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>:bool</code></dt>
 <dd>
 <p>Convert strings to <code>true</code>, <code>false</code>, or <code>nil</code></p>
 </dd></dl>
-<ul><li><dl class="rdoc-list note-list"><dt><code>true</code>
+<ul><li><dl class="rdoc-list note-list"><dt><code>true</code></dt>
 <dd>
 <p>if result =~ /^s*(on|1|true|yes)s*$/i</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>false</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>false</code></dt>
 <dd>
 <p>if result =~ /^s*(off|0|false|no)s*$/i</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>nil</code>
+</li><li><dl class="rdoc-list note-list"><dt><code>nil</code></dt>
 <dd>
 <p>otherwise</p>
 </dd></dl>
@@ -605,27 +637,27 @@
 </li></ul>
 
 <h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+storage"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Result storage<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+storage">&para;</a> <a href="#top">&uarr;</a></span></h2>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:name</code>(String)
+<ul><li><dl class="rdoc-list note-list"><dt><code>:name</code>(String)</dt>
 <dd>
 <p>Name of current command.</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:store_named_in_var</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:store_named_in_var</code>(Boolean)</dt>
 <dd>
 <p>Store named results into a variable of the same name (DEFAULT: <code>true</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:store_last_in_ans</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:store_last_in_ans</code>(Boolean)</dt>
 <dd>
 <p>Store result into a variable named ‘ANS’ (DEFAULT: <code>true</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:store_results</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:store_results</code>(Boolean)</dt>
 <dd>
 <p>Store the instrument response on the results stack (DEFAULT: <code>true</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:store_raw_results</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:store_raw_results</code>(Boolean)</dt>
 <dd>
 <p>Store the raw instrument response string on the results stack (DEFAULT: <code>true</code>)</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:store_cmd</code>(Boolean)
+</li><li><dl class="rdoc-list note-list"><dt><code>:store_cmd</code>(Boolean)</dt>
 <dd>
 <p>Store the raw command string sent to the instrument on the results stack (DEFAULT: <code>true</code>)</p>
 </dd></dl>
@@ -645,29 +677,36 @@
 
   </section>
 
-  <section id="5Buntitled-5D" class="documentation-section">
+  <section id="5Buntitled-5D" class="documentation-section anchor-link">
 
 
 
 
 
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section anchor-link">
        <header>
          <h3>Public Class Methods</h3>
        </header>
 
-      <div id="method-c-new" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(options)</span>
-          <span class="method-click-advice">click to toggle source</span>
+      <div id="method-c-new" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-c-new" title="Link to this method">
+                <span class="method-name">new</span>
+                <span class="method-args">(options)</span>
+              </a>
+            </div>
         </div>
 
-        <div class="method-description">
-          
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
 
+        <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 428</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 429</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-ivar">@re</span>           = <span class="ruby-constant">SCPIregexLibrary</span>.<span class="ruby-identifier">instance</span>
   <span class="ruby-ivar">@gblOpt</span>       = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
@@ -757,6 +796,7 @@
       }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
+          
         </div>
 
 
@@ -764,23 +804,30 @@
 
     </section>
 
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-command" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">command</span><span
-            class="method-args">(cmd, options=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
+      <div id="method-i-command" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-command" title="Link to this method">
+                <span class="method-name">command</span>
+                <span class="method-args">(cmd, options=nil)</span>
+              </a>
+            </div>
         </div>
 
-        <div class="method-description">
-          <p>While <code>.set</code> perfectly capable of setting the <code>:cmd</code> parameter, this method provides provides a more readable alternative.</p>
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
 
+        <div class="method-description">
           <div class="method-source-code" id="command-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 635</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 636</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">command</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">options</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-value">:cmd</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&quot;ERROR: :cmd must not appear in options list when calling &#39;command&#39;!&quot;</span>, <span class="ruby-keyword">self</span>, <span class="ruby-value">74</span>)
@@ -797,23 +844,31 @@
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+          <p>While <code>.set</code> perfectly capable of setting the <code>:cmd</code> parameter, this method provides provides a more readable alternative.</p>
         </div>
 
 
       </div>
 
-      <div id="method-i-execute" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">execute</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
+      <div id="method-i-execute" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-execute" title="Link to this method">
+                <span class="method-name">execute</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
         </div>
 
-        <div class="method-description">
-          <p>This method executes the command specified by the <code>:cmd</code> parameter.  This is method is completely unnecessary if the <code>:execute_on_cmd</code> parameter is non-<code>nil</code>.</p>
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
 
+        <div class="method-description">
           <div class="method-source-code" id="execute-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 691</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 692</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>()
   <span class="ruby-identifier">time_exe_start</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-comment"># Make sure all required options required by new are set and valid</span>
@@ -1080,23 +1135,31 @@
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">thingyWeReturn</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+          <p>This method executes the command specified by the <code>:cmd</code> parameter.  This is method is completely unnecessary if the <code>:execute_on_cmd</code> parameter is non-<code>nil</code>.</p>
         </div>
 
 
       </div>
 
-      <div id="method-i-expand" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">expand</span><span
-            class="method-args">(instr)</span>
-          <span class="method-click-advice">click to toggle source</span>
+      <div id="method-i-expand" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-expand" title="Link to this method">
+                <span class="method-name">expand</span>
+                <span class="method-args">(instr)</span>
+              </a>
+            </div>
         </div>
 
-        <div class="method-description">
-          <p>Return a new string with constructs like ${variable_name} &amp; ${variable_name:default_value} expanded into the value of the variable(s).</p>
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
 
+        <div class="method-description">
           <div class="method-source-code" id="expand-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 668</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 669</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">expand</span> (<span class="ruby-identifier">instr</span>)
   <span class="ruby-identifier">expCnt</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">instr</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_varexp</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
@@ -1117,72 +1180,31 @@
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">instr</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+          <p>Return a new string with constructs like ${variable_name} &amp; ${variable_name:default_value} expanded into the value of the variable(s).</p>
         </div>
 
 
       </div>
 
-      <div id="method-i-result" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">result</span><span
-            class="method-args">(index: -1, type: :ret_val)</span>
-          <span class="method-click-advice">click to toggle source</span>
+      <div id="method-i-result" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-result" title="Link to this method">
+                <span class="method-name">result</span>
+                <span class="method-args">(index: -1, type: :ret_val)</span>
+              </a>
+            </div>
         </div>
 
-        <div class="method-description">
-          <p>After execution SCPI commands have several data elements stored, and this method provides access to that data.</p>
-<ul><li><dl class="rdoc-list note-list"><dt><code>index</code>
-<dd>
-<p>Specify SCPI command for which to return data.</p>
-</dd></dl>
-<ul><li>
-<p>An integer: Return the result at the given array index. Some notes:</p>
-<ul><li>
-<p>This option is fast at O(1).</p>
-</li><li>
-<p><code>-1</code> is the last SCPI command</p>
-</li><li>
-<p><code>0</code> is the first one. </p>
-</li></ul>
-</li><li>
-<p>A string: Return an <strong>array</strong> of all results with a matching <code>:name</code> ordered by index.  Some notes:</p>
-<ul><li>
-<p>An empty array is returned if no matches are found. </p>
-</li><li>
-<p>This option is slow at O(n) – n # results.</p>
-</li><li>
-<p>The option <code>:store_named_in_var</code> and the <a href="SCPIsession.html#method-i-variable"><code>variable</code></a> method are much faster; however, this only gets tht <strong>last</strong> result with the given name.</p>
-</li></ul>
-</li></ul>
-</li><li><dl class="rdoc-list note-list"><dt><code>type</code>
-<dd>
-<p>A symbol specifing the data to return. The symbol must be one of: </p>
-</dd></dl>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:all</code>
-<dd>
-<p>A hash with all data</p>
-</dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:name</code>
-<dd>
-<p>String with the command name/variable</p>
-</dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:cmd_str</code>
-<dd>
-<p>String sent to the instrument</p>
-</dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:ret_val</code>
-<dd>
-<p>Processed result from the command</p>
-</dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:raw_str</code>
-<dd>
-<p>String received from the instrument</p>
-</dd></dl>
-</li></ul>
-</li></ul>
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
 
+        <div class="method-description">
           <div class="method-source-code" id="result-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 974</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 975</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">result</span>(<span class="ruby-value">index:</span> <span class="ruby-value">-1</span>, <span class="ruby-value">type:</span> <span class="ruby-value">:ret_val</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@results</span>.<span class="ruby-identifier">find_all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">index</span> }
@@ -1204,23 +1226,80 @@
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+          <p>After execution SCPI commands have several data elements stored, and this method provides access to that data.</p>
+<ul><li><dl class="rdoc-list note-list"><dt><code>index</code></dt>
+<dd>
+<p>Specify SCPI command for which to return data.</p>
+</dd></dl>
+<ul><li>
+<p>An integer: Return the result at the given array index. Some notes:</p>
+<ul><li>
+<p>This option is fast at O(1).</p>
+</li><li>
+<p><code>-1</code> is the last SCPI command</p>
+</li><li>
+<p><code>0</code> is the first one.</p>
+</li></ul>
+</li><li>
+<p>A string: Return an <strong>array</strong> of all results with a matching <code>:name</code> ordered by index.  Some notes:</p>
+<ul><li>
+<p>An empty array is returned if no matches are found.</p>
+</li><li>
+<p>This option is slow at O(n) – n # results.</p>
+</li><li>
+<p>The option <code>:store_named_in_var</code> and the <a href="SCPIsession.html#method-i-variable"><code>variable</code></a> method are much faster; however, this only gets tht <strong>last</strong> result with the given name.</p>
+</li></ul>
+</li></ul>
+</li><li><dl class="rdoc-list note-list"><dt><code>type</code></dt>
+<dd>
+<p>A symbol specifing the data to return. The symbol must be one of:</p>
+</dd></dl>
+<ul><li><dl class="rdoc-list note-list"><dt><code>:all</code></dt>
+<dd>
+<p>A hash with all data</p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:name</code></dt>
+<dd>
+<p>String with the command name/variable</p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:cmd_str</code></dt>
+<dd>
+<p>String sent to the instrument</p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:ret_val</code></dt>
+<dd>
+<p>Processed result from the command</p>
+</dd></dl>
+</li><li><dl class="rdoc-list note-list"><dt><code>:raw_str</code></dt>
+<dd>
+<p>String received from the instrument</p>
+</dd></dl>
+</li></ul>
+</li></ul>
         </div>
 
 
       </div>
 
-      <div id="method-i-set" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">set</span><span
-            class="method-args">(options=Hash.new)</span>
-          <span class="method-click-advice">click to toggle source</span>
+      <div id="method-i-set" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-set" title="Link to this method">
+                <span class="method-name">set</span>
+                <span class="method-args">(options=Hash.new)</span>
+              </a>
+            </div>
         </div>
 
-        <div class="method-description">
-          <p>Set state parameters – see the parameter list in the main documentation for the <a href="SCPIsession.html"><code>SCPIsession</code></a> class.</p>
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
 
+        <div class="method-description">
           <div class="method-source-code" id="set-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 519</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 520</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set</span>(<span class="ruby-identifier">options</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>)
   <span class="ruby-identifier">objectUnderConstruction</span> = <span class="ruby-ivar">@gblOpt</span>.<span class="ruby-identifier">empty?</span>
   <span class="ruby-comment">#---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
@@ -1316,8 +1395,8 @@
         <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">1</span>, <span class="ruby-node">&quot;ERROR: Option required by new is invalid: #{k} = #{@gblOpt[k].inspect}!&quot;</span>, <span class="ruby-keyword">self</span>, <span class="ruby-value">73</span>)
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> [<span class="ruby-value">:lxi</span>].<span class="ruby-identifier">member?</span>(<span class="ruby-ivar">@gblOpt</span>[<span class="ruby-value">:net_protocol</span>]) <span class="ruby-keyword">then</span> <span class="ruby-comment"># (TODO: Future Feature)</span>
-      <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&quot;ERROR: :lxi is not currently supported -- it will be someday!!&quot;</span>, <span class="ruby-keyword">self</span>, <span class="ruby-value">86</span>)
+    <span class="ruby-keyword">if</span> [<span class="ruby-value">:lxi</span>].<span class="ruby-identifier">member?</span>(<span class="ruby-ivar">@gblOpt</span>[<span class="ruby-value">:net_protocol</span>]) <span class="ruby-keyword">then</span>
+      <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&quot;ERROR: :lxi is not supported by mrSCPI!!&quot;</span>, <span class="ruby-keyword">self</span>, <span class="ruby-value">86</span>)
     <span class="ruby-keyword">end</span>
     <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">4</span>, <span class="ruby-string">&quot;DEBUG-4: Object fully constructed.&quot;</span>, <span class="ruby-keyword">self</span>)
   <span class="ruby-keyword">else</span>
@@ -1335,23 +1414,31 @@
 
 <span class="ruby-keyword">end</span></pre>
           </div>
+          <p>Set state parameters – see the parameter list in the main documentation for the <a href="SCPIsession.html"><code>SCPIsession</code></a> class.</p>
         </div>
 
 
       </div>
 
-      <div id="method-i-variable" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">variable</span><span
-            class="method-args">(name, value=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
+      <div id="method-i-variable" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-variable" title="Link to this method">
+                <span class="method-name">variable</span>
+                <span class="method-args">(name, value=nil)</span>
+              </a>
+            </div>
         </div>
 
-        <div class="method-description">
-          <p>Access, or set when <code>value</code> is non-<code>nil</code>, a <a href="SCPIsession.html"><code>SCPIsession</code></a> variable.</p>
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
 
+        <div class="method-description">
           <div class="method-source-code" id="variable-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 653</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 654</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">variable</span> (<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">then</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@varList</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword">then</span>
@@ -1365,6 +1452,7 @@
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+          <p>Access, or set when <code>value</code> is non-<code>nil</code>, a <a href="SCPIsession.html"><code>SCPIsession</code></a> variable.</p>
         </div>
 
 
@@ -1374,11 +1462,4 @@
 
   </section>
 </main>
-
-
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
-</footer>
 

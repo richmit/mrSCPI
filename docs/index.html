@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-17 Tue 15:43 -->
+<!-- 2025-06-19 Thu 13:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>mrSCPI</title>
@@ -234,12 +234,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2025-06-17 15:43:30</i></td>
+<td class="org-left"><i>2025-06-19 13:35:09</i></td>
 </tr>
 
 <tr>
 <td class="org-right"><b>Generated:</b></td>
-<td class="org-left"><i>2025-06-17 15:43:35</i></td>
+<td class="org-left"><i>2025-06-19 13:35:13</i></td>
 </tr>
 </tbody>
 </table>
@@ -255,13 +255,13 @@ Copyright 2025 Mitch Richling. All rights reserved.
 <li><a href="#interfaces">2. Interfaces</a></li>
 <li><a href="#emacs-interface">3. Emacs as a <code>mrSCPI</code> Interface</a>
 <ul>
-<li><a href="#orgbc83d89">3.1. The Laboratory Notebook</a></li>
-<li><a href="#orgbde7137">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
-<li><a href="#org1e30a94">3.3. Integrated Data Capture and Analysis</a></li>
-<li><a href="#org2b882ad">3.4. Setting Up Emacs</a>
+<li><a href="#orgbb12bdc">3.1. The Laboratory Notebook</a></li>
+<li><a href="#org146e057">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
+<li><a href="#org69a1122">3.3. Integrated Data Capture and Analysis</a></li>
+<li><a href="#orgf8be2b3">3.4. Setting Up Emacs</a>
 <ul>
-<li><a href="#org68d234a">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
-<li><a href="#org8e6e779">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
+<li><a href="#orgd8a9cb1">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
+<li><a href="#orge07bc82">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
 </ul>
 </li>
 </ul>
@@ -274,14 +274,14 @@ Copyright 2025 Mitch Richling. All rights reserved.
 </li>
 <li><a href="#mrscpi-scripts">5. <code>mrSCPI</code> Scripts</a>
 <ul>
-<li><a href="#org3a097fc">5.1. <code>mrSCPI</code> Script Syntax</a></li>
+<li><a href="#org6f77e6d">5.1. <code>mrSCPI</code> Script Syntax</a></li>
 </ul>
 </li>
 <li><a href="#rcfile">6. <code>SCPIrcFile</code> Class</a>
 <ul>
-<li><a href="#org9217e3d">6.1. <code>mrNetwork.rb</code></a></li>
-<li><a href="#orgf3e3a84">6.2. <code>teAlias.rb</code></a></li>
-<li><a href="#org92c0677">6.3. Example RC file</a></li>
+<li><a href="#org75b47a0">6.1. <code>mrNetwork.rb</code></a></li>
+<li><a href="#org1af1f63">6.2. <code>teAlias.rb</code></a></li>
+<li><a href="#orgbc6f9c9">6.3. Example RC file</a></li>
 </ul>
 </li>
 <li><a href="#features">7. Features (current &amp; future)</a></li>
@@ -289,6 +289,7 @@ Copyright 2025 Mitch Richling. All rights reserved.
 <ul>
 <li><a href="#faq-require">8.1. Why don't you use a simple <code>require</code> to load <code>mrSCPI</code> in Ruby scripts?</a></li>
 <li><a href="#faq-examples">8.2. Where can I find more examples?</a></li>
+<li><a href="#faq-lxi">8.3. Where is LXI support?</a></li>
 </ul>
 </li>
 </ul>
@@ -312,7 +313,7 @@ Systems designed from the ground up to support very complex use cases frequently
 captured the phenomenon quite clearly when he said:
 </p>
 
-<pre class="example" id="org6213024">
+<pre class="example" id="org2a88216">
 Perl makes easy things easy and hard things possible. 
 Professional programming languages tend to make all things equally difficult.
 </pre>
@@ -339,6 +340,7 @@ Links:
 
 <ul class="org-ul">
 <li>Documentation: <a href="https://richmit.github.io/mrSCPI/">https://richmit.github.io/mrSCPI/</a></li>
+<li>RDoc API Documentation: <a href="https://richmit.github.io/mrSCPI/rdoc/index.html">https://richmit.github.io/mrSCPI/rdoc/index.html</a></li>
 <li>Additional examples: <a href="https://github.com/richmit/TestEquipmentScripts">https://github.com/richmit/TestEquipmentScripts</a></li>
 <li>Github repo:: <a href="https://github.com/richmit/mrSCPI">https://github.com/richmit/mrSCPI</a></li>
 </ul>
@@ -354,7 +356,7 @@ The <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> ecosyste
 </p>
 
 <dl class="org-dl">
-<dt>Ruby API</dt><dd>For complex test automation requiring a real programming language.  
+<dt>Ruby API (See the <a href="#ruby">Ruby API</a> section for more detail)</dt><dd>For complex test automation requiring a real programming language.  
 This stateful API is unlike most test automation APIs and naturally compliments the way many <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks are preformed &#x2026; Or at least the way I tend to use <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a>. <code>;)</code></dd>
 </dl>
 
@@ -366,7 +368,7 @@ This stateful API is unlike most test automation APIs and naturally compliments 
 </div>
 
 <dl class="org-dl">
-<dt><a href="https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb"><code>mrSCPI.rb</code></a> command</dt><dd>A CLI command providing sophisticated <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> functionality from the command line &#x2013; much like <code>lxi-tool</code>.</dd>
+<dt><a href="https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb"><code>mrSCPI.rb</code></a> command</dt><dd>A CLI command providing sophisticated <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> functionality from the command line &#x2013; much like <a href="https://github.com/lxi-tools/lxi-tools">lxi-tools</a>.</dd>
 </dl>
 
 <div class="org-src-container">
@@ -375,7 +377,7 @@ This stateful API is unlike most test automation APIs and naturally compliments 
 </div>
 
 <dl class="org-dl">
-<dt><a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts</dt><dd>An efficient scripting language for simple <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks.  
+<dt><a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts (See the <a href="#mrscpi-scripts">Scripts</a> section for more detail) </dt><dd>An efficient scripting language for simple <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks.  
 Full <a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support is included enabling instrument control right from your laboratory notebook!</dd>
 </dl>
 
@@ -401,8 +403,8 @@ plays a central role in my workflow, this is one of the most important aspects o
 section provides some insight into my workflow.  If you are not interested in <a href="https://www.gnu.org/software/emacs/">Emacs</a>, then you can safely skip this section.
 </p>
 </div>
-<div id="outline-container-orgbc83d89" class="outline-3">
-<h3 id="orgbc83d89"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
+<div id="outline-container-orgbb12bdc" class="outline-3">
+<h3 id="orgbb12bdc"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I always have my laboratory notebook open at the bench &#x2013; just an <a href="https://orgmode.org/"><code>org-mode</code></a> document loaded up in <a href="https://www.gnu.org/software/emacs/">Emacs</a> running on my bench computer. I have
@@ -423,8 +425,8 @@ Then, when I come back to my experiment some time later, I can have <a href="htt
 </p>
 </div>
 </div>
-<div id="outline-container-orgbde7137" class="outline-3">
-<h3 id="orgbde7137"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
+<div id="outline-container-org146e057" class="outline-3">
+<h3 id="org146e057"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of cource I include in my notes littel bits of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code for common
@@ -441,8 +443,8 @@ of buttons to run them.  This has proven to be super handy, and saves me a ton o
 </div>
 </div>
 </div>
-<div id="outline-container-org1e30a94" class="outline-3">
-<h3 id="org1e30a94"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
+<div id="outline-container-org69a1122" class="outline-3">
+<h3 id="org69a1122"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code &amp; results
@@ -457,16 +459,16 @@ from <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, <a hre
 </div>
 </div>
 </div>
-<div id="outline-container-org2b882ad" class="outline-3">
-<h3 id="org2b882ad"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
+<div id="outline-container-orgf8be2b3" class="outline-3">
+<h3 id="orgf8be2b3"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 I put the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
 If you have some other organizational structure for your auxiliary <a href="https://www.gnu.org/software/emacs/">Emacs</a> files, then feel free to use it!
 </p>
 </div>
-<div id="outline-container-org68d234a" class="outline-4">
-<h4 id="org68d234a"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
+<div id="outline-container-orgd8a9cb1" class="outline-4">
+<h4 id="orgd8a9cb1"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
@@ -480,8 +482,8 @@ A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code
 </div>
 </div>
 </div>
-<div id="outline-container-org8e6e779" class="outline-4">
-<h4 id="org8e6e779"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
+<div id="outline-container-orge07bc82" class="outline-4">
+<h4 id="orge07bc82"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 A language module for <a href="https://orgmode.org/"><code>org-mode</code></a> Babel may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el">emacs/ob-mrscpi.el</a>.  The magical
@@ -509,7 +511,7 @@ just basic <a href="https://orgmode.org/"><code>org-mode</code></a> support.  I 
 <div class="outline-text-3" id="text-api-philosophy">
 <p>
 In essence any <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> program is about managing a communication session state between computer and instrument.  The heart of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> is the
-<a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> class encapsulates and manages session state.  Session state is represented by named parameters (key-value
+<a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> class which encapsulates and manages session state.  Session state is represented by named parameters (key-value
 pairs).  For example the parameter <code>:ip_address</code> stores the IP address for the connection.  As another example, the <code>:print_results</code> parameter stores a
 boolean value that determines if the results from <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> commands will be printed.  A few parameters, like <code>:ip_address</code>, may only be set when the
 <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> is created.  Other parameters, like <code>:print_results</code> may be freely changed at any time.  Parameters are sticky
@@ -577,16 +579,7 @@ here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> sc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #ffa500;">#!/usr/bin/env mrSCPI.rb</span>
-
-<span style="color: #ffa500;"># Note the shebang line at the top.  That allows this script to be run on a UNIX'ish from the command</span>
-<span style="color: #ffa500;"># line by just invoking the script name.  The reason for the "env" part is two fold: 1) On BSD derived</span>
-<span style="color: #ffa500;"># UNIX systems, the thing in a shebang must be a binary, and 2) it searches the user's path for</span>
-<span style="color: #ffa500;"># mrSCPI.rb.</span>
-
-<span style="color: #ffa500;"># This script pulls a screen dump for a Rigol DHO4804 oscilloscope.</span>
-
-<span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
 <span style="color: #00ffff;">:eval</span> <span style="color: #7fffd4;">imgFileName</span>=<span style="color: #6495ed;">Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" </span><span style="color: #ffa500;"># Filename for PNG</span>
 <span style="color: #00ffff;">:result_macro_block</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                   <span style="color: #ffa500;"># Expect/Extract a block</span>
 <span style="color: #00ffff;">:print_result</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                         <span style="color: #ffa500;"># Print the block</span>
@@ -598,13 +591,12 @@ here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> sc
 <p>
 Notice how the code parallels the Ruby script.  Essentially the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script is what was inside the <code>SCPIsession.new</code> call in the Ruby script!  Also
 note the shebang line (<code>#!/usr/bin/env mrSCPI.rb</code>).  This is how we make a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script executable on the command line &#x2013; just like a shell script.
-Note the above script may be found in the <code>example</code> directory named "<code>dho4ksc.mrscpi</code>".  Let's take a look at another simple script.
+The script above, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi"><code>dho4ksc.mrscpi</code></a>, may be found in the <code>example</code> directory.
+Let's take a look at another simple script.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #ffa500;"># Pull the identifier string from an instrument, match it against a regular expression, and prints the results.</span>
-
-<span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a                      </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname"</span>
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a                      </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname"</span>
 <span style="color: #00ffff;">:name</span> <span style="color: #fa8072;">ids                         </span><span style="color: #ffa500;"># We name the next :cmd that will run</span>
 <span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?                        </span><span style="color: #ffa500;"># Creates ids variable and stores command result in it</span>
 <span style="color: #00ffff;">:skip_if</span> <span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">~34401[aA]         </span><span style="color: #ffa500;"># Checks the result against a regular expression, and skips the next command if it matches</span>
@@ -614,7 +606,8 @@ Note the above script may be found in the <code>example</code> directory named "
 </div>
 
 <p>
-If the above script may be found in the <code>example</code> directory named "<code>example.mrscpi</code>".  From that directory, we can run it like so:
+The script above, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/example.mrscpi"><code>example.mrscpi</code></a>, may be found in the <code>example</code> directory.  From
+that directory, we can run it like so:
 </p>
 
 <div class="org-src-container">
@@ -655,11 +648,7 @@ like the following:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #ffa500;"># This script configures my Rohde Schwarz HMC 8843 power supply to power up my "hotel chaos" project.  This project</span>
-<span style="color: #ffa500;"># has an analog processing component that requires +15v and -15v, and a digital component that requires a +5v.  This</span>
-<span style="color: #ffa500;"># script leaves the power supply configured, but the master enable OFF.</span>
-
-<span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@hmc8043</span>
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@hmc8043</span>
 <span style="color: #00ffff;">:result_type</span> <span style="color: #8470ff; font-weight: bold;">nil</span>
 <span style="color: #00ffff;">:delay_after_complete</span> <span style="color: #fa8072;">100</span>
 <span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">:OUTPut:MASTer:STATe OFF'</span>
@@ -670,8 +659,8 @@ like the following:
 </div>
 
 <p>
-If the above script may be found in the <code>example</code> directory named "<code>power_setup_example.mrscpi</code>".  From that directory, we could set the variables and call
-the script like this:
+The script above, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/power_setup_example.mrscpi"><code>power_setup_example.mrscpi</code></a>, may be found in the
+<code>example</code> directory.  From that directory, we could set the variables and call the script like this:
 </p>
 
 <div class="org-src-container">
@@ -692,7 +681,7 @@ If we wanted the default values, then we could have just used this:
 Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href="https://orgmode.org/"><code>org-mode</code></a> code block, we could set these variables via the <code>src</code> header arguments like so:
 </p>
 
-<pre class="example" id="org159ebb5">
+<pre class="example" id="org18ef9f8">
 #+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
 </pre>
 
@@ -700,8 +689,8 @@ Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href=
 Note that the "new" commands (<code>:url</code>, <code>:ip_address</code>, <code>:net_port</code>, &amp; <code>:net_protocol</code>) can not be parameterized with variables, but they can be overridden.
 </p>
 </div>
-<div id="outline-container-org3a097fc" class="outline-3">
-<h3 id="org3a097fc"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
+<div id="outline-container-org6f77e6d" class="outline-3">
+<h3 id="org6f77e6d"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Script syntax is very simple.  Each line starts with an <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> command, and each command is a parameter for one of the following classes:
@@ -723,8 +712,8 @@ Script syntax is very simple.  Each line starts with an <a href="https://richmit
 documentation.  The basics can be illustrated with a couple examples:
 </p>
 </div>
-<div id="outline-container-org9217e3d" class="outline-3">
-<h3 id="org9217e3d"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
+<div id="outline-container-org75b47a0" class="outline-3">
+<h3 id="org75b47a0"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -734,8 +723,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf3e3a84" class="outline-3">
-<h3 id="orgf3e3a84"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
+<div id="outline-container-org1af1f63" class="outline-3">
+<h3 id="org1af1f63"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
@@ -768,8 +757,8 @@ documentation.  The basics can be illustrated with a couple examples:
 </div>
 </div>
 </div>
-<div id="outline-container-org92c0677" class="outline-3">
-<h3 id="org92c0677"><span class="section-number-3">6.3.</span> Example RC file</h3>
+<div id="outline-container-orgbc6f9c9" class="outline-3">
+<h3 id="orgbc6f9c9"><span class="section-number-3">6.3.</span> Example RC file</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Here is an example of what my RC file looks like.  I have two network subnets on my bench.  One for test equipment (192.168.42.X), and one for computers
@@ -779,11 +768,16 @@ specify a connection URL like "<code>@awg</code>", and connect to my 33210a AWG 
 I'm on, and expands "<code>@awg</code>" into the right thing.
 </p>
 
+<p>
+Note that most of the file is comments! Only the first two sections (nicknames &amp; networks) contain RC file entries.  The rest is notes to myself about my
+network setup.
+</p>
+
 <div class="org-src-container">
-<pre class="src src-txt">
-###########################################################################################################
-# SCPI Nicknames ##########################################################################################
-#........CNAME......nicknames.................Bench Network....................ssh to bench-gate...........
+<pre class="src src-R">
+<span style="color: #ffa500;">###########################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">SCPI Nicknames ##########################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">........CNAME......nicknames.................Bench Network....................ssh to bench-gate...........</span>
 nickname 33210ae    33210a    aawge  aawg  =&gt; bench@raw://172.16.42.40:5025    ssh@raw://127.0.0.1:9040    
 nickname 33210aw              aawgw        =&gt; bench@https://172.16.42.40:443   ssh@https://127.0.0.1:9041  
 nickname 34401as    34401a    dmms   dmm   =&gt; bench@soip://172.16.42.32:10001  ssh@soip://127.0.0.1:9033   
@@ -805,72 +799,72 @@ nickname tds3052bw            tek3kw       =&gt; bench@http://172.16.42.80:80   
 nickname tds3052bp            tek3kp       =&gt; bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
 nickname 53131ap    53131a    countp count =&gt; bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
 nickname router42             router       =&gt; bench@https://172.16.42.1:443    ssh@https://127.0.0.1:9001  
-#ickname router43                          =&gt; bench@https://172.16.43.1:443                                
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">ickname router43                          =&gt; bench@https://172.16.43.1:443                                </span>
 nickname serial               serial       =&gt; bench@http://172.16.42.32:80     ssh@http://127.0.0.1:9032   
 
-###########################################################################################################
-# Networks ################################################################################################
-#.......Name..Subnet.Mask......Comment.....................................................................
-network bench 172.16.43.0/23   # Bench network for the bench workstation/bastian
-network te    172.16.42.0/23   # Bench network for instruments (test equipment)
-network ssh   172.16.1.0/24    # Home office network
+<span style="color: #ffa500;">###########################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Networks ################################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Name..Subnet.Mask......Comment.....................................................................</span>
+network bench 172.16.43.0/23   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Bench network for the bench workstation/bastian</span>
+network te    172.16.42.0/23   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Bench network for instruments (test equipment)</span>
+network ssh   172.16.1.0/24    <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Home office network</span>
 
-###########################################################################################################
-# DNS #####################################################################################################
-#.......Device.......IP.............CNAME...........................Note...................................
-#host  nomad         172.16.43.24   bench-nomad.bench.mitchr.me     # My laptop on the bench
-#host  pi            172.16.43.32   bench-pi.bench.mitchr.me        # Bench Raspberry Pi
-#host  awg-agilent   172.16.42.40   awg-agilent.bench.mitchr.me     # Agilent 33210A AWG     
-#host  gpib-rover    172.16.42.88   gpib-rover.bench.mitchr.me      # HP 53131A Counter
-#host  awg-rigol     172.16.42.96   awg-rigol.bench.mitchr.me       # Rigol DG2052 AWG       
-#host  oscope-rigol  172.16.42.104  oscope-rigol.bench.mitchr.me    # Rigol DHO4204 HiRes Scope      
-#host  dmm-keithley  172.16.42.64   dmm-keithley.bench.mitchr.me    # Keithley/Tektronix DMM6500 DMM   
-#host  ps-rns        172.16.42.72   ps-rns.bench.mitchr.me          # R&amp;S HMC8043 Power Supply        
-#host  oscope-sig    172.16.42.56   oscope-sig.bench.mitchr.me      # Siglent SDS2504X+ MSO Scope  
-#host  oscope-tek    172.16.42.80   oscope-tek.bench.mitchr.me      # Tektronix TDS3052B DPO Scope            
-#host  bench-router4 172.16.42.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite
-#host  bench-router4 172.16.43.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite
-#host  serial        172.16.42.32   serial.bench.mitchr.me          # Lantronix EDS4100 Serial Console     
+<span style="color: #ffa500;">###########################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">DNS #####################################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Device.......IP.............CNAME...........................Note...................................</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  nomad         172.16.43.24   bench-nomad.bench.mitchr.me     # My laptop on the bench</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  pi            172.16.43.32   bench-pi.bench.mitchr.me        # Bench Raspberry Pi</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  awg-agilent   172.16.42.40   awg-agilent.bench.mitchr.me     # Agilent 33210A AWG     </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  gpib-rover    172.16.42.88   gpib-rover.bench.mitchr.me      # HP 53131A Counter</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  awg-rigol     172.16.42.96   awg-rigol.bench.mitchr.me       # Rigol DG2052 AWG       </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  oscope-rigol  172.16.42.104  oscope-rigol.bench.mitchr.me    # Rigol DHO4204 HiRes Scope      </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  dmm-keithley  172.16.42.64   dmm-keithley.bench.mitchr.me    # Keithley/Tektronix DMM6500 DMM   </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  ps-rns        172.16.42.72   ps-rns.bench.mitchr.me          # R&amp;S HMC8043 Power Supply        </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  oscope-sig    172.16.42.56   oscope-sig.bench.mitchr.me      # Siglent SDS2504X+ MSO Scope  </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  oscope-tek    172.16.42.80   oscope-tek.bench.mitchr.me      # Tektronix TDS3052B DPO Scope            </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  bench-router4 172.16.42.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  bench-router4 172.16.43.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">host  serial        172.16.42.32   serial.bench.mitchr.me          # Lantronix EDS4100 Serial Console     </span>
 
-###########################################################################################################
-# Serial Console Ports ####################################################################################
-#.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag....
-#scon serial     1    RS232    Tunnel 10001  9600    Even      7      2  SOFT   ^Q   ^S   34401A    Pink
-#scon serial     2    RS232    Tunnel 10002 19200    Even      2      2  HARD   ^Q   ^S   TDS2024   Blue
-#scon serial     3    RS232    Tunnel 10003 38400    None      8      1  HARD   ^Q   ^S   TDS3052B  Orange
-#scon serial     4 DISABLED        --    --     --      --     --     --    --   --   --   --
+<span style="color: #ffa500;">###########################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Serial Console Ports ####################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag....</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     1    RS232    Tunnel 10001  9600    Even      7      2  SOFT   ^Q   ^S   34401A    Pink</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     2    RS232    Tunnel 10002 19200    Even      2      2  HARD   ^Q   ^S   TDS2024   Blue</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     3    RS232    Tunnel 10003 38400    None      8      1  HARD   ^Q   ^S   TDS3052B  Orange</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     4 DISABLED        --    --     --      --     --     --    --   --   --   --</span>
 
-###########################################################################################################
-# GPIB/ETH ################################################################################################
-#......Device.......Instrument....Note.....................................................................
-#geth  gpib-rover   53131a        # HP 53131A Counter
+<span style="color: #ffa500;">###########################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">GPIB/ETH ################################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">......Device.......Instrument....Note.....................................................................</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">geth  gpib-rover   53131a        # HP 53131A Counter</span>
 
-###########################################################################################################
-# Layer 3 IP Router Ports #################################################################################
-#..............Device.............Interface......Subnet.............Note...................................
-#L3router      bench-router4      eth0           172.16.1.2/24      # Long, white wire
-#L3router      bench-router4      eth1           172.16.42.0/23     # Grey cable to L2switch
-#L3router      bench-router4      eth2           172.16.43.0/23     # Bright blue cable to pi
+<span style="color: #ffa500;">###########################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Layer 3 IP Router Ports #################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">..............Device.............Interface......Subnet.............Note...................................</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L3router      bench-router4      eth0           172.16.1.2/24      # Long, white wire</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L3router      bench-router4      eth1           172.16.42.0/23     # Grey cable to L2switch</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L3router      bench-router4      eth2           172.16.43.0/23     # Bright blue cable to pi</span>
 
-###########################################################################################################
-# Layer 2 Ethernet Switch Ports ###########################################################################
-#..............Device.............Interface......Device.............Cable............Tag...................
-#L2switch      bench-switch42             1      bench-router4    # Short grey       -
-#L2switch      bench-switch42             2      nomad            # Shielded Yellow  -
-#L2switch      bench-switch42             3      NC               # Grey             Pink
-#L2switch      bench-switch42             4      NC               # Grey             Orange
-#L2switch      bench-switch42             5      oscope-tek       # white            Grey 
-#L2switch      bench-switch42             6      oscope-sig       # red              Grey   
-#L2switch      bench-switch42             7      oscope-rigol     # black            Grey
-#L2switch      bench-switch42             8      NC               # green            Grey
-#L2switch      bench-switch42             9      NC               # blue             Grey
-#L2switch      bench-switch42            10      gpib-rover       # Sleeved Yellow    -
-#L2switch      bench-switch42            11      NC               # white            Black
-#L2switch      bench-switch42            12      awg-agilent      # red              Black
-#L2switch      bench-switch42            13      awg-rigol        # black            Black
-#L2switch      bench-switch42            14      dmm-keithley     # green            Black
-#L2switch      bench-switch42            15      ps-rns           # blue             Black
-#L2switch      bench-switch42            16      serial           # Short grey       -
+<span style="color: #ffa500;">###########################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Layer 2 Ethernet Switch Ports ###########################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">..............Device.............Interface......Device.............Cable............Tag.........................</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             1      bench-router4    # Short grey       -</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             2      nomad            # Shielded Yellow  -</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             3      NC               # Grey             Pink</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             4      NC               # Grey             Orange</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             5      oscope-tek       # white            Grey </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             6      oscope-sig       # red              Grey   </span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             7      oscope-rigol     # black            Grey</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             8      NC               # green            Grey</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42             9      NC               # blue             Grey</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42            10      gpib-rover       # Sleeved Yellow    -</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42            11      NC               # white            Black</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42            12      awg-agilent      # red              Black</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42            13      awg-rigol        # black            Black</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42            14      dmm-keithley     # green            Black</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42            15      ps-rns           # blue             Black</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">L2switch      bench-switch42            16      serial           # Short grey       -</span>
 </pre>
 </div>
 </div>
@@ -1008,8 +1002,13 @@ In my scripts, I normally load <a href="https://richmit.github.io/mrSCPI/"><code
 
 <p>
 Why?  I normally put <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> on my path, but I don't want to contaminate my Ruby <code>LOAD_PATH</code> by including a generic <code>bin</code> directory.  This is just a
-personal preference in the way I set up my operating environment.  I expect most people will just do a <code>require_relative</code> or <code>require</code> to load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>.
+personal preference in the way I set up my operating environment.  I expect most people will use something like the followingto load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>:
 </p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-faq-examples" class="outline-3">
@@ -1017,6 +1016,16 @@ personal preference in the way I set up my operating environment.  I expect most
 <div class="outline-text-3" id="text-faq-examples">
 <p>
 I have <a href="https://github.com/richmit/TestEquipmentScripts">another repository</a> for scripts related to test equipment that contains several <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts.
+</p>
+</div>
+</div>
+<div id="outline-container-faq-lxi" class="outline-3">
+<h3 id="faq-lxi"><span class="section-number-3">8.3.</span> Where is LXI support?</h3>
+<div class="outline-text-3" id="text-faq-lxi">
+<p>
+The <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> class recognizes the protocol symbol <code>:lxi</code>; however, I have no plans on implementing direct LXI support in
+<a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>.  One of the goals of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> is to be simple and essentially free of external software dependencies, and the complexity of the LXI protocol
+would necessitate external dependencies.
 </p>
 </div>
 </div>

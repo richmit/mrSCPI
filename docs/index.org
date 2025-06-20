@@ -55,6 +55,9 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 #+MACRO: SCPI [[https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments][=SCPI=]]
 #+MACRO: PROLOGIX Prologix
 #+MACRO: MRSCPISRC [[https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb][=mrSCPI.rb=]]
+#+MACRO: LXITOOLS [[https://github.com/lxi-tools/lxi-tools][lxi-tools]]
+
+
 
 * Introduction
 :PROPERTIES:
@@ -75,7 +78,7 @@ From the README:
 
 The {{{MRSCPI}}} ecosystem provides three distinct ways to control {{{SCPI}}} instruments:
 
- - Ruby API ::
+ - Ruby API (See the [[#ruby][Ruby API]] section for more detail) ::
    For complex test automation requiring a real programming language.  
    This stateful API is unlike most test automation APIs and naturally compliments the way many {{{SCPI}}} tasks are preformed ... Or at least the way I tend to use {{{SCPI}}}. =;)=
 
@@ -86,13 +89,13 @@ SCPIsession.new(:url => '@tek2k',
 #+end_src
 
  - {{{MRSCPISRC}}} command ::
-   A CLI command providing sophisticated {{{SCPI}}} functionality from the command line -- much like =lxi-tool=.
+   A CLI command providing sophisticated {{{SCPI}}} functionality from the command line -- much like {{{LXITOOLS}}}.
 
 #+begin_src bash
 mrSCPI.rb --url @tek2k --cmd '*IDN?'
 #+end_src
 
- - {{{MRSCPI}}} Scripts ::
+ - {{{MRSCPI}}} Scripts (See the [[#mrscpi-scripts][Scripts]] section for more detail)  ::
    An efficient scripting language for simple {{{SCPI}}} tasks.  
    Full {{{EMACS}}} {{{ORGMODE}}} Babel support is included enabling instrument control right from your laboratory notebook!
 
@@ -149,7 +152,6 @@ from {{{MRSCPI}}}, {{{OCTAVE}}}, {{{SH}}}, and {{{PARAVIEW}}} in one document:
 [[file:ex-nb02.org][Example Document]]
 #+END_CENTER
 
-
 ** Setting Up Emacs
 
 I put the {{{MRSCPI}}} stuff in my {{{EMACS}}} dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
@@ -189,7 +191,7 @@ just basic {{{ORGMODE}}} support.  I load these things up at the very end of the
 :END:
 
 In essence any {{{SCPI}}} program is about managing a communication session state between computer and instrument.  The heart of {{{MRSCPI}}} is the
-[[file:rdoc/SCPIsession.html][=SCPIsession=]] class encapsulates and manages session state.  Session state is represented by named parameters (key-value
+[[file:rdoc/SCPIsession.html][=SCPIsession=]] class which encapsulates and manages session state.  Session state is represented by named parameters (key-value
 pairs).  For example the parameter =:ip_address= stores the IP address for the connection.  As another example, the =:print_results= parameter stores a
 boolean value that determines if the results from {{{SCPI}}} commands will be printed.  A few parameters, like =:ip_address=, may only be set when the
 [[file:rdoc/SCPIsession.html][=SCPIsession=]] is created.  Other parameters, like =:print_results= may be freely changed at any time.  Parameters are sticky
@@ -248,15 +250,41 @@ All the magic is in the =SCPIsession.new= call:
 Even if you only want to know about scripts, I encourage you to read the section on [[#api-philosophy][Ruby API Structure & Philosophy]].  To begin,
 here is a {{{MRSCPI}}} script version of the Ruby script given in that section:
 
-#+INCLUDE: "../examples/dho4ksc.mrscpi" src mrscpi
+#+begin_src sh :results output verbatum :exports results :wrap "src mrscpi :eval never :tangle no"
+~/core/codeBits/bin/src2orgListing ../examples/dho4ksc.mrscpi
+#+end_src
+
+#+RESULTS:
+#+begin_src mrscpi :eval never :tangle no
+:url @dho4k                                                                # Connect to my DHO4k
+:eval imgFileName=Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" # Filename for PNG
+:result_macro_block true                                                   # Expect/Extract a block
+:print_result true                                                         # Print the block
+:out_file ${imgFileName}                                                   #   into a filename
+:cmd :DISPlay:DATA? PNG                                                    # Send the command
+#+end_src
 
 Notice how the code parallels the Ruby script.  Essentially the {{{MRSCPI}}} script is what was inside the =SCPIsession.new= call in the Ruby script!  Also
 note the shebang line (=#!/usr/bin/env mrSCPI.rb=).  This is how we make a {{{MRSCPI}}} script executable on the command line -- just like a shell script.
-Note the above script may be found in the =example= directory named "=dho4ksc.mrscpi=".  Let's take a look at another simple script.
+The script above, [[https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi][=dho4ksc.mrscpi=]], may be found in the =example= directory.
+Let's take a look at another simple script.
 
-#+INCLUDE: "../examples/example.mrscpi" src mrscpi
+#+begin_src sh :results output verbatum :exports results :wrap "src mrscpi :eval never :tangle no"
+~/core/codeBits/bin/src2orgListing ../examples/example.mrscpi
+#+end_src
 
-If the above script may be found in the =example= directory named "=example.mrscpi=".  From that directory, we can run it like so:
+#+RESULTS:
+#+begin_src mrscpi :eval never :tangle no
+:url @34401a                      # @34401a is an instrument connection "nickname"
+:name ids                         # We name the next :cmd that will run
+:cmd *IDN?                        # Creates ids variable and stores command result in it
+:skip_if ${ids}~34401[aA]         # Checks the result against a regular expression, and skips the next command if it matches
+:stop Unknown Device: ${ids}      # This line is skipped if the previous one was true.  Note :stop ends the script.
+:print Known Device: 34401A       # The normal script end -- when the regex above matches indicating a recognized device
+#+end_src
+
+The script above, [[https://github.com/richmit/mrSCPI/blob/main/examples/example.mrscpi][=example.mrscpi=]], may be found in the =example= directory.  From
+that directory, we can run it like so:
 
 #+begin_src sh
 mrSCPI.rb -f example.mrscpi
@@ -284,10 +312,23 @@ A common technique is to parameterize things with variables, and then set those 
 supply up with the first two channels providing analog voltage rails and the third channel providing a voltage for a microcontroller.  We might use a script
 like the following:
 
-#+INCLUDE: "../examples/power_setup_example.mrscpi" src mrscpi
+#+begin_src sh :results output verbatum :exports results :wrap "src mrscpi :eval never :tangle no"
+~/core/codeBits/bin/src2orgListing ../examples/power_setup_example.mrscpi
+#+end_src
 
-If the above script may be found in the =example= directory named "=power_setup_example.mrscpi=".  From that directory, we could set the variables and call
-the script like this:
+#+RESULTS:
+#+begin_src mrscpi :eval never :tangle no
+:url @hmc8043
+:result_type nil
+:delay_after_complete 100
+:cmd :OUTPut:MASTer:STATe OFF'
+:cmd :INSTrument:NSELect 1; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${analog_voltage:10}; :OUTPut:CHANnel:STATe ON
+:cmd :INSTrument:NSELect 2; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${analog_voltage:10}; :OUTPut:CHANnel:STATe ON
+:cmd :INSTrument:NSELect 3; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${digital_voltage:5}; :OUTPut:CHANnel:STATe ON
+#+end_src
+
+The script above, [[https://github.com/richmit/mrSCPI/blob/main/examples/power_setup_example.mrscpi][=power_setup_example.mrscpi=]], may be found in the
+=example= directory.  From that directory, we could set the variables and call the script like this:
 
 #+begin_src sh
 mrSCPI.rb -D analog_voltage=15 -D digitial_voltage=3.3 power_setup_example.mrscpi
@@ -380,12 +421,15 @@ the test equipment directly, but otherwise I must access the equipment via SSH t
 specify a connection URL like "=@awg=", and connect to my 33210a AWG regardless of where I'm running the script -- i.e. the library figures out what network
 I'm on, and expands "=@awg=" into the right thing.
 
-#+begin_src sh :results output verbatum :exports results :wrap "src txt :eval never :tangle no"
+Note that most of the file is comments! Only the first two sections (nicknames & networks) contain RC file entries.  The rest is notes to myself about my
+network setup.
+
+#+begin_src sh :results output verbatum :exports results :wrap "src ksh :eval never :tangle no"
 cat ~/MJR/world/dotfiles/.mrSCPIrc--SS-X-X-X-HOME-X
 #+end_src
 
 #+RESULTS:
-#+begin_src txt :eval never :tangle no
+#+begin_src R :eval never :tangle no
 
 ###########################################################################################################
 # SCPI Nicknames ##########################################################################################
@@ -460,7 +504,7 @@ network ssh   172.16.1.0/24    # Home office network
 
 ###########################################################################################################
 # Layer 2 Ethernet Switch Ports ###########################################################################
-#..............Device.............Interface......Device.............Cable............Tag...................
+#..............Device.............Interface......Device.............Cable............Tag.........................
 #L2switch      bench-switch42             1      bench-router4    # Short grey       -
 #L2switch      bench-switch42             2      nomad            # Shielded Yellow  -
 #L2switch      bench-switch42             3      NC               # Grey             Pink
@@ -575,8 +619,11 @@ require ENV['PATH'].split(File::PATH_SEPARATOR).map {|x| File.join(x, 'mrSCPI.rb
 #+end_src
 
 Why?  I normally put {{{MRSCPI}}} on my path, but I don't want to contaminate my Ruby =LOAD_PATH= by including a generic =bin= directory.  This is just a
-personal preference in the way I set up my operating environment.  I expect most people will just do a =require_relative= or =require= to load {{{MRSCPI}}}.
+personal preference in the way I set up my operating environment.  I expect most people will use something like the followingto load {{{MRSCPI}}}:
 
+#+begin_src ruby
+require_relative 'mrSCPI.rb'
+#+end_src
 
 ** Where can I find more examples?
 :PROPERTIES:
@@ -585,4 +632,11 @@ personal preference in the way I set up my operating environment.  I expect most
 
 I have [[https://github.com/richmit/TestEquipmentScripts][another repository]] for scripts related to test equipment that contains several {{{MRSCPI}}} scripts.
 
+** Where is LXI support?
+:PROPERTIES:
+:CUSTOM_ID: faq-lxi
+:END:
 
+The [[file:rdoc/SCPIsession.html][=SCPIsession=]] class recognizes the protocol symbol =:lxi=; however, I have no plans on implementing direct LXI support in
+{{{MRSCPI}}}.  One of the goals of {{{MRSCPI}}} is to be simple and essentially free of external software dependencies, and the complexity of the LXI protocol
+would necessitate external dependencies.

@@ -22,6 +22,7 @@ packages.  No PIPs. No GEMs.  Nothing to compile. Just a single script -- yes, t
 Links:
 
   - Documentation: https://richmit.github.io/mrSCPI/
+  - RDoc API Documentation: https://richmit.github.io/mrSCPI/rdoc/index.html
   - Additional examples: https://github.com/richmit/TestEquipmentScripts
   - Github repo:: https://github.com/richmit/mrSCPI
 
