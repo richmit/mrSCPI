@@ -1092,7 +1092,7 @@ class SCPIsequence
                      :store_named_in_var      => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :store_last_in_ans       => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :url                     => lambda { |x| x                                                         },
-                     :var                     => lambda { |x| md=x.match?(@re.a(:mrs_assign)); [md[1], md[2]]           },
+                     :var                     => lambda { |x| md=x.match(@re.a(:mrs_assign)); [md[1], md[2]]            },
                      :verbose                 => lambda { |x| x.to_i                                                    },
                    }
     @newOpts = Hash.new
