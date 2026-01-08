@@ -353,7 +353,7 @@ end
 # == SCPIsession State Parameters: Result processing
 #    
 # Strings returned from instruments can be processed via a standard set of transformations controlled by the options in this section.  The actions occur in
-# the order they are documented in this section.  For example, operations after +:result_split+ are applied each array element resulting from the split.
+# the order they are documented in this section.  For example, operations after +:result_split+ are applied to each array element resulting from the split.
 # If +:result_type+ is +nil+, none of these actions are taken.
 # - +:result_extract_block+(Boolean):: If true and a block header is present, then replace the result sting with the data payload.  Otherwise leave the string unmodified.  
 #   A block header starts with a literal pound character <tt>#</tt> and a single hex digit indicating the number of decimal digits that follow.  
@@ -413,7 +413,7 @@ end
 #
 # == SCPIsession State Parameters: Macros
 #    
-# The following pseudo-options are provided for connivance, and are equivalent to setting several other options simultaneously.  Like all option-like
+# The following pseudo-options are provided for convenience, and are equivalent to setting several other options simultaneously.  Like all option-like
 # entities, these pseudo-options take an argument.  This argument *must* be provided even if the macro ignores it.
 #
 #      - Result processing & Output Control Macros
@@ -1499,7 +1499,7 @@ class PrintyPrintyBangBang
         msgToPrint = msgToPrint.slice(0, @gblOpt[:print_max_len]);
         truncMsg = "LAST LINE TRUNCATED (:print_max_len=#{@gblOpt[:print_max_len]})"
       end
-      if newline || @gblOpt[:print_debug] then
+      if !(truncMsg.empty?) || newline || @gblOpt[:print_debug] then
         @openFiles[@gblOpt[:out_file]].puts(msgToPrint)
       else
         @openFiles[@gblOpt[:out_file]].write(msgToPrint)
