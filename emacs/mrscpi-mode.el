@@ -39,6 +39,7 @@
                                    ))
          (mrscpi-keywords-bool   '("execute_on_cmd" "exit_on_error" "print_cmd" "good_std_eot"
                                    "echo" "result_chomp" "print_raw_result" "print_result"
+                                   "print_result_puts"
                                    "result_macro_tmc" "result_macro_ascii" "result_macro_block"
                                    "result_macro_csv" "result_extract_tmc" "result_macro_debug"
                                    "result_last_word" "result_strip" "socket_close"

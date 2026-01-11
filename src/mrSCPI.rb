@@ -206,8 +206,8 @@ end
 #
 # = SCPIsession State Parameters
 #
-# The object is controlled via changing the object's state parameters. I know, that's not much to go on.  It's really pretty simple.  A few examples are
-# probably the best way to understand it.  See the mrSCPI readme.
+# The object is controlled via state parameters. I know, that's not much to go on.  It's really pretty simple.  A few examples are probably the best way to
+# understand it.  See the {mrSCPI readme}[link:../index.html]
 #
 # == SCPIsession State Parameters: Global behavior
 #
@@ -273,11 +273,15 @@ end
 #   - +:file+:: 0
 # - +:read_eot_sentinel+(nil|String):: Stop reading when the character appears on the input stream (DEFAULT: +nil+)
 #
-#   This can dramatically speed up query commands, but requires the instrument send an "end of transmission" character.
-#   Frequently we can exploit the fact that an instrument will terminate some responses with a newline character, and thus
-#   use the newline as an EOT character.  For Prologix devices, an EOT character may be defined; however, this can interfere
-#   when binary data is to be transmitted from an instrument.
-# - +:good_std_eot+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+.
+#   This can dramatically speed up query commands, but requires the instrument send an "end of transmission" character.  For Prologix devices, an EOT
+#   character may be defined; however, this can interfere when binary data is to be transmitted from an instrument.
+# - +:good_eot_std+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+.
+
+# - +:good_eot_crlf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r\n"</tt> if +true+, and to +nil+ if +false+. TODO
+# - +:good_eot_lf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+. TODO
+# - +:good_eot_cr+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r"</tt> if +true+, and to +nil+ if +false+. TODO
+
+
 # - +:socket_close_write+(Boolean):: For raw & soip do a write_close on the TCP socket after sending command string (DEFAULT: +false+)
 # - +:socket_close+(Boolean):: For raw & soip do a close on the TCP socket after reading is complete (DEFAULT: +false+)
 # - +:read_buffer_size+(Integer/bytes):: Maximum number of bytes to attempt to read at once (DEFAULT: +1048576+)
@@ -338,7 +342,8 @@ end
 # - +:print_result+(Boolean):: Output post processed results to :out_file (DEFAULT: +false+)
 #   Nothing is printed when +:result_type+ is +nil+
 #   WARNING: SCPIsequence sets this to true when it constructs an SCPIsession object
-# - +:print_result_puts+(Boolean):: Use +puts+ for prints -- i.e. insure all prints have a newline at the end
+# - +:print_result_puts+(Boolean):: Use +puts+ for prints -- i.e. insure all prints have a newline at the end (DEFAULT: +false+)
+#   WARNING: SCPIsequence sets this to true when it constructs an SCPIsession object
 # - +:print_cmd+(Boolean):: Output command to :out_file (DEFAULT: +false+)
 #   Output is prefixed and postfixed by <tt>'>>'</tt> and followed by a newline
 #   WARNING: SCPIsequence sets this to true when it constructs an SCPIsession object
@@ -417,12 +422,12 @@ end
 # entities, these pseudo-options take an argument.  This argument *must* be provided even if the macro ignores it.
 #
 #      - Result processing & Output Control Macros
-#                                       :result_extract_block :result_split :result_chomp :result_strip :result_last_word :result_type :print_max_len :print_debug
-#        - :result_macro_bin (P) ....... false                 nil           false         false         false             :string      nil            false
-#        - :result_macro_block (P) ..... true                  nil           false         false         false             :string      nil            false
-#        - :result_macro_ascii (P) ..... false                 nil           true          true          false             :string      nil            false
-#        - :result_macro_debug (P) ..... false                 nil           true          true          false             :string      256            true
-#        - :result_macro_csv (P) ....... false                 ','           true          true          false             :string      nil            false
+#                                       :result_extract_block :result_split :result_chomp :result_strip :result_last_word :result_type :print_max_len :print_debug :print_result_puts
+#        - :result_macro_bin (P) ....... false                 nil           false         false         false             :string      nil            false       false
+#        - :result_macro_block (P) ..... true                  nil           false         false         false             :string      nil            false       false
+#        - :result_macro_ascii (P) ..... false                 nil           true          true          false             :string      nil            false       true
+#        - :result_macro_debug (P) ..... false                 nil           true          true          false             :string      256            true        true
+#        - :result_macro_csv (P) ....... false                 ','           true          true          false             :string      nil            false       false
 #
 class SCPIsession
   ################################################################################################################################################################
@@ -451,6 +456,7 @@ class SCPIsession
                       #print_max_len            Part of PrintyPrintyBangBang
                       :print_raw_result         => lambda { |x| [true, false].member?(x)                          },
                       :print_result             => lambda { |x| [true, false].member?(x)                          },
+                      :print_result_puts        => lambda { |x| [true, false].member?(x)                          },
                       :read_buffer_size         => lambda { |x| (x.is_a?(Integer)) && (x > 0)                     },
                       :read_eot_sentinel        => lambda { |x| x.nil? || ((x.is_a?(String)) && (x.length > 0))   },
                       :read_max_bytes           => lambda { |x| x.nil? || ((x.is_a?(Integer)) && (x > 0))         },
@@ -498,6 +504,7 @@ class SCPIsession
           :result_chomp         =>       false,
           :result_extract_block =>       false,
           :result_last_word     =>       false,
+          :print_result_puts    =>       false,
           :result_split         =>         nil,
           :result_split_arg     =>         nil,
           :result_squeeze       =>       false,
@@ -520,22 +527,23 @@ class SCPIsession
   def set(options=Hash.new)
     objectUnderConstruction = @gblOpt.empty?
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Take care of pseudo-option :good_std_eot
-    if options.member?(:good_std_eot) then
-      if options[:good_std_eot] 
-        options[:read_eot_sentinel] = "\n"
+    # Take care of pseudo-option :good_eot_cr, :good_eot_crlf, :good_eot_lf, & :good_eot_std
+    { :good_eot_cr => "\c", :good_eot_crlf => "\c\n", :good_eot_lf => "\n", :good_eot_std => "\n" }.each do |macro_sym, str|
+    if options.member?(macro_sym) then
+      if options[macro_sym] 
+        options[:read_eot_sentinel] = str
       else
         options[:read_eot_sentinel] = nil
       end
-      options.delete(:good_std_eot)
+      options.delete(macro_sym)
     end
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Take care of pseudo-options :result_macro_*
-    { :result_macro_bin   => { :result_extract_block => false, :result_split => nil,  :result_chomp => false, :result_strip => false, :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false },
-      :result_macro_block => { :result_extract_block => true,  :result_split => nil,  :result_chomp => false, :result_strip => false, :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false },
-      :result_macro_ascii => { :result_extract_block => false, :result_split => nil,  :result_chomp => true,  :result_strip => true,  :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false },
-      :result_macro_debug => { :result_extract_block => false, :result_split => nil,  :result_chomp => true,  :result_strip => true,  :result_last_word => false, :result_type => :string, :print_max_len => 1024, :print_debug => true  },
-      :result_macro_csv   => { :result_extract_block => false, :result_split => :csv, :result_chomp => true,  :result_strip => true,  :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false },
+    { :result_macro_bin   => { :result_extract_block => false, :result_split => nil,  :result_chomp => false, :result_strip => false, :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false, :print_result_puts => false },
+      :result_macro_block => { :result_extract_block => true,  :result_split => nil,  :result_chomp => false, :result_strip => false, :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false, :print_result_puts => false },
+      :result_macro_ascii => { :result_extract_block => false, :result_split => nil,  :result_chomp => true,  :result_strip => true,  :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false, :print_result_puts => true  },
+      :result_macro_debug => { :result_extract_block => false, :result_split => nil,  :result_chomp => true,  :result_strip => true,  :result_last_word => false, :result_type => :string, :print_max_len => 1024, :print_debug => true,  :print_result_puts => true  },
+      :result_macro_csv   => { :result_extract_block => false, :result_split => :csv, :result_chomp => true,  :result_strip => true,  :result_last_word => false, :result_type => :string, :print_max_len =>  nil, :print_debug => false, :print_result_puts => false },
     }.each do |macro_sym, macro_options|
       if options.member?(macro_sym) then
         macro_options.each do |macro_opt_sym, macro_opt_val|
@@ -550,8 +558,8 @@ class SCPIsession
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Take care of pseudo-option :echo
     if options.member?(:echo) then
-      options[:print_cmd] = options[:echo]
-      options[:print_result] = options[:echo]
+      options[:print_cmd]         = options[:echo]
+      options[:print_result]      = options[:echo]
       options.delete(:echo)
     end
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -946,7 +954,7 @@ class SCPIsession
       @varList[@gblOpt[:name]] = thingyWeReturn
     end
     if @gblOpt[:result_type] && @gblOpt[:print_result] then
-      PrintyPrintyBangBang.instance.outPrinter(thingyWeReturn.to_s, newline=false)
+      PrintyPrintyBangBang.instance.outPrinter(thingyWeReturn.to_s, newline=@gblOpt[:print_result_puts])
     end
     if @gblOpt[:delay_after_complete] > 0 then
       PrintyPrintyBangBang.instance.logPrinter(4, "DEBUG-4: DELAY: between_timeout = #{@gblOpt[:delay_after_complete]}ms.", self)
@@ -1045,7 +1053,10 @@ class SCPIsequence
                      :result_macro_ascii      => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :result_macro_debug      => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :result_macro_csv        => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
-                     :good_std_eot            => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
+                     :good_eot_std            => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
+                     :good_eot_cr             => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
+                     :good_eot_lf             => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
+                     :good_eot_crlf           => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :eol                     => lambda { |x| "\"#{x}\"".undump                                         },
                      :eval                    => lambda { |x| md=x.match(@re.a(:mrs_assign)); [md[1], md[2]]            },
                      :execute_on_cmd          => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
@@ -1064,6 +1075,7 @@ class SCPIsequence
                      :print_cmd               => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :print_raw_result        => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :print_result            => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
+                     :print_result_puts       => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :read_buffer_size        => lambda { |x| x.to_i                                                    },
                      :read_eot_sentinel       => lambda { |x| ( ['', 'nil'].member?(x) ? nil : "\"#{x}\"".undump )      },
                      :read_max_bytes          => lambda { |x| ( ['0', 'nil'].member?(x) ? nil : x.to_i )                },
@@ -1550,9 +1562,10 @@ if __FILE__ == $0 then
 
   #---------------------------------------------------------------------------------------------------------------------------------------------------------------
   theSequence = SCPIsequence.new(convertStrings=true)
-  theSequence.add(:out_file,   'STDOUT')
-  theSequence.add(:print_cmd,    true)
-  theSequence.add(:print_result, true)
+  theSequence.add(:out_file,          'STDOUT')
+  theSequence.add(:print_cmd,         true)
+  theSequence.add(:print_result,      true)
+  theSequence.add(:print_result_puts, true)
 
   #---------------------------------------------------------------------------------------------------------------------------------------------------------------
   begin

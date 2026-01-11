@@ -112,6 +112,11 @@ learned how to use them all.
 :CUSTOM_ID: emacs-interface
 :END:
 
+#+BEGIN_QUOTE
+If you don't have any interest in {{{EMACS}}}, then feel free to [[#ruby][skip this section]].
+#+END_QUOTE
+
+
 {{{MRSCPI}}} really has nothing to do with {{{EMACS}}}; however, as an enthusiastic {{{EMACS}}} user, I wanted to be able to use {{{MRSCPI}}} from inside
 {{{EMACS}}}!  To that end I have developed a bit of {{{EMACS}}} software to seamlessly integrate {{{MRSCPI}}} into {{{EMACS}}}.  For me, because {{{EMACS}}}
 plays a central role in my workflow, this is one of the most important aspects of {{{MRSCPI}}} -- 90% of my {{{MRSCPI}}} use is from within {{{EMACS}}}.  This
@@ -366,26 +371,67 @@ documentation.  The basics can be illustrated with a couple examples:
 
 ** =mrNetwork.rb=
 
+This script simply prints out the name of the current host's network as specified in the =.mrSCPIrc= file.
+
 #+begin_src sh :results output verbatum :exports results :wrap "src ruby :eval never :tangle no"
-grep -EA 10000 '(!|#|\*|=|_|-|%|;|C|/){70,}\.H\.E\.' ../src/mrNetwork.rb | grep -vE '(!|#|\*|=|_|-|%|;|C|/){70,}'
+~/core/codeBits/bin/src2orgListing ../src/mrNetwork.rb
 #+end_src
 
 #+RESULTS:
 #+begin_src ruby :eval never :tangle no
-require 'mrSCPI.rb'
+if ENV['MRSCPIPATH'] then                                # First look in MRSCPIPATH
+  require File.join(ENV['MRSCPIPATH'], 'mrSCPI.rb')        # Note if MRSCPIPATH is set and require fails, then we want the script to fail!
+else
+  begin                                                  # Then look in path with the script is
+    require_relative 'mrSCPI.rb'
+  rescue LoadError
+    begin                                                # Then look on LOADPATH
+      require 'mrSCPI.rb'
+    rescue LoadError                                     # Then look on PATH
+      require ENV['PATH'].split(File::PATH_SEPARATOR).map {|x| File.join(x, 'mrSCPI.rb')}.find {|x| FileTest.exist?(x)}
+    end
+  end
+end
 
 puts(SCPIrcFile.instance.lookupNetwork.inspect)
 #+end_src
 
+Other than finding and loading {{{MRSCPI}}}, the source above only has one line of code that actually performs any work -- the last line instantiates an
+[[file:rdoc/SCPIrcFile.html][=SCPIrcFile=]] object and prints out the network name found in the RC file for the current host.  For example, if we run
+this script on my laptop, it will print "=ssh=" because that's what I've named the network in [[#rcfile-example][my personal =.mrSCPIrc=]] file:
+
+#+begin_src sh :results output verbatum :exports both
+../src/mrNetwork.rb
+#+end_src
+
+#+RESULTS:
+#+begin_example
+"ssh"
+#+end_example
+
 ** =teAlias.rb=
 
+This sciprt looks up connection information in the =.mrSCPIrc= file.
+
 #+begin_src sh :results output verbatum :exports results :wrap "src ruby :eval never :tangle no"
-grep -EA 10000 '(!|#|\*|=|_|-|%|;|C|/){70,}\.H\.E\.' ../src/teAlias.rb | grep -vE '(!|#|\*|=|_|-|%|;|C|/){70,}'
+~/core/codeBits/bin/src2orgListing ../src/teAlias.rb
 #+end_src
 
 #+RESULTS:
 #+begin_src ruby :eval never :tangle no
-require 'mrSCPI.rb'
+if ENV['MRSCPIPATH'] then                                # First look in MRSCPIPATH
+  require File.join(ENV['MRSCPIPATH'], 'mrSCPI.rb')        # Note if MRSCPIPATH is set and require fails, then we want the script to fail!
+else
+  begin                                                  # Then look in path with the script is
+    require_relative 'mrSCPI.rb'
+  rescue LoadError
+    begin                                                # Then look on LOADPATH
+      require 'mrSCPI.rb'
+    rescue LoadError                                     # Then look on PATH
+      require ENV['PATH'].split(File::PATH_SEPARATOR).map {|x| File.join(x, 'mrSCPI.rb')}.find {|x| FileTest.exist?(x)}
+    end
+  end
+end
 
 if (ARGV.length < 1) || (ARGV.first.match(/^-+[hH]/)) then
   puts("USE: teAlias.rb [format] thingy")
@@ -413,115 +459,143 @@ end
 
 #+end_src
 
+For example, if I wanted to know how to connect to my power supply I could run:
+
+#+begin_src sh :results output verbatum :exports code :eval never
+../src/teAlias.rb ps
+#+end_src
+
+As mentioned in the [[#rcfile-example][section discussing my personal =.mrSCPIrc=]] file, my bench network is separate from the rest of my home network.
+Because of this the connection strings are different depending on where you are connecting from.  If connecting from a computer on my bench, we will get a
+different answer than if connecting from my living room.
+
+From the living room:
+
+#+begin_src sh :results output verbatum :exports both
+../src/teAlias.rb @ps
+#+end_src
+
+#+RESULTS:
+#+begin_example
+raw://127.0.0.1:9012
+#+end_example
+
+From the bench:
+
+#+begin_src sh :results output verbatum :exports both
+../src/teAlias.rb @ps
+#+end_src
+
+#+RESULTS:
+#+begin_example
+raw://ps-rns.home.mitchr.me:5025
+#+end_example
+
+
 ** Example RC file
+:PROPERTIES:
+:CUSTOM_ID: rcfile-example
+:END:
 
-Here is an example of what my RC file looks like.  I have two network subnets on my bench.  One for test equipment (192.168.42.X), and one for computers
-(192.168.43.X).  The only access from outside these networks is to an SSH bastion server on the 192.168.43.X network.  So when I'm on my bench I can access
-the test equipment directly, but otherwise I must access the equipment via SSH tunnels to the bastion server.  This configuration file makes it so that I can
-specify a connection URL like "=@awg=", and connect to my 33210a AWG regardless of where I'm running the script -- i.e. the library figures out what network
-I'm on, and expands "=@awg=" into the right thing.
+Here is an example of what my RC file looks like.  I have a subnets for bench (172.16.3.1).  The only access from outside these networks is via SSH to the
+bench computer (a raspberry pi named "=bench-pi=").  So when I'm on my bench I can access the test equipment directly, but otherwise I must access the
+equipment via SSH tunnels to the bastion server.  This configuration file makes it so that I can specify a connection URL like "=@awg=", and connect to my
+33210a AWG regardless of where I'm running the script -- i.e. the library figures out what network I'm on, and expands "=@awg=" into the right thing.
 
-Note that most of the file is comments! Only the first two sections (nicknames & networks) contain RC file entries.  The rest is notes to myself about my
-network setup.
+Note that only the first two sections (nicknames & networks) contain RC file entries.  The rest is notes to myself about my network setup.
 
-#+begin_src sh :results output verbatum :exports results :wrap "src ksh :eval never :tangle no"
+#+begin_src sh :results output verbatum :exports results :wrap "src perl :eval never :tangle no"
 cat ~/MJR/world/dotfiles/.mrSCPIrc--SS-X-X-X-HOME-X
 #+end_src
 
 #+RESULTS:
-#+begin_src R :eval never :tangle no
+#+begin_src perl :eval never :tangle no
+#####################################################################################################################
+# SCPI Nicknames ####################################################################################################
+#........CNAME......nicknames.................Bench Network................................ssh to bench-pi...........
+nickname 33210ae    33210a    aawge  aawg  => bench@raw://awg-agilent.home.mitchr.me:5025  ssh@raw://127.0.0.1:9001   
+nickname 33210aw              aawgw        => bench@https://awg-agilent.home.mitchr.me:443 ssh@https://127.0.0.1:9002   
+nickname 34401ap              dmmp         => bench@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9003   
+nickname 34401as    34401a    dmms   dmm   => bench@soip://serial.home.mitchr.me:10001     ssh@soip://127.0.0.1:9004   
+nickname 53131ap    53131a    countp count => bench@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9005   
+nickname dg2052e    dg2052    dg2ke  dg2k  => bench@raw://awg-rigol.home.mitchr.me:5555    ssh@raw://127.0.0.1:9006   
+nickname dg2052w              dg2kw        => bench@http://awg-rigol.home.mitchr.me:80     ssh@http://127.0.0.1:9007   
+nickname dho4204e   dho4204   dho4ke dho4k => bench@raw://oscope-rigol.home.mitchr.me:5555 ssh@raw://127.0.0.1:9008   
+nickname dho4204w             dho4kw       => bench@http://oscope-rigol.home.mitchr.me:80  ssh@http://127.0.0.1:9009   
+nickname dmm6500e   dmm6500   6500e  6500  => bench@raw://dmm-keithley.home.mitchr.me:5025 ssh@raw://127.0.0.1:9010   
+nickname dmm6500w             6500w        => bench@http://dmm-keithley.home.mitchr.me:80  ssh@http://127.0.0.1:9011   
+nickname hmc8043e   hmc8043   pse    ps    => bench@raw://ps-rns.home.mitchr.me:5025       ssh@raw://127.0.0.1:9012   
+nickname hmc8043w             psw          => bench@http://ps-rns.home.mitchr.me:80        ssh@http://127.0.0.1:9013   
+nickname sds2504xpe sds2504xp sig2ke sig2k => bench@raw://oscope-sig.home.mitchr.me:5025   ssh@raw://127.0.0.1:9014   
+nickname sds2504xpw           sig2kw       => bench@http://oscope-sig.home.mitchr.me:80    ssh@http://127.0.0.1:9015   
+nickname serialw              serial       => bench@http://serial.home.mitchr.me:80        ssh@http://127.0.0.1:9016   
+nickname tds2024s             tek2ks tek2k => bench@soip://serial.home.mitchr.me:10002     ssh@soip://127.0.0.1:9017   
+nickname tds3052bh  tds3052b  tek3kh tek3k => bench@t3k://oscope-tek.home.mitchr.me:80     ssh@t3k://127.0.0.1:9018   
+nickname tds3052bp            tek3kp       => bench@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9019   
+nickname tds3052bs            tek3ks       => bench@soip://serial.home.mitchr.me:10003     ssh@soip://127.0.0.1:9020   
+nickname tds3052bw            tek3kw       => bench@http://oscope-tek.home.mitchr.me:80    ssh@http://127.0.0.1:9021   
 
-###########################################################################################################
-# SCPI Nicknames ##########################################################################################
-#........CNAME......nicknames.................Bench Network....................ssh to bench-gate...........
-nickname 33210ae    33210a    aawge  aawg  => bench@raw://172.16.42.40:5025    ssh@raw://127.0.0.1:9040    
-nickname 33210aw              aawgw        => bench@https://172.16.42.40:443   ssh@https://127.0.0.1:9041  
-nickname 34401as    34401a    dmms   dmm   => bench@soip://172.16.42.32:10001  ssh@soip://127.0.0.1:9033   
-nickname 34401ap              dmmp         => bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
-nickname dg2052e    dg2052    dg2ke  dg2k  => bench@raw://172.16.42.96:5555    ssh@raw://127.0.0.1:9096    
-nickname dg2052w              dg2kw        => bench@http://172.16.42.96:80     ssh@http://127.0.0.1:9097   
-nickname dho4204e   dho4204   dho4ke dho4k => bench@raw://172.16.42.104:5555   ssh@raw://127.0.0.1:9104    
-nickname dho4204w             dho4kw       => bench@http://172.16.42.104:80    ssh@http://127.0.0.1:9105   
-nickname dmm6500e   dmm6500   6500e  6500  => bench@raw://172.16.42.64:5025    ssh@raw://127.0.0.1:9064    
-nickname dmm6500w             6500w        => bench@http://172.16.42.64:80     ssh@http://127.0.0.1:9065   
-nickname hmc8043e   hmc8043   pse    ps    => bench@raw://172.16.42.72:5025    ssh@raw://127.0.0.1:9072    
-nickname hmc8043w             psw          => bench@http://172.16.42.72:80     ssh@http://127.0.0.1:9073   
-nickname sds2504xpe sds2504xp sig2ke sig2k => bench@raw://172.16.42.56:5025    ssh@raw://127.0.0.1:9056    
-nickname sds2504xpw           sig2kw       => bench@http://172.16.42.56:80     ssh@http://127.0.0.1:9057   
-nickname tds2024s             tek2ks tek2k => bench@soip://172.16.42.32:10002  ssh@soip://127.0.0.1:9034   
-nickname tds3052bh  tds3052b  tek3kh tek3k => bench@t3k://172.16.42.80:80      ssh@t3k://127.0.0.1:9081    
-nickname tds3052bs            tek3ks       => bench@soip://172.16.42.32:10003  ssh@soip://127.0.0.1:9035   
-nickname tds3052bw            tek3kw       => bench@http://172.16.42.80:80     ssh@http://127.0.0.1:9081   
-nickname tds3052bp            tek3kp       => bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
-nickname 53131ap    53131a    countp count => bench@plgx://172.16.42.88:1234   ssh@plgx://127.0.0.1:9088   
-nickname router42             router       => bench@https://172.16.42.1:443    ssh@https://127.0.0.1:9001  
-#ickname router43                          => bench@https://172.16.43.1:443                                
-nickname serial               serial       => bench@http://172.16.42.32:80     ssh@http://127.0.0.1:9032   
+#####################################################################################################################
+# Networks ##########################################################################################################
+#.......Name..Subnet.Mask......Comment...............................................................................
+network bench 172.16.3.0/23   # Bench network for instruments (test equipment)
+network ssh   172.16.1.0/24   # Home network
 
-###########################################################################################################
-# Networks ################################################################################################
-#.......Name..Subnet.Mask......Comment.....................................................................
-network bench 172.16.43.0/23   # Bench network for the bench workstation/bastian
-network te    172.16.42.0/23   # Bench network for instruments (test equipment)
-network ssh   172.16.1.0/24    # Home office network
-
-###########################################################################################################
-# DNS #####################################################################################################
-#.......Device.......IP.............CNAME...........................Note...................................
-#host  nomad         172.16.43.24   bench-nomad.bench.mitchr.me     # My laptop on the bench
-#host  pi            172.16.43.32   bench-pi.bench.mitchr.me        # Bench Raspberry Pi
-#host  awg-agilent   172.16.42.40   awg-agilent.bench.mitchr.me     # Agilent 33210A AWG     
-#host  gpib-rover    172.16.42.88   gpib-rover.bench.mitchr.me      # HP 53131A Counter
-#host  awg-rigol     172.16.42.96   awg-rigol.bench.mitchr.me       # Rigol DG2052 AWG       
-#host  oscope-rigol  172.16.42.104  oscope-rigol.bench.mitchr.me    # Rigol DHO4204 HiRes Scope      
-#host  dmm-keithley  172.16.42.64   dmm-keithley.bench.mitchr.me    # Keithley/Tektronix DMM6500 DMM   
-#host  ps-rns        172.16.42.72   ps-rns.bench.mitchr.me          # R&S HMC8043 Power Supply        
-#host  oscope-sig    172.16.42.56   oscope-sig.bench.mitchr.me      # Siglent SDS2504X+ MSO Scope  
-#host  oscope-tek    172.16.42.80   oscope-tek.bench.mitchr.me      # Tektronix TDS3052B DPO Scope            
-#host  bench-router4 172.16.42.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite
-#host  bench-router4 172.16.43.1    bench-router4.bench.mitchr.me   # Ubiquiti EdgeRouter Lite
-#host  serial        172.16.42.32   serial.bench.mitchr.me          # Lantronix EDS4100 Serial Console     
-
-###########################################################################################################
-# Serial Console Ports ####################################################################################
-#.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag....
+#####################################################################################################################
+# Serial Console Ports ##############################################################################################
+#.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag..............
 #scon serial     1    RS232    Tunnel 10001  9600    Even      7      2  SOFT   ^Q   ^S   34401A    Pink
 #scon serial     2    RS232    Tunnel 10002 19200    Even      2      2  HARD   ^Q   ^S   TDS2024   Blue
 #scon serial     3    RS232    Tunnel 10003 38400    None      8      1  HARD   ^Q   ^S   TDS3052B  Orange
 #scon serial     4 DISABLED        --    --     --      --     --     --    --   --   --   --
 
-###########################################################################################################
-# GPIB/ETH ################################################################################################
-#......Device.......Instrument....Note.....................................................................
+#####################################################################################################################
+# GPIB/ETH ##########################################################################################################
+#......Device.......Instrument....Note...............................................................................
 #geth  gpib-rover   53131a        # HP 53131A Counter
-
-###########################################################################################################
-# Layer 3 IP Router Ports #################################################################################
-#..............Device.............Interface......Subnet.............Note...................................
-#L3router      bench-router4      eth0           172.16.1.2/24      # Long, white wire
-#L3router      bench-router4      eth1           172.16.42.0/23     # Grey cable to L2switch
-#L3router      bench-router4      eth2           172.16.43.0/23     # Bright blue cable to pi
-
-###########################################################################################################
-# Layer 2 Ethernet Switch Ports ###########################################################################
-#..............Device.............Interface......Device.............Cable............Tag.........................
-#L2switch      bench-switch42             1      bench-router4    # Short grey       -
-#L2switch      bench-switch42             2      nomad            # Shielded Yellow  -
-#L2switch      bench-switch42             3      NC               # Grey             Pink
-#L2switch      bench-switch42             4      NC               # Grey             Orange
-#L2switch      bench-switch42             5      oscope-tek       # white            Grey 
-#L2switch      bench-switch42             6      oscope-sig       # red              Grey   
-#L2switch      bench-switch42             7      oscope-rigol     # black            Grey
-#L2switch      bench-switch42             8      NC               # green            Grey
-#L2switch      bench-switch42             9      NC               # blue             Grey
-#L2switch      bench-switch42            10      gpib-rover       # Sleeved Yellow    -
-#L2switch      bench-switch42            11      NC               # white            Black
-#L2switch      bench-switch42            12      awg-agilent      # red              Black
-#L2switch      bench-switch42            13      awg-rigol        # black            Black
-#L2switch      bench-switch42            14      dmm-keithley     # green            Black
-#L2switch      bench-switch42            15      ps-rns           # blue             Black
-#L2switch      bench-switch42            16      serial           # Short grey       -
 #+end_src
+
+The SSH tunnels can be automatically created when we ssh to =bench-pi= by placing them in the user specific ssh config file (=~/.ssh/config=):
+
+#+begin_src sh :results output verbatum :exports results :wrap "src text :eval never :tangle no"
+grep -B6 LocalForward ~/MJR/world/dotfilesSecure/.ssh/config--SS-X-X-X-X-mjolnir
+#+end_src
+
+#+RESULTS:
+#+begin_src text :eval never :tangle no
+Host bench-pi.home.mitchr.me bench-pi
+  ForwardX11 no
+  ForwardAgent no
+  IdentitiesOnly yes
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_benchpi_202601031412.priv
+  LocalForward 127.0.0.1:5900 oscope-sig.home.mitchr.me:5900
+  LocalForward 127.0.0.1:9001 awg-agilent.home.mitchr.me:5025
+  LocalForward 127.0.0.1:9002 awg-agilent.home.mitchr.me:443
+  LocalForward 127.0.0.1:9003 gpib-rover.home.mitchr.me:1234
+  LocalForward 127.0.0.1:9004 serial.home.mitchr.me:10001
+  LocalForward 127.0.0.1:9005 gpib-rover.home.mitchr.me:1234
+  LocalForward 127.0.0.1:9006 awg-rigol.home.mitchr.me:5555
+  LocalForward 127.0.0.1:9007 awg-rigol.home.mitchr.me:80
+  LocalForward 127.0.0.1:9008 oscope-rigol.home.mitchr.me:5555
+  LocalForward 127.0.0.1:9009 oscope-rigol.home.mitchr.me:80
+  LocalForward 127.0.0.1:9010 dmm-keithley.home.mitchr.me:5025
+  LocalForward 127.0.0.1:9011 dmm-keithley.home.mitchr.me:80
+  LocalForward 127.0.0.1:9012 ps-rns.home.mitchr.me:5025
+  LocalForward 127.0.0.1:9013 ps-rns.home.mitchr.me:80
+  LocalForward 127.0.0.1:9014 oscope-sig.home.mitchr.me:5025
+  LocalForward 127.0.0.1:9015 oscope-sig.home.mitchr.me:80
+  LocalForward 127.0.0.1:9016 serial.home.mitchr.me:80
+  LocalForward 127.0.0.1:9017 serial.home.mitchr.me:10002
+  LocalForward 127.0.0.1:9018 oscope-tek.home.mitchr.me:80
+  LocalForward 127.0.0.1:9019 gpib-rover.home.mitchr.me:1234
+  LocalForward 127.0.0.1:9020 serial.home.mitchr.me:10003
+  LocalForward 127.0.0.1:9021 oscope-tek.home.mitchr.me:80
+#+end_src
+
+
+
+
 
 * Features (current & future)
 :PROPERTIES:
