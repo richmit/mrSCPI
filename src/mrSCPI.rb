@@ -276,12 +276,9 @@ end
 #   This can dramatically speed up query commands, but requires the instrument send an "end of transmission" character.  For Prologix devices, an EOT
 #   character may be defined; however, this can interfere when binary data is to be transmitted from an instrument.
 # - +:good_eot_std+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+.
-
 # - +:good_eot_crlf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r\n"</tt> if +true+, and to +nil+ if +false+. TODO
 # - +:good_eot_lf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+. TODO
 # - +:good_eot_cr+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r"</tt> if +true+, and to +nil+ if +false+. TODO
-
-
 # - +:socket_close_write+(Boolean):: For raw & soip do a write_close on the TCP socket after sending command string (DEFAULT: +false+)
 # - +:socket_close+(Boolean):: For raw & soip do a close on the TCP socket after reading is complete (DEFAULT: +false+)
 # - +:read_buffer_size+(Integer/bytes):: Maximum number of bytes to attempt to read at once (DEFAULT: +1048576+)
@@ -528,14 +525,15 @@ class SCPIsession
     objectUnderConstruction = @gblOpt.empty?
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Take care of pseudo-option :good_eot_cr, :good_eot_crlf, :good_eot_lf, & :good_eot_std
-    { :good_eot_cr => "\c", :good_eot_crlf => "\c\n", :good_eot_lf => "\n", :good_eot_std => "\n" }.each do |macro_sym, str|
-    if options.member?(macro_sym) then
-      if options[macro_sym] 
-        options[:read_eot_sentinel] = str
-      else
-        options[:read_eot_sentinel] = nil
+    { :good_eot_cr => "\r", :good_eot_crlf => "\r\n", :good_eot_lf => "\n", :good_eot_std => "\n" }.each do |macro_sym, str|
+      if options.member?(macro_sym) then
+        if options[macro_sym] 
+          options[:read_eot_sentinel] = str
+        else
+          options[:read_eot_sentinel] = nil
+        end
+        options.delete(macro_sym)
       end
-      options.delete(macro_sym)
     end
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Take care of pseudo-options :result_macro_*
