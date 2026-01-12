@@ -30,7 +30,7 @@
 
 ;;##############################################################################################################################################################
 (define-generic-mode mrscpi-mode
-  '()
+  '("#")
   '()
   (let* ((mrscpi-trail-comment   "[[:blank:]]*\\(#.*\\|$\\)")
          (mrscpi-keywords-string '("eol" "ip_address" "log_file" "name" "out_file"
