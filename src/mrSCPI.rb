@@ -1014,12 +1014,21 @@ end
 #
 # = Additional "options" for an SCPIsequence
 #
-# - +:eval+::    <tt>{VAR}={RUBY_CODE}</tt>
 # - +:var+::     <tt>{VAR}={VALUE}</tt>
+#                The <tt>VALUE</tt> is variable expanded (See: SCPIsession#expand).
+# - +:eval+::    <tt>{VAR}={RUBY_CODE}</tt>
+#                The <tt>RUBY_CODE</tt> is first is variable expanded (See: SCPIsession#expand), and then evaluated within the context of the SCPIsequence
+#                object. It is possible to use implementation details like instance member named <tt>theSession</tt> of the SCPIsequence object to access
+#                session state; however, I generally think this kind of thing is a bad idea.  I feel that it is better to use :name & :var to define
+#                "variables" at the "mrSCPI script language level" instead.
 # - +:skip_if+:: <tt>{LHS}{=|!=|~|!~}{RHS}</tt>
+#                The <tt>LHS</tt> and <tt>RHS</tt> are each variable expanded (See: SCPIsession#expand).
 # - +:next_if+:: <tt>{LHS}{=|!=|~|!~}{RHS}</tt>
+#                The <tt>LHS</tt> and <tt>RHS</tt> are each variable expanded (See: SCPIsession#expand).
 # - +:stop+::    +[MESSAGE]+ -- +MESSAGE+ is required when +:stop+ is given on the command line!
-# - +:print+::   +[MESSAGE]+ -- +MESSAGE+ is required when +:stop+ is given on the command line!
+#                The <tt>MESSAGE</tt> is variable expanded (See: SCPIsession#expand).
+# - +:print+::   +[MESSAGE]+ -- +MESSAGE+ is required when +:print+ is given on the command line!
+#                The <tt>MESSAGE</tt> is variable expanded (See: SCPIsession#expand).
 # - +:goto+::    <tt>{LABEL}</tt>
 # - +:lab+::     <tt>{LABEL}</tt>
 #

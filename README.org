@@ -29,10 +29,17 @@ Links:
 
 Changelog
 
+ - 2026-01-22
+   - Added better documentation in SCPIsequence
  - 2026-01-11
    - SCPIsession parameter changes: 
      - Implimented :print_result_puts
+       - Truncated messages in outPrinter now printed via puts
+       - mrSCPI command line mode (and script mode) set :print_result_puts set to true
      - Renamed: :good_std_eot -> :good_eot_std
      - New: :good_eot_cr, :good_eot_crlf, & :good_eot_lf
-   - mrSCPI command line mode (and script mode)
-     - The primary SCPIsequence object has :print_result_puts set to true
+   - SCPIsession
+     - Fixed bug with :var
+ - 2025-06-20
+   - Lots of documentation updates
+   - Better example comments

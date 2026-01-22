@@ -142,29 +142,29 @@
 <p><a href="SCPIsequence.html"><code>SCPIsequence</code></a> is essentially a container for an ordered sequence of <a href="SCPIsession.html"><code>SCPIsession</code></a> options (added via SCPIsequence.add) that may eventually be applied to an <a href="SCPIsession.html"><code>SCPIsession</code></a> in order (via <a href="SCPIsequence.html#method-i-execute"><code>SCPIsequence.execute</code></a>).  In addition to <a href="SCPIsession.html"><code>SCPIsession</code></a> options, this class may also house a few additional parameters which provide various programming constructs: variables (with comprehensive substitution &amp; ruby code execution), conditionals, &amp; jumps.  With these additions, the mrSCPI scripting language becomes Turing complete, and an <a href="SCPIsequence.html"><code>SCPIsequence</code></a> can used to house full scripts.</p>
 
 <h1 id="class-SCPIsequence-label-Additional+-22options-22+for+an+SCPIsequence">Additional “options” for an <a href="SCPIsequence.html"><code>SCPIsequence</code></a><span><a href="#class-SCPIsequence-label-Additional+-22options-22+for+an+SCPIsequence">&para;</a> <a href="#top">&uarr;</a></span></h1>
-<ul><li><dl class="rdoc-list note-list"><dt><code>:eval</code></dt>
+<ul><li><dl class="rdoc-list note-list"><dt><code>:var</code></dt>
 <dd>
-<p><code>{VAR}={RUBY_CODE}</code></p>
+<p><code>{VAR}={VALUE}</code> The <code>VALUE</code> is variable expanded (See: <a href="SCPIsession.html#method-i-expand"><code>SCPIsession#expand</code></a>).</p>
 </dd></dl>
-</li><li><dl class="rdoc-list note-list"><dt><code>:var</code></dt>
+</li><li><dl class="rdoc-list note-list"><dt><code>:eval</code></dt>
 <dd>
-<p><code>{VAR}={VALUE}</code></p>
+<p><code>{VAR}={RUBY_CODE}</code> The <code>RUBY_CODE</code> is first is variable expanded (See: <a href="SCPIsession.html#method-i-expand"><code>SCPIsession#expand</code></a>), and then evaluated within the context of the <a href="SCPIsequence.html"><code>SCPIsequence</code></a> object. It is possible to use implementation details like instance member named <code>theSession</code> of the <a href="SCPIsequence.html"><code>SCPIsequence</code></a> object to access session state; however, I generally think this kind of thing is a bad idea.  I feel that it is better to use :name &amp; :var to define “variables” at the “mrSCPI script language level” instead.</p>
 </dd></dl>
 </li><li><dl class="rdoc-list note-list"><dt><code>:skip_if</code></dt>
 <dd>
-<p><code>{LHS}{=|!=|~|!~}{RHS}</code></p>
+<p><code>{LHS}{=|!=|~|!~}{RHS}</code> The <code>LHS</code> and <code>RHS</code> are each variable expanded (See: <a href="SCPIsession.html#method-i-expand"><code>SCPIsession#expand</code></a>).</p>
 </dd></dl>
 </li><li><dl class="rdoc-list note-list"><dt><code>:next_if</code></dt>
 <dd>
-<p><code>{LHS}{=|!=|~|!~}{RHS}</code></p>
+<p><code>{LHS}{=|!=|~|!~}{RHS}</code> The <code>LHS</code> and <code>RHS</code> are each variable expanded (See: <a href="SCPIsession.html#method-i-expand"><code>SCPIsession#expand</code></a>).</p>
 </dd></dl>
 </li><li><dl class="rdoc-list note-list"><dt><code>:stop</code></dt>
 <dd>
-<p><code>[MESSAGE]</code> – <code>MESSAGE</code> is required when <code>:stop</code> is given on the command line!</p>
+<p><code>[MESSAGE]</code> – <code>MESSAGE</code> is required when <code>:stop</code> is given on the command line! The <code>MESSAGE</code> is variable expanded (See: <a href="SCPIsession.html#method-i-expand"><code>SCPIsession#expand</code></a>).</p>
 </dd></dl>
 </li><li><dl class="rdoc-list note-list"><dt><code>:print</code></dt>
 <dd>
-<p><code>[MESSAGE]</code> – <code>MESSAGE</code> is required when <code>:stop</code> is given on the command line!</p>
+<p><code>[MESSAGE]</code> – <code>MESSAGE</code> is required when <code>:print</code> is given on the command line! The <code>MESSAGE</code> is variable expanded (See: <a href="SCPIsession.html#method-i-expand"><code>SCPIsession#expand</code></a>).</p>
 </dd></dl>
 </li><li><dl class="rdoc-list note-list"><dt><code>:goto</code></dt>
 <dd>
@@ -227,7 +227,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1034</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1046</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> (<span class="ruby-identifier">convertStrings</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-comment"># Store the instance to shorten lines referencing it</span>
   <span class="ruby-ivar">@re</span>           = <span class="ruby-constant">SCPIregexLibrary</span>.<span class="ruby-identifier">instance</span>
@@ -245,7 +245,10 @@
                    <span class="ruby-value">:result_macro_ascii</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
                    <span class="ruby-value">:result_macro_debug</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
                    <span class="ruby-value">:result_macro_csv</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
-                   <span class="ruby-value">:good_std_eot</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:good_eot_std</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:good_eot_cr</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:good_eot_lf</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
+                   <span class="ruby-value">:good_eot_crlf</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
                    <span class="ruby-value">:eol</span>                     <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\&quot;#{x}\&quot;&quot;</span>.<span class="ruby-identifier">undump</span>                                         },
                    <span class="ruby-value">:eval</span>                    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">md</span>=<span class="ruby-identifier">x</span>.<span class="ruby-identifier">match</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_assign</span>)); [<span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">2</span>]]            },
                    <span class="ruby-value">:execute_on_cmd</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:o488_FALSEx</span>))                            },
@@ -332,7 +335,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="add-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1109</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span> (<span class="ruby-identifier">property</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@convertStringsP</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">property</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)) <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">property</span> = <span class="ruby-identifier">property</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^(--|:)/</span>, <span class="ruby-string">&#39;&#39;</span>)
@@ -381,7 +384,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="execute-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1135</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span> ()
   <span class="ruby-identifier">theSession</span> = <span class="ruby-constant">SCPIsession</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@newOpts</span>)
   <span class="ruby-identifier">theSession</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value">:execute_on_cmd</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>)
