@@ -31,6 +31,8 @@ Changelog
 
  - 2026-01-22
    - Added better documentation in SCPIsequence
+   - Fixed :result_split & :name bugs in script mode -- couldn't nil them.
+   - Removed nil option for :result_split_arg in scripts.
  - 2026-01-11
    - SCPIsession parameter changes: 
      - Implimented :print_result_puts

@@ -573,8 +573,10 @@
 </li></ul>
 </li><li><dl class="rdoc-list note-list"><dt><code>:result_split_arg</code>(String or nil)</dt>
 <dd>
-<p>Argument required for the <code>:result_split</code> parameter.  (DEFAULT: <code>nil</code>)</p>
+<p>Required when <code>:result_split</code> is <code>:char</code>, <code>:string</code>, <code>:unpack</code>, or <code>:regex</code>.  (DEFAULT: <code>nil</code>)</p>
 </dd></dl>
+
+<p>In script mode, i.e. with <a href="SCPIsequence.html"><code>SCPIsequence</code></a> using <code>convertStrings=true</code>, it is not possible to set this to nil, but that’s OK. :)</p>
 </li><li><dl class="rdoc-list note-list"><dt><code>:result_squeeze</code>(Boolean)</dt>
 <dd>
 <p>If true, adjacent whitespace characters are squeezed into a single character – a single space or newline</p>
@@ -720,7 +722,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 431</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 432</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-ivar">@re</span>           = <span class="ruby-constant">SCPIregexLibrary</span>.<span class="ruby-identifier">instance</span>
   <span class="ruby-ivar">@gblOpt</span>       = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
@@ -843,7 +845,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="command-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 642</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 643</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">command</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">options</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-value">:cmd</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&quot;ERROR: :cmd must not appear in options list when calling &#39;command&#39;!&quot;</span>, <span class="ruby-keyword">self</span>, <span class="ruby-value">74</span>)
@@ -884,7 +886,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="execute-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 698</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 699</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>()
   <span class="ruby-identifier">time_exe_start</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-comment"># Make sure all required options required by new are set and valid</span>
@@ -1175,7 +1177,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="expand-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 675</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 676</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">expand</span> (<span class="ruby-identifier">instr</span>)
   <span class="ruby-identifier">expCnt</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">instr</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_varexp</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
@@ -1220,7 +1222,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="result-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 981</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 982</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">result</span>(<span class="ruby-value">index:</span> <span class="ruby-value">-1</span>, <span class="ruby-value">type:</span> <span class="ruby-value">:ret_val</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@results</span>.<span class="ruby-identifier">find_all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">index</span> }
@@ -1315,7 +1317,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="set-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 524</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 525</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set</span>(<span class="ruby-identifier">options</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>)
   <span class="ruby-identifier">objectUnderConstruction</span> = <span class="ruby-ivar">@gblOpt</span>.<span class="ruby-identifier">empty?</span>
   <span class="ruby-comment">#---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
@@ -1456,7 +1458,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="variable-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 660</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 661</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">variable</span> (<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">then</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@varList</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword">then</span>

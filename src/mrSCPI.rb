@@ -378,7 +378,8 @@ end
 #     Example: 
 #         :MEASure:SCALar:VOLTage:DC?; :MEASure:SCALar:CURRent:DC?
 #         "0.0; 0.0"
-# - +:result_split_arg+(String or nil):: Argument required for the +:result_split+ parameter.  (DEFAULT: +nil+)
+# - +:result_split_arg+(String or nil):: Required when +:result_split+ is +:char+, +:string+, +:unpack+, or +:regex+.  (DEFAULT: +nil+)
+#   In script mode, i.e. with SCPIsequence using <tt>convertStrings=true</tt>, it is not possible to set this to nil, but that's OK. :)
 # - +:result_squeeze+(Boolean):: If true, adjacent whitespace characters are squeezed into a single character -- a single space or newline
 # - +:result_chomp+(Boolean):: If true, the stored/returned result string is chomped (DEFAULT: +false+)
 #   Note overlap with +:result_strip+!
@@ -1073,7 +1074,7 @@ class SCPIsequence
                      :ip_address              => lambda { |x| x                                                         }, # new properties
                      :lab                     => lambda { |x| x                                                         },
                      :log_file                => lambda { |x| x                                                         },
-                     :name                    => lambda { |x| (x=='' ? nil : x)                                         },
+                     :name                    => lambda { |x| ( ['ANS', 'nil'].member?(x) ? nil : x)                    },
                      :net_port                => lambda { |x| x.to_i                                                    },
                      :net_protocol            => lambda { |x| x.sub(/^:/, '').to_sym                                    },
                      :next_if                 => lambda { |x| md=x.match(@re.a(:mrs_branch)); [md[1], md[2], md[3]]     },
@@ -1084,7 +1085,7 @@ class SCPIsequence
                      :print_result            => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :print_result_puts       => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :read_buffer_size        => lambda { |x| x.to_i                                                    },
-                     :read_eot_sentinel       => lambda { |x| ( ['', 'nil'].member?(x) ? nil : "\"#{x}\"".undump )      },
+                     :read_eot_sentinel       => lambda { |x| ( ['nil'].member?(x) ? nil : "\"#{x}\"".undump )          },
                      :read_max_bytes          => lambda { |x| ( ['0', 'nil'].member?(x) ? nil : x.to_i )                },
                      :print_max_len           => lambda { |x| ( ['0', 'nil'].member?(x) ? nil : x.to_i )                },
                      :print_debug             => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
@@ -1095,8 +1096,8 @@ class SCPIsequence
                      :result_chomp            => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :result_last_word        => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :result_extract_block    => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
-                     :result_split            => lambda { |x| (x.nil? ? nil : x.sub(/^:/, '').to_sym)                   },
-                     :result_split_arg        => lambda { |x| "\"#{x}\"".undump                                         },
+                     :result_split            => lambda { |x| (x.match?(/^n/i) ? nil : x.sub(/^:/, '').to_sym );        },
+                     :result_split_arg        => lambda { |x| "\"#{x}\"".undump                                         }, # 'nil' => 'nil', not nil. ;)
                      :result_strip            => lambda { |x| !x.match?(@re.a(:o488_FALSEx))                            },
                      :result_type             => lambda { |x| (x.match?(/^n/i) ? nil : x.sub(/^:/, '').to_sym)          },
                      :scpi_prefix             => lambda { |x| x                                                         },
