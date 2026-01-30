@@ -78,7 +78,7 @@
               <ul class="link-list" role="directory">
                           <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Global+behavior">SCPIsession State Parameters: Global behavior</a>
           <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Command+string+specification">SCPIsession State Parameters: Command string specification</a>
-          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+I-2FO+tuning">SCPIsession State Parameters: Instrument I/O tuning</a>
+          <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+Result+Read+Loop+I-2FO+Tuning">SCPIsession State Parameters: Instrument Result Read Loop I/O Tuning</a>
           <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Connection+Parameters">SCPIsession State Parameters: Connection Parameters</a>
           <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Output+Control">SCPIsession State Parameters: Output Control</a>
           <li>      <a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Result+processing">SCPIsession State Parameters: Result processing</a>
@@ -214,7 +214,7 @@
 </dd></dl>
 </li></ul>
 
-<h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+I-2FO+tuning"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Instrument I/O tuning<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+I-2FO+tuning">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2 id="class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+Result+Read+Loop+I-2FO+Tuning"><a href="SCPIsession.html"><code>SCPIsession</code></a> State Parameters: Instrument Result Read Loop I/O Tuning<span><a href="#class-SCPIsession-label-SCPIsession+State+Parameters-3A+Instrument+Result+Read+Loop+I-2FO+Tuning">&para;</a> <a href="#top">&uarr;</a></span></h2>
 <ul><li><dl class="rdoc-list note-list"><dt><code>:read_timeout_first_byte</code>(Integer/milliseconds)</dt>
 <dd>
 <p>Timeout for first byte of data from instrument.</p>
@@ -408,10 +408,17 @@
 </li></ul>
 </li><li><dl class="rdoc-list note-list"><dt><code>:t3k</code></dt>
 <dd>
-<p>SCPI over HTTP for TDS3000B series</p>
+<p>SCPI over HTTP for TDS3000B series (only tested on firmware v3.41)</p>
 </dd></dl>
 
-<p>Sends SCPI commands via an HTTP form, and scrapes the result out of the returned HTML document.  Do not use commands that return binary data.  Also note that TCP/IP read loop is bypassed for this mode, and so read timeouts and delays are ignored.</p>
+<p>Sends SCPI commands via an HTTP form, and scrapes the result out of the returned HTML document.  The web form dosent support:</p>
+<ul><li>
+<p>Binary data</p>
+</li><li>
+<p>Multiple SCPI commands on one line.  i.e. No semicolon seporated command sequences.</p>
+</li></ul>
+
+<p>Also note that TCP/IP read loop is bypassed for this mode, so that all “Instrument Result Read Loop I/O Tuning” parameters are ignored.</p>
 </li><li><dl class="rdoc-list note-list"><dt><code>:lxi</code></dt>
 <dd>
 <p>VX11/LXI over IP</p>
@@ -722,7 +729,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 432</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 435</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-ivar">@re</span>           = <span class="ruby-constant">SCPIregexLibrary</span>.<span class="ruby-identifier">instance</span>
   <span class="ruby-ivar">@gblOpt</span>       = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
@@ -845,7 +852,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="command-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 643</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 646</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">command</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">options</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-value">:cmd</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&quot;ERROR: :cmd must not appear in options list when calling &#39;command&#39;!&quot;</span>, <span class="ruby-keyword">self</span>, <span class="ruby-value">74</span>)
@@ -886,7 +893,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="execute-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 699</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 702</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>()
   <span class="ruby-identifier">time_exe_start</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-comment"># Make sure all required options required by new are set and valid</span>
@@ -1177,7 +1184,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="expand-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 676</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 679</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">expand</span> (<span class="ruby-identifier">instr</span>)
   <span class="ruby-identifier">expCnt</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">instr</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_varexp</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
@@ -1222,7 +1229,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="result-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 982</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 985</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">result</span>(<span class="ruby-value">index:</span> <span class="ruby-value">-1</span>, <span class="ruby-value">type:</span> <span class="ruby-value">:ret_val</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@results</span>.<span class="ruby-identifier">find_all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">index</span> }
@@ -1317,7 +1324,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="set-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 525</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 528</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set</span>(<span class="ruby-identifier">options</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>)
   <span class="ruby-identifier">objectUnderConstruction</span> = <span class="ruby-ivar">@gblOpt</span>.<span class="ruby-identifier">empty?</span>
   <span class="ruby-comment">#---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
@@ -1458,7 +1465,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="variable-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 661</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 664</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">variable</span> (<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">then</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@varList</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword">then</span>

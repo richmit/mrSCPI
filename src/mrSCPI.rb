@@ -238,7 +238,7 @@ end
 # - +:scpi_prefix+(String):: An SCPI prefix to be added when :cmd is sent to instrument (DEFAULT: <tt>""</tt>)
 # - +:eol+(String):: End of line string to append to command strings sent to instrument (DEFAULT: <tt>"\n"</tt>)
 #
-# == SCPIsession State Parameters: Instrument I/O tuning
+# == SCPIsession State Parameters: Instrument Result Read Loop I/O Tuning
 #    
 # - +:read_timeout_first_byte+(Integer/milliseconds):: Timeout for first byte of data from instrument.
 #   Default depends on :net_protocol: 
@@ -306,10 +306,13 @@ end
 #     - Keysight 34401A Bench Digital Multimeter
 #     - Tektronix TDS3052B Digital Phosphor Oscilloscope
 #     - Tektronix TDS2024 Digital Storage Oscilloscope
-#   - +:t3k+:: SCPI over HTTP for TDS3000B series
-#     Sends SCPI commands via an HTTP form, and scrapes the result out of the returned HTML document.  Do
-#     not use commands that return binary data.  Also note that TCP/IP read loop is bypassed for this mode,
-#     and so read timeouts and delays are ignored.
+#   - +:t3k+:: SCPI over HTTP for TDS3000B series (only tested on firmware v3.41)
+#     Sends SCPI commands via an HTTP form, and scrapes the result out of the returned HTML document.  The web form
+#     dosent support:
+#     - Binary data
+#     - Multiple SCPI commands on one line.  i.e. No semicolon seporated command sequences.
+#     Also note that TCP/IP read loop is bypassed for this mode,
+#     so that all "Instrument Result Read Loop I/O Tuning" parameters are ignored.
 #   - +:lxi+:: VX11/LXI over IP
 #     LXI is not supported; however, we recognize the protocol in order to provide a meaningful error message.
 #   - +:plgx+:: SCPI via a Prologix Ethernet adapter
