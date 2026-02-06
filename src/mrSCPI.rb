@@ -346,6 +346,7 @@ end
 #   WARNING: SCPIsequence sets this to true when it constructs an SCPIsession object
 # - +:print_cmd+(Boolean):: Output command to :out_file (DEFAULT: +false+)
 #   Output is prefixed and postfixed by <tt>'>>'</tt> and followed by a newline
+#   Non-printable characters are hex encoded.
 #   WARNING: SCPIsequence sets this to true when it constructs an SCPIsession object
 # - +:echo+(P/Boolean):: Sets both +:print_cmd+ & +:print_result+ at the same time (DEFAULT: +false+)
 # - +:print_debug+(L/Boolean):: All printed results are in Ruby +.inspect+ format and followed by a newline
@@ -717,7 +718,7 @@ class SCPIsession
       strToSend = strToSend + @gblOpt[:eol]
     end
     if @gblOpt[:print_cmd] then
-      PrintyPrintyBangBang.instance.outPrinter(">>#{strToSend.chomp.strip}>>", newline=true)
+      PrintyPrintyBangBang.instance.outPrinter(">>#{strToSend.dump}>>", newline=true)
     end
     strWeGot = ''
     if @gblOpt[:net_protocol] == :file then

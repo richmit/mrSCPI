@@ -29,6 +29,10 @@ Links:
 
 Changelog
 
+ - 2026-02-06
+   - non-printable characters printed by :print_cmd are now escaped.  
+   - Commands printed by :print_cmd are no longer chomped (the include, possibly escaped, EOL chars)
+   - Commands printed by :print_cmd are no longer stripped (all leading and trailing space is preserved)
  - 2026-01-22
    - Added better documentation in SCPIsequence
    - Fixed :result_split & :name bugs in script mode -- couldn't nil them.

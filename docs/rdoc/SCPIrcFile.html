@@ -240,7 +240,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1258</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1259</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> ()
   <span class="ruby-ivar">@rcNetworks</span>     = <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@rcURLnicknames</span> = <span class="ruby-keyword">nil</span>
@@ -325,7 +325,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="lookupNetwork-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1352</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1353</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lookupNetwork</span> (<span class="ruby-identifier">ip_address</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-ivar">@rcNetworks</span>.<span class="ruby-identifier">empty?</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">ip_address</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">then</span>
@@ -363,7 +363,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="lookupURLnickname-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1318</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1319</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lookupURLnickname</span> (<span class="ruby-identifier">nicknameString</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@rcURLnicknames</span> <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">nicknameMatch</span> = <span class="ruby-identifier">nicknameString</span>.<span class="ruby-identifier">match</span>(<span class="ruby-constant">SCPIregexLibrary</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_nickname</span>))
@@ -428,7 +428,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="urlParser-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1367</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 1368</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">urlParser</span> (<span class="ruby-identifier">urlString</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">urlString</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-string">&#39;@&#39;</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">urlString</span> = <span class="ruby-constant">SCPIrcFile</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">lookupURLnickname</span>(<span class="ruby-identifier">urlString</span>)
