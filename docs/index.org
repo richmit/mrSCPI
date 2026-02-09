@@ -57,8 +57,6 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 #+MACRO: MRSCPISRC [[https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb][=mrSCPI.rb=]]
 #+MACRO: LXITOOLS [[https://github.com/lxi-tools/lxi-tools][lxi-tools]]
 
-
-
 * Introduction
 :PROPERTIES:
 :CUSTOM_ID: introduction
@@ -246,6 +244,11 @@ All the magic is in the =SCPIsession.new= call:
  - Next we tell {{{MRSCPI}}} that we expect to get a IEEE 488.2 binary block, and that we want {{{MRSCPI}}} to extract that block.
  - With the next two lines we tell {{{MRSCPI}}} to print the result into a file
  - Lastly we tell it the command to use.
+
+
+You can find this script in my
+[[https://github.com/richmit/TestEquipmentScripts][=TestEquipmentScripts=]] github repo with the filename
+[[https://github.com/richmit/TestEquipmentScripts/blob/main/screenshot_dho4k.rb][=screenshot_dho4k.rb=]].
    
 * {{{MRSCPI}}} Scripts
 :PROPERTIES:
@@ -256,11 +259,15 @@ Even if you only want to know about scripts, I encourage you to read the section
 here is a {{{MRSCPI}}} script version of the Ruby script given in that section:
 
 #+begin_src sh :results output verbatum :exports results :wrap "src mrscpi :eval never :tangle no"
+head -n 1 ../examples/dho4ksc.mrscpi
+echo
 ~/core/codeBits/bin/src2orgListing ../examples/dho4ksc.mrscpi
 #+end_src
 
 #+RESULTS:
 #+begin_src mrscpi :eval never :tangle no
+#!/usr/bin/env -S mrSCPI.rb
+
 :url @dho4k                                                                # Connect to my DHO4k
 :eval imgFileName=Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" # Filename for PNG
 :result_macro_block true                                                   # Expect/Extract a block
@@ -269,9 +276,11 @@ here is a {{{MRSCPI}}} script version of the Ruby script given in that section:
 :cmd :DISPlay:DATA? PNG                                                    # Send the command
 #+end_src
 
-Notice how the code parallels the Ruby script.  Essentially the {{{MRSCPI}}} script is what was inside the =SCPIsession.new= call in the Ruby script!  Also
-note the shebang line (=#!/usr/bin/env mrSCPI.rb=).  This is how we make a {{{MRSCPI}}} script executable on the command line -- just like a shell script.
-The script above, [[https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi][=dho4ksc.mrscpi=]], may be found in the =example= directory.
+Notice how the code parallels the [[#ruby-example][Ruby script above]].  Essentially the {{{MRSCPI}}} script is what was inside the =SCPIsession.new= call in
+the Ruby script!  Also note the shebang line (=#!/usr/bin/env mrSCPI.rb=).  This is how we make a {{{MRSCPI}}} script executable on the command line -- just
+like a shell script.  The script above may be found in the [[https://github.com/richmit/mrSCPI/blob/main/examples/][=example=]] directory of the {{{MRSCPI}}}
+git repository as, [[https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi][=dho4ksc.mrscpi=]],
+
 Let's take a look at another simple script.
 
 #+begin_src sh :results output verbatum :exports results :wrap "src mrscpi :eval never :tangle no"
@@ -302,10 +311,17 @@ mrSCPI.rb -f STDIN <example.mrscpi
 #+end_src
 
 Scripts can be described on the command line with arguments instead of being put in a script file.  You simply replace the {{{MRSCPI}}} script commands with
-arguments of the same name.  For small scripts with just a couple commands, this can be very handy.  What may be more useful is using command line script
-arguments *with* a script file.  When we do this it is as if we prepend the script file with the commands given as arguments.  One thing to note is that the
-first =:url= option will override any subsequent instances -- this is also true for =:ip_address=, =:net_port=, & =:net_protocol= as well.  For example we
-could do something like this to connect to an alternate DMM:
+arguments of the same name.  For small scripts with just a couple commands, this can be very handy.  Here is an example:
+
+#+begin_src sh
+mrSCPI.rb --url @34401a --cmd '*IDN?'
+#+end_src
+
+Note the quotes on the command are required because the asterisk (*) and question mark (?) have special meaning for the shell.
+
+It is possible to combine command line script components arguments *with* a script file.  When we do this it is as if we prepend the script file with the
+commands given as arguments.  One thing to note is that the first =:url= option will override any subsequent instances -- this is also true for =:ip_address=,
+=:net_port=, & =:net_protocol= as well.  For example we could do something like this to connect to an alternate DMM:
 
 #+begin_src sh
 mrSCPI.rb --url @dmm2 example.mrscpi
@@ -505,60 +521,50 @@ equipment via SSH tunnels to the bastion server.  This configuration file makes 
 Note that only the first two sections (nicknames & networks) contain RC file entries.  The rest is notes to myself about my network setup.
 
 #+begin_src sh :results output verbatum :exports results :wrap "src perl :eval never :tangle no"
-cat ~/MJR/world/dotfiles/.mrSCPIrc--SS-X-X-X-HOME-X
+cat ~/MJR/world/dotfiles/.mrSCPIrc--SS-X-X-HOME-X
 #+end_src
 
 #+RESULTS:
 #+begin_src perl :eval never :tangle no
 #####################################################################################################################
 # SCPI Nicknames ####################################################################################################
-#........CNAME......nicknames.................Bench Network................................ssh to bench-pi...........
-nickname 33210ae    33210a    aawge  aawg  => bench@raw://awg-agilent.home.mitchr.me:5025  ssh@raw://127.0.0.1:9001   
-nickname 33210aw              aawgw        => bench@https://awg-agilent.home.mitchr.me:443 ssh@https://127.0.0.1:9002   
-nickname 34401ap              dmmp         => bench@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9003   
-nickname 34401as    34401a    dmms   dmm   => bench@soip://serial.home.mitchr.me:10001     ssh@soip://127.0.0.1:9004   
-nickname 53131ap    53131a    countp count => bench@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9005   
-nickname dg2052e    dg2052    dg2ke  dg2k  => bench@raw://awg-rigol.home.mitchr.me:5555    ssh@raw://127.0.0.1:9006   
-nickname dg2052w              dg2kw        => bench@http://awg-rigol.home.mitchr.me:80     ssh@http://127.0.0.1:9007   
-nickname dho4204e   dho4204   dho4ke dho4k => bench@raw://oscope-rigol.home.mitchr.me:5555 ssh@raw://127.0.0.1:9008   
-nickname dho4204w             dho4kw       => bench@http://oscope-rigol.home.mitchr.me:80  ssh@http://127.0.0.1:9009   
-nickname dmm6500e   dmm6500   6500e  6500  => bench@raw://dmm-keithley.home.mitchr.me:5025 ssh@raw://127.0.0.1:9010   
-nickname dmm6500w             6500w        => bench@http://dmm-keithley.home.mitchr.me:80  ssh@http://127.0.0.1:9011   
-nickname hmc8043e   hmc8043   pse    ps    => bench@raw://ps-rns.home.mitchr.me:5025       ssh@raw://127.0.0.1:9012   
-nickname hmc8043w             psw          => bench@http://ps-rns.home.mitchr.me:80        ssh@http://127.0.0.1:9013   
-nickname sds2504xpe sds2504xp sig2ke sig2k => bench@raw://oscope-sig.home.mitchr.me:5025   ssh@raw://127.0.0.1:9014   
-nickname sds2504xpw           sig2kw       => bench@http://oscope-sig.home.mitchr.me:80    ssh@http://127.0.0.1:9015   
-nickname serialw              serial       => bench@http://serial.home.mitchr.me:80        ssh@http://127.0.0.1:9016   
-nickname tds2024s             tek2ks tek2k => bench@soip://serial.home.mitchr.me:10002     ssh@soip://127.0.0.1:9017   
-nickname tds3052bh  tds3052b  tek3kh tek3k => bench@t3k://oscope-tek.home.mitchr.me:80     ssh@t3k://127.0.0.1:9018   
-nickname tds3052bp            tek3kp       => bench@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9019   
-nickname tds3052bs            tek3ks       => bench@soip://serial.home.mitchr.me:10003     ssh@soip://127.0.0.1:9020   
-nickname tds3052bw            tek3kw       => bench@http://oscope-tek.home.mitchr.me:80    ssh@http://127.0.0.1:9021   
+#........CNAME......nicknames.................Directly Connected Network....................ssh to bench-pi...........
+nickname 33210ae    33210a    aawge  aawg  => direct@raw://awg-agilent.home.mitchr.me:5025  ssh@raw://127.0.0.1:9001   
+nickname 33210aw              aawgw        => direct@https://awg-agilent.home.mitchr.me:443 ssh@https://127.0.0.1:9002   
+nickname 34401ap              dmmp         => direct@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9003   
+nickname 34401as    34401a    dmms   dmm   => direct@soip://serial.home.mitchr.me:10001     ssh@soip://127.0.0.1:9004   
+nickname 53131ap    53131a    countp count => direct@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9005   
+nickname dg2052e    dg2052    dg2ke  dg2k  => direct@raw://awg-rigol.home.mitchr.me:5555    ssh@raw://127.0.0.1:9006   
+nickname dg2052w              dg2kw        => direct@http://awg-rigol.home.mitchr.me:80     ssh@http://127.0.0.1:9007   
+nickname dho4204e   dho4204   dho4ke dho4k => direct@raw://oscope-rigol.home.mitchr.me:5555 ssh@raw://127.0.0.1:9008   
+nickname dho4204w             dho4kw       => direct@http://oscope-rigol.home.mitchr.me:80  ssh@http://127.0.0.1:9009   
+nickname dmm6500e   dmm6500   6500e  6500  => direct@raw://dmm-keithley.home.mitchr.me:5025 ssh@raw://127.0.0.1:9010   
+nickname dmm6500w             6500w        => direct@http://dmm-keithley.home.mitchr.me:80  ssh@http://127.0.0.1:9011   
+nickname hmc8043e   hmc8043   pse    ps    => direct@raw://ps-rns.home.mitchr.me:5025       ssh@raw://127.0.0.1:9012   
+nickname hmc8043w             psw          => direct@http://ps-rns.home.mitchr.me:80        ssh@http://127.0.0.1:9013   
+nickname sds2504xpe sds2504xp sig2ke sig2k => direct@raw://oscope-sig.home.mitchr.me:5025   ssh@raw://127.0.0.1:9014   
+nickname sds2504xpw           sig2kw       => direct@http://oscope-sig.home.mitchr.me:80    ssh@http://127.0.0.1:9015   
+nickname serialw              serial       => direct@http://serial.home.mitchr.me:80        ssh@http://127.0.0.1:9016   
+nickname tds2024s             tek2ks tek2k => direct@soip://serial.home.mitchr.me:10002     ssh@soip://127.0.0.1:9017   
+nickname tds3052bh  tds3052b  tek3kh tek3k => direct@t3k://oscope-tek.home.mitchr.me:80     ssh@t3k://127.0.0.1:9018   
+nickname tds3052bp            tek3kp       => direct@plgx://gpib-rover.home.mitchr.me:1234  ssh@plgx://127.0.0.1:9019   
+nickname tds3052bs            tek3ks       => direct@soip://serial.home.mitchr.me:10003     ssh@soip://127.0.0.1:9020   
+nickname tds3052bw            tek3kw       => direct@http://oscope-tek.home.mitchr.me:80    ssh@http://127.0.0.1:9021   
+nickname test                              => direct@raw://127.0.0.1:1234                   ssh@raw://127.0.0.1:1234
 
 #####################################################################################################################
 # Networks ##########################################################################################################
-#.......Name..Subnet.Mask......Comment...............................................................................
-network bench 172.16.3.0/23   # Bench network for instruments (test equipment)
-network ssh   172.16.1.0/24   # Home network
-
-#####################################################################################################################
-# Serial Console Ports ##############################################################################################
-#.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag..............
-#scon serial     1    RS232    Tunnel 10001  9600    Even      7      2  SOFT   ^Q   ^S   34401A    Pink
-#scon serial     2    RS232    Tunnel 10002 19200    Even      2      2  HARD   ^Q   ^S   TDS2024   Blue
-#scon serial     3    RS232    Tunnel 10003 38400    None      8      1  HARD   ^Q   ^S   TDS3052B  Orange
-#scon serial     4 DISABLED        --    --     --      --     --     --    --   --   --   --
-
-#####################################################################################################################
-# GPIB/ETH ##########################################################################################################
-#......Device.......Instrument....Note...............................................................................
-#geth  gpib-rover   53131a        # HP 53131A Counter
+#.......Name...Subnet.Mask.....Comment...............................................................................
+network direct 172.16.3.0/23   # Bench network with test equipment & bench-pi
+network direct 172.16.1.0/23   # Computer desk beside bench
+network ssh    172.16.2.0/24   # Isolated work network
+network ssh    172.16.4.0/24   # Isolated office network
 #+end_src
 
 The SSH tunnels can be automatically created when we ssh to =bench-pi= by placing them in the user specific ssh config file (=~/.ssh/config=):
 
 #+begin_src sh :results output verbatum :exports results :wrap "src text :eval never :tangle no"
-grep -B6 LocalForward ~/MJR/world/dotfilesSecure/.ssh/config--SS-X-X-X-X-mjolnir
+grep -B6 LocalForward ~/MJR/world/dotfilesSecure/.ssh/config--SS-X-X-X-mjolnir
 #+end_src
 
 #+RESULTS:

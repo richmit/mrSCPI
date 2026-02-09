@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-22 Thu 16:40 -->
+<!-- 2026-02-09 Mon 14:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>mrSCPI</title>
@@ -234,12 +234,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2026-01-04 16:20:40</i></td>
+<td class="org-left"><i>2026-02-09 14:24:02</i></td>
 </tr>
 
 <tr>
 <td class="org-right"><b>Generated:</b></td>
-<td class="org-left"><i>2026-01-22 16:40:26</i></td>
+<td class="org-left"><i>2026-02-09 14:24:04</i></td>
 </tr>
 </tbody>
 </table>
@@ -255,13 +255,13 @@ Copyright 2026 Mitch Richling. All rights reserved.
 <li><a href="#interfaces">2. Interfaces</a></li>
 <li><a href="#emacs-interface">3. Emacs as a <code>mrSCPI</code> Interface</a>
 <ul>
-<li><a href="#org0802a66">3.1. The Laboratory Notebook</a></li>
-<li><a href="#orgc5da23a">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
-<li><a href="#orgd813f56">3.3. Integrated Data Capture and Analysis</a></li>
-<li><a href="#org9f3c1a2">3.4. Setting Up Emacs</a>
+<li><a href="#orgd456f4f">3.1. The Laboratory Notebook</a></li>
+<li><a href="#orgb77913d">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
+<li><a href="#org53baf1f">3.3. Integrated Data Capture and Analysis</a></li>
+<li><a href="#org8dc174c">3.4. Setting Up Emacs</a>
 <ul>
-<li><a href="#orga2dd634">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
-<li><a href="#org4c47ca9">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
+<li><a href="#org51a01f7">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
+<li><a href="#org24a4607">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
 </ul>
 </li>
 </ul>
@@ -274,13 +274,13 @@ Copyright 2026 Mitch Richling. All rights reserved.
 </li>
 <li><a href="#mrscpi-scripts">5. <code>mrSCPI</code> Scripts</a>
 <ul>
-<li><a href="#org6ea0aa8">5.1. <code>mrSCPI</code> Script Syntax</a></li>
+<li><a href="#org096e182">5.1. <code>mrSCPI</code> Script Syntax</a></li>
 </ul>
 </li>
 <li><a href="#rcfile">6. <code>SCPIrcFile</code> Class</a>
 <ul>
-<li><a href="#org2df68ec">6.1. <code>mrNetwork.rb</code></a></li>
-<li><a href="#orgf3b149a">6.2. <code>teAlias.rb</code></a></li>
+<li><a href="#orgd14bfa9">6.1. <code>mrNetwork.rb</code></a></li>
+<li><a href="#org2eff352">6.2. <code>teAlias.rb</code></a></li>
 <li><a href="#rcfile-example">6.3. Example RC file</a></li>
 </ul>
 </li>
@@ -313,7 +313,7 @@ Systems designed from the ground up to support very complex use cases frequently
 captured the phenomenon quite clearly when he said:
 </p>
 
-<pre class="example" id="org83c4c90">
+<pre class="example" id="orgc9c19a8">
 Perl makes easy things easy and hard things possible. 
 Professional programming languages tend to make all things equally difficult.
 </pre>
@@ -342,41 +342,8 @@ Links:
 <li>Documentation: <a href="https://richmit.github.io/mrSCPI/">https://richmit.github.io/mrSCPI/</a></li>
 <li>RDoc API Documentation: <a href="https://richmit.github.io/mrSCPI/rdoc/index.html">https://richmit.github.io/mrSCPI/rdoc/index.html</a></li>
 <li>Additional examples: <a href="https://github.com/richmit/TestEquipmentScripts">https://github.com/richmit/TestEquipmentScripts</a></li>
-<li>Github repo:: <a href="https://github.com/richmit/mrSCPI">https://github.com/richmit/mrSCPI</a></li>
-</ul>
-
-
-<p>
-Changelog
-</p>
-
-<ul class="org-ul">
-<li>2026-01-22
-<ul class="org-ul">
-<li>Added better documentation in SCPIsequence</li>
-</ul></li>
-<li>2026-01-11
-<ul class="org-ul">
-<li>SCPIsession parameter changes: 
-<ul class="org-ul">
-<li>Implimented :print_result_puts
-<ul class="org-ul">
-<li>Truncated messages in outPrinter now printed via puts</li>
-<li>mrSCPI command line mode (and script mode) set :print_result_puts set to true</li>
-</ul></li>
-<li>Renamed: :good_std_eot -&gt; :good_eot_std</li>
-<li>New: :good_eot_cr, :good_eot_crlf, &amp; :good_eot_lf</li>
-</ul></li>
-<li>SCPIsession
-<ul class="org-ul">
-<li>Fixed bug with :var</li>
-</ul></li>
-</ul></li>
-<li>2025-06-20
-<ul class="org-ul">
-<li>Lots of documentation updates</li>
-<li>Better example comments</li>
-</ul></li>
+<li>Github repo: <a href="https://github.com/richmit/mrSCPI">https://github.com/richmit/mrSCPI</a></li>
+<li>Changelog: <a href="https://richmit.github.io/mrSCPI/rdoc/changelog.html">https://richmit.github.io/mrSCPI/rdoc/changelog.html</a></li>
 </ul>
 <hr />
 </blockquote>
@@ -444,8 +411,8 @@ plays a central role in my workflow, this is one of the most important aspects o
 section provides some insight into my workflow.  If you are not interested in <a href="https://www.gnu.org/software/emacs/">Emacs</a>, then you can safely skip this section.
 </p>
 </div>
-<div id="outline-container-org0802a66" class="outline-3">
-<h3 id="org0802a66"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
+<div id="outline-container-orgd456f4f" class="outline-3">
+<h3 id="orgd456f4f"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I always have my laboratory notebook open at the bench &#x2013; just an <a href="https://orgmode.org/"><code>org-mode</code></a> document loaded up in <a href="https://www.gnu.org/software/emacs/">Emacs</a> running on my bench computer. I have
@@ -466,8 +433,8 @@ Then, when I come back to my experiment some time later, I can have <a href="htt
 </p>
 </div>
 </div>
-<div id="outline-container-orgc5da23a" class="outline-3">
-<h3 id="orgc5da23a"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
+<div id="outline-container-orgb77913d" class="outline-3">
+<h3 id="orgb77913d"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of cource I include in my notes littel bits of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code for common
@@ -484,8 +451,8 @@ of buttons to run them.  This has proven to be super handy, and saves me a ton o
 </div>
 </div>
 </div>
-<div id="outline-container-orgd813f56" class="outline-3">
-<h3 id="orgd813f56"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
+<div id="outline-container-org53baf1f" class="outline-3">
+<h3 id="org53baf1f"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code &amp; results
@@ -500,16 +467,16 @@ from <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, <a hre
 </div>
 </div>
 </div>
-<div id="outline-container-org9f3c1a2" class="outline-3">
-<h3 id="org9f3c1a2"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
+<div id="outline-container-org8dc174c" class="outline-3">
+<h3 id="org8dc174c"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 I put the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
 If you have some other organizational structure for your auxiliary <a href="https://www.gnu.org/software/emacs/">Emacs</a> files, then feel free to use it!
 </p>
 </div>
-<div id="outline-container-orga2dd634" class="outline-4">
-<h4 id="orga2dd634"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
+<div id="outline-container-org51a01f7" class="outline-4">
+<h4 id="org51a01f7"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
@@ -523,8 +490,8 @@ A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code
 </div>
 </div>
 </div>
-<div id="outline-container-org4c47ca9" class="outline-4">
-<h4 id="org4c47ca9"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
+<div id="outline-container-org24a4607" class="outline-4">
+<h4 id="org24a4607"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 A language module for <a href="https://orgmode.org/"><code>org-mode</code></a> Babel may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el">emacs/ob-mrscpi.el</a>.  The magical
@@ -608,6 +575,13 @@ All the magic is in the <code>SCPIsession.new</code> call:
 <li>With the next two lines we tell <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> to print the result into a file</li>
 <li>Lastly we tell it the command to use.</li>
 </ul>
+
+
+<p>
+You can find this script in my
+<a href="https://github.com/richmit/TestEquipmentScripts"><code>TestEquipmentScripts</code></a> github repo with the filename
+<a href="https://github.com/richmit/TestEquipmentScripts/blob/main/screenshot_dho4k.rb"><code>screenshot_dho4k.rb</code></a>.
+</p>
 </div>
 </div>
 </div>
@@ -620,7 +594,9 @@ here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> sc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
+<pre class="src src-mrscpi"><span style="color: #ffa500;">#!/usr/bin/env -S mrSCPI.rb</span>
+
+<span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
 <span style="color: #00ffff;">:eval</span> <span style="color: #7fffd4;">imgFileName</span>=<span style="color: #6495ed;">Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" </span><span style="color: #ffa500;"># Filename for PNG</span>
 <span style="color: #00ffff;">:result_macro_block</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                   <span style="color: #ffa500;"># Expect/Extract a block</span>
 <span style="color: #00ffff;">:print_result</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                         <span style="color: #ffa500;"># Print the block</span>
@@ -630,9 +606,13 @@ here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> sc
 </div>
 
 <p>
-Notice how the code parallels the Ruby script.  Essentially the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script is what was inside the <code>SCPIsession.new</code> call in the Ruby script!  Also
-note the shebang line (<code>#!/usr/bin/env mrSCPI.rb</code>).  This is how we make a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script executable on the command line &#x2013; just like a shell script.
-The script above, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi"><code>dho4ksc.mrscpi</code></a>, may be found in the <code>example</code> directory.
+Notice how the code parallels the <a href="#ruby-example">Ruby script above</a>.  Essentially the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script is what was inside the <code>SCPIsession.new</code> call in
+the Ruby script!  Also note the shebang line (<code>#!/usr/bin/env mrSCPI.rb</code>).  This is how we make a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script executable on the command line &#x2013; just
+like a shell script.  The script above may be found in the <a href="https://github.com/richmit/mrSCPI/blob/main/examples/"><code>example</code></a> directory of the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>
+git repository as, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi"><code>dho4ksc.mrscpi</code></a>,
+</p>
+
+<p>
 Let's take a look at another simple script.
 </p>
 
@@ -667,10 +647,22 @@ Note that scripts can also be provided on <code>STDIN</code>.  If we continue wi
 
 <p>
 Scripts can be described on the command line with arguments instead of being put in a script file.  You simply replace the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script commands with
-arguments of the same name.  For small scripts with just a couple commands, this can be very handy.  What may be more useful is using command line script
-arguments <b>with</b> a script file.  When we do this it is as if we prepend the script file with the commands given as arguments.  One thing to note is that the
-first <code>:url</code> option will override any subsequent instances &#x2013; this is also true for <code>:ip_address</code>, <code>:net_port</code>, &amp; <code>:net_protocol</code> as well.  For example we
-could do something like this to connect to an alternate DMM:
+arguments of the same name.  For small scripts with just a couple commands, this can be very handy.  Here is an example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mrSCPI.rb --url @34401a --cmd <span style="color: #fa8072;">'*IDN?'</span>
+</pre>
+</div>
+
+<p>
+Note the quotes on the command are required because the asterisk (*) and question mark (?) have special meaning for the shell.
+</p>
+
+<p>
+It is possible to combine command line script components arguments <b>with</b> a script file.  When we do this it is as if we prepend the script file with the
+commands given as arguments.  One thing to note is that the first <code>:url</code> option will override any subsequent instances &#x2013; this is also true for <code>:ip_address</code>,
+<code>:net_port</code>, &amp; <code>:net_protocol</code> as well.  For example we could do something like this to connect to an alternate DMM:
 </p>
 
 <div class="org-src-container">
@@ -722,7 +714,7 @@ If we wanted the default values, then we could have just used this:
 Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href="https://orgmode.org/"><code>org-mode</code></a> code block, we could set these variables via the <code>src</code> header arguments like so:
 </p>
 
-<pre class="example" id="org4972fc0">
+<pre class="example" id="org07f112b">
 #+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
 </pre>
 
@@ -730,8 +722,8 @@ Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href=
 Note that the "new" commands (<code>:url</code>, <code>:ip_address</code>, <code>:net_port</code>, &amp; <code>:net_protocol</code>) can not be parameterized with variables, but they can be overridden.
 </p>
 </div>
-<div id="outline-container-org6ea0aa8" class="outline-3">
-<h3 id="org6ea0aa8"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
+<div id="outline-container-org096e182" class="outline-3">
+<h3 id="org096e182"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Script syntax is very simple.  Each line starts with an <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> command, and each command is a parameter for one of the following classes:
@@ -753,8 +745,8 @@ Script syntax is very simple.  Each line starts with an <a href="https://richmit
 documentation.  The basics can be illustrated with a couple examples:
 </p>
 </div>
-<div id="outline-container-org2df68ec" class="outline-3">
-<h3 id="org2df68ec"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
+<div id="outline-container-orgd14bfa9" class="outline-3">
+<h3 id="orgd14bfa9"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 This script simply prints out the name of the current host's network as specified in the <code>.mrSCPIrc</code> file.
@@ -790,13 +782,13 @@ this script on my laptop, it will print "<code>ssh</code>" because that's what I
 </pre>
 </div>
 
-<pre class="example" id="org270c394">
+<pre class="example" id="org3086afd">
 "ssh"
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf3b149a" class="outline-3">
-<h3 id="orgf3b149a"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
+<div id="outline-container-org2eff352" class="outline-3">
+<h3 id="org2eff352"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 This sciprt looks up connection information in the <code>.mrSCPIrc</code> file.
@@ -868,7 +860,7 @@ From the living room:
 </pre>
 </div>
 
-<pre class="example" id="org5d6f690">
+<pre class="example" id="orgd58f156">
 raw://127.0.0.1:9012
 </pre>
 
@@ -881,7 +873,7 @@ From the bench:
 </pre>
 </div>
 
-<pre class="example" id="org43ff2ae">
+<pre class="example" id="orgee127b9">
 raw://ps-rns.home.mitchr.me:5025
 </pre>
 </div>
@@ -903,47 +895,37 @@ Note that only the first two sections (nicknames &amp; networks) contain RC file
 <div class="org-src-container">
 <pre class="src src-perl"><span style="color: #ffa500;">#####################################################################################################################</span>
 <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">SCPI Nicknames ####################################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">........CNAME......nicknames.................Bench Network................................ssh to bench-pi...........</span>
-nickname 33210ae    33210a    aawge  aawg  =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:5025  ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9001   
-nickname 33210aw              aawgw        =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:443 ssh@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9002   
-nickname 34401ap              dmmp         =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9003   
-nickname 34401as    34401a    dmms   dmm   =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10001     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9004   
-nickname 53131ap    53131a    countp count =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9005   
-nickname dg2052e    dg2052    dg2ke  dg2k  =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:5555    ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9006   
-nickname dg2052w              dg2kw        =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9007   
-nickname dho4204e   dho4204   dho4ke dho4k =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:5555 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9008   
-nickname dho4204w             dho4kw       =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9009   
-nickname dmm6500e   dmm6500   6500e  6500  =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:5025 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9010   
-nickname dmm6500w             6500w        =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9011   
-nickname hmc8043e   hmc8043   pse    ps    =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:5025       ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9012   
-nickname hmc8043w             psw          =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9013   
-nickname sds2504xpe sds2504xp sig2ke sig2k =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:5025   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9014   
-nickname sds2504xpw           sig2kw       =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9015   
-nickname serialw              serial       =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9016   
-nickname tds2024s             tek2ks tek2k =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10002     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9017   
-nickname tds3052bh  tds3052b  tek3kh tek3k =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9018   
-nickname tds3052bp            tek3kp       =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9019   
-nickname tds3052bs            tek3ks       =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10003     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9020   
-nickname tds3052bw            tek3kw       =&gt; bench@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9021   
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">........CNAME......nicknames.................Directly Connected Network....................ssh to bench-pi...........</span>
+nickname 33210ae    33210a    aawge  aawg  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:5025  ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9001   
+nickname 33210aw              aawgw        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:443 ssh@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9002   
+nickname 34401ap              dmmp         =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9003   
+nickname 34401as    34401a    dmms   dmm   =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10001     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9004   
+nickname 53131ap    53131a    countp count =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9005   
+nickname dg2052e    dg2052    dg2ke  dg2k  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:5555    ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9006   
+nickname dg2052w              dg2kw        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9007   
+nickname dho4204e   dho4204   dho4ke dho4k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:5555 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9008   
+nickname dho4204w             dho4kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9009   
+nickname dmm6500e   dmm6500   6500e  6500  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:5025 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9010   
+nickname dmm6500w             6500w        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9011   
+nickname hmc8043e   hmc8043   pse    ps    =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:5025       ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9012   
+nickname hmc8043w             psw          =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9013   
+nickname sds2504xpe sds2504xp sig2ke sig2k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:5025   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9014   
+nickname sds2504xpw           sig2kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9015   
+nickname serialw              serial       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9016   
+nickname tds2024s             tek2ks tek2k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10002     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9017   
+nickname tds3052bh  tds3052b  tek3kh tek3k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9018   
+nickname tds3052bp            tek3kp       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9019   
+nickname tds3052bs            tek3ks       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10003     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9020   
+nickname tds3052bw            tek3kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9021   
+nickname test                              =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234                   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234
 
 <span style="color: #ffa500;">#####################################################################################################################</span>
 <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Networks ##########################################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Name..Subnet.Mask......Comment...............................................................................</span>
-network bench 172.16.3.0/23   <span style="color: #ff7f24;"># Bench network for instruments (test equipment)</span>
-network ssh   172.16.1.0/24   <span style="color: #ff7f24;"># Home network</span>
-
-<span style="color: #ffa500;">#####################################################################################################################</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Serial Console Ports ##############################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.....Device..Line....Iface..Protocol..Port..Baud..Parity..DBits..SBits..Flow..Xon..Xof...Device....Tag..............</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     1    RS232    Tunnel 10001  9600    Even      7      2  SOFT   ^Q   ^S   34401A    Pink</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     2    RS232    Tunnel 10002 19200    Even      2      2  HARD   ^Q   ^S   TDS2024   Blue</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     3    RS232    Tunnel 10003 38400    None      8      1  HARD   ^Q   ^S   TDS3052B  Orange</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">scon serial     4 DISABLED        --    --     --      --     --     --    --   --   --   --</span>
-
-<span style="color: #ffa500;">#####################################################################################################################</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">GPIB/ETH ##########################################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">......Device.......Instrument....Note...............................................................................</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">geth  gpib-rover   53131a        # HP 53131A Counter</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Name...Subnet.Mask.....Comment...............................................................................</span>
+network direct 172.16.3.0/23   <span style="color: #ff7f24;"># Bench network with test equipment &amp; bench-pi</span>
+network direct 172.16.1.0/23   <span style="color: #ff7f24;"># Computer desk beside bench</span>
+network ssh    172.16.2.0/24   <span style="color: #ff7f24;"># Isolated work network</span>
+network ssh    172.16.4.0/24   <span style="color: #ff7f24;"># Isolated office network</span>
 </pre>
 </div>
 

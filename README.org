@@ -21,31 +21,8 @@ packages.  No PIPs. No GEMs.  Nothing to compile. Just a single script -- yes, t
 
 Links:
 
-  - Documentation: https://richmit.github.io/mrSCPI/
+  - Documentation: https://richmit.github.io/mrSCPI/index.html
   - RDoc API Documentation: https://richmit.github.io/mrSCPI/rdoc/index.html
   - Additional examples: https://github.com/richmit/TestEquipmentScripts
-  - Github repo:: https://github.com/richmit/mrSCPI
-
-
-Changelog
-
- - 2026-02-06
-   - non-printable characters printed by :print_cmd are now escaped.  
-   - Commands printed by :print_cmd are no longer chomped (the include, possibly escaped, EOL chars)
-   - Commands printed by :print_cmd are no longer stripped (all leading and trailing space is preserved)
- - 2026-01-22
-   - Added better documentation in SCPIsequence
-   - Fixed :result_split & :name bugs in script mode -- couldn't nil them.
-   - Removed nil option for :result_split_arg in scripts.
- - 2026-01-11
-   - SCPIsession parameter changes: 
-     - Implimented :print_result_puts
-       - Truncated messages in outPrinter now printed via puts
-       - mrSCPI command line mode (and script mode) set :print_result_puts set to true
-     - Renamed: :good_std_eot -> :good_eot_std
-     - New: :good_eot_cr, :good_eot_crlf, & :good_eot_lf
-   - SCPIsession
-     - Fixed bug with :var
- - 2025-06-20
-   - Lots of documentation updates
-   - Better example comments
+  - Github repo: https://github.com/richmit/mrSCPI
+  - Changelog: https://richmit.github.io/mrSCPI/changelog.html
