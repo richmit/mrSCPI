@@ -491,7 +491,7 @@
 <p>Output is prefixed and postfixed by <code>&#39;&gt;&gt;&#39;</code> and followed by a newline Non-printable characters are hex encoded. WARNING: <a href="SCPIsequence.html"><code>SCPIsequence</code></a> sets this to true when it constructs an <a href="SCPIsession.html"><code>SCPIsession</code></a> object</p>
 </li><li><dl class="rdoc-list note-list"><dt><code>:echo</code>(P/Boolean)</dt>
 <dd>
-<p>Sets both <code>:print_cmd</code> &amp; <code>:print_result</code> at the same time (DEFAULT: <code>false</code>)</p>
+<p>Sets <code>:print_cmd</code>, <code>:print_result</code>, &amp; <code>:print_result_puts</code> to the same time (DEFAULT: <code>false</code>)</p>
 </dd></dl>
 </li><li><dl class="rdoc-list note-list"><dt><code>:print_debug</code>(L/Boolean)</dt>
 <dd>
@@ -729,7 +729,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 436</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 441</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-ivar">@re</span>           = <span class="ruby-constant">SCPIregexLibrary</span>.<span class="ruby-identifier">instance</span>
   <span class="ruby-ivar">@gblOpt</span>       = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
@@ -852,7 +852,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="command-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 647</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 653</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">command</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">options</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-value">:cmd</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-constant">PrintyPrintyBangBang</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">logPrinter</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&quot;ERROR: :cmd must not appear in options list when calling &#39;command&#39;!&quot;</span>, <span class="ruby-keyword">self</span>, <span class="ruby-value">74</span>)
@@ -893,7 +893,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="execute-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 703</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 709</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>()
   <span class="ruby-identifier">time_exe_start</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-comment"># Make sure all required options required by new are set and valid</span>
@@ -1184,7 +1184,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="expand-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 680</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 686</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">expand</span> (<span class="ruby-identifier">instr</span>)
   <span class="ruby-identifier">expCnt</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">instr</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-ivar">@re</span>.<span class="ruby-identifier">a</span>(<span class="ruby-value">:mrs_varexp</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
@@ -1229,7 +1229,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="result-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 986</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 992</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">result</span>(<span class="ruby-value">index:</span> <span class="ruby-value">-1</span>, <span class="ruby-value">type:</span> <span class="ruby-value">:ret_val</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">String</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@results</span>.<span class="ruby-identifier">find_all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">index</span> }
@@ -1324,7 +1324,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="set-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 529</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 534</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set</span>(<span class="ruby-identifier">options</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>)
   <span class="ruby-identifier">objectUnderConstruction</span> = <span class="ruby-ivar">@gblOpt</span>.<span class="ruby-identifier">empty?</span>
   <span class="ruby-comment">#---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
@@ -1362,6 +1362,7 @@
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-value">:echo</span>) <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">options</span>[<span class="ruby-value">:print_cmd</span>]         = <span class="ruby-identifier">options</span>[<span class="ruby-value">:echo</span>]
     <span class="ruby-identifier">options</span>[<span class="ruby-value">:print_result</span>]      = <span class="ruby-identifier">options</span>[<span class="ruby-value">:echo</span>]
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:print_result_puts</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:echo</span>]
     <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:echo</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-comment">#---------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
@@ -1465,7 +1466,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="variable-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 665</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 671</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">variable</span> (<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">then</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@varList</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword">then</span>

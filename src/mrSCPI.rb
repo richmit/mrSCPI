@@ -353,7 +353,7 @@ end
 #   Output is prefixed and postfixed by <tt>'>>'</tt> and followed by a newline
 #   Non-printable characters are hex encoded.
 #   WARNING: SCPIsequence sets this to true when it constructs an SCPIsession object
-# - +:echo+(P/Boolean):: Sets both +:print_cmd+ & +:print_result+ at the same time (DEFAULT: +false+)
+# - +:echo+(P/Boolean):: Sets +:print_cmd+, +:print_result+, & +:print_result_puts+ to the same time (DEFAULT: +false+)
 # - +:print_debug+(L/Boolean):: All printed results are in Ruby +.inspect+ format and followed by a newline
 #   See: PrintyPrintyBangBang
 # - +:print_max_len+(L/Integer or nil):: Limit the number of characters printed (DEFAULT: +nil+)
@@ -568,6 +568,7 @@ class SCPIsession
     if options.member?(:echo) then
       options[:print_cmd]         = options[:echo]
       options[:print_result]      = options[:echo]
+      options[:print_result_puts] = options[:echo]
       options.delete(:echo)
     end
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------

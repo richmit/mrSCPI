@@ -307,7 +307,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 139</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>()
   <span class="ruby-ivar">@reDatabase</span> = [ [ <span class="ruby-value">:o488_NR1</span>,     <span class="ruby-string">&#39;([+-]?)([0-9]+)&#39;</span>,                                              <span class="ruby-string">&#39;^&#39;</span>, <span class="ruby-string">&#39;$&#39;</span>,                      <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENDED</span> <span class="ruby-operator">|</span> <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTILINE</span> ],
                   [ <span class="ruby-value">:o488_NR2</span>,     <span class="ruby-string">&#39;([+-]?)([0-9]+\.[0-9]+)&#39;</span>,                                      <span class="ruby-string">&#39;^&#39;</span>, <span class="ruby-string">&#39;$&#39;</span>,                      <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENDED</span> <span class="ruby-operator">|</span> <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTILINE</span> ],
@@ -379,7 +379,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="a-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 180</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">a</span>(<span class="ruby-identifier">aSymb</span>)
   <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@reListDef</span>[<span class="ruby-identifier">aSymb</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">then</span>
@@ -412,7 +412,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="u-source">
-            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 189</span>
+            <pre><span class="ruby-comment"># File src/mrSCPI.rb, line 194</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">u</span>(<span class="ruby-identifier">aSymb</span>)
   <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@reListNone</span>[<span class="ruby-identifier">aSymb</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">then</span>

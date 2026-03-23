@@ -35,6 +35,8 @@
 Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 
 
+ - 2026-03-23
+   - :echo now sets :print_result_puts too
  - 2026-02-09
    - Added a formal changelog file (removed it from the main README.org)
  - 2026-02-06
