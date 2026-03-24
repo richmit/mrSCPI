@@ -1,11 +1,11 @@
-#!/usr/bin/env -S mrSCPI.rb
+#!/usr/bin/env -S mrSCPI.rb -f
 # -*- Mode:mrscpi; Coding:us-ascii-unix; fill-column:158 -*-
 #########################################################################################################################################################.H.S.##
 ##
-# @file      example.mrscpi
+# @file      idn.mrscpi
 # @author    Mitch Richling http://www.mitchr.me/
-# @date      2025-06-19
-# @brief     Configure power supply with 15V bi-polar analog outputs and 4V digital output.@EOL
+# @date      2026-03-23
+# @brief     Simplest possible conditional example.@EOL
 # @keywords  scpi png mrSCPI
 # @std       mrscpi
 # @see       https://richmit.github.io/mrSCPI/
@@ -33,16 +33,12 @@
 #  @endparblock
 # @filedetails
 #
-#  This script configures my Rohde Schwarz HMC 8843 power supply to power up my "hotel chaos" project.  This project has an analog processing component that
-#  requires +15v and -15v, and a digital component that requires a +5v.  This script leaves the power supply configured, but the master enable OFF.
-#
 #########################################################################################################################################################.H.E.##
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
-:url @hmc8043
-:result_type nil
-:delay_after_complete 100
-:cmd :OUTPut:MASTer:STATe OFF'
-:cmd :INSTrument:NSELect 1; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${analog_voltage:10}; :OUTPut:CHANnel:STATe ON
-:cmd :INSTrument:NSELect 2; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${analog_voltage:10}; :OUTPut:CHANnel:STATe ON
-:cmd :INSTrument:NSELect 3; :SOURce:VOLTage:LEVel:IMMediate:AMPLitude ${digital_voltage:5}; :OUTPut:CHANnel:STATe ON
+:url @34401a                      # @34401a is an instrument connection "nickname"
+:name ids                         # We name the next :cmd that will run
+:cmd *IDN?                        # Creates ids variable and stores command result in it
+:skip_if ${ids}~34401[aA]         # Checks the result against a regular expression, and skips the next command if it matches
+:stop Unknown Device: ${ids}      # This line is skipped if the previous one was true.  Note :stop ends the script.
+:print Known Device: 34401A       # The normal script end -- when the regex above matches indicating a recognized device

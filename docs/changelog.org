@@ -35,19 +35,23 @@
 Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 
 
- - 2026-03-23
+ - 2026-03-24 ::
+   - Completely reworked documentation
+   - Examples are better orginized
+   - Added binary argument example
+ - 2026-03-23 ::
    - :echo now sets :print_result_puts too
- - 2026-02-09
+ - 2026-02-09 ::
    - Added a formal changelog file (removed it from the main README.org)
- - 2026-02-06
+ - 2026-02-06 ::
    - non-printable characters printed by :print_cmd are now escaped.  
    - Commands printed by :print_cmd are no longer chomped (the include, possibly escaped, EOL chars)
    - Commands printed by :print_cmd are no longer stripped (all leading and trailing space is preserved)
- - 2026-01-22
+ - 2026-01-22 ::
    - Added better documentation in SCPIsequence
    - Fixed :result_split & :name bugs in script mode -- couldn't nil them.
    - Removed nil option for :result_split_arg in scripts.
- - 2026-01-11
+ - 2026-01-11 ::
    - SCPIsession parameter changes: 
      - Implemented :print_result_puts
        - Truncated messages in outPrinter now printed via puts
@@ -56,6 +60,6 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
      - New: :good_eot_cr, :good_eot_crlf, & :good_eot_lf
    - SCPIsession
      - Fixed bug with :var
- - 2025-06-20
+ - 2025-06-20 ::
    - Lots of documentation updates
    - Better example comments

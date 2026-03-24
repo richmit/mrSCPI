@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-09 Mon 14:24 -->
+<!-- 2026-03-24 Tue 09:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>mrSCPI</title>
@@ -234,12 +234,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2026-02-09 14:24:02</i></td>
+<td class="org-left"><i>2026-03-24 09:59:06</i></td>
 </tr>
 
 <tr>
 <td class="org-right"><b>Generated:</b></td>
-<td class="org-left"><i>2026-02-09 14:24:04</i></td>
+<td class="org-left"><i>2026-03-24 09:59:08</i></td>
 </tr>
 </tbody>
 </table>
@@ -255,13 +255,13 @@ Copyright 2026 Mitch Richling. All rights reserved.
 <li><a href="#interfaces">2. Interfaces</a></li>
 <li><a href="#emacs-interface">3. Emacs as a <code>mrSCPI</code> Interface</a>
 <ul>
-<li><a href="#orgd456f4f">3.1. The Laboratory Notebook</a></li>
-<li><a href="#orgb77913d">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
-<li><a href="#org53baf1f">3.3. Integrated Data Capture and Analysis</a></li>
-<li><a href="#org8dc174c">3.4. Setting Up Emacs</a>
+<li><a href="#orga5337d5">3.1. The Laboratory Notebook</a></li>
+<li><a href="#org348ccd0">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
+<li><a href="#org5543a44">3.3. Integrated Data Capture and Analysis</a></li>
+<li><a href="#org1f6afbc">3.4. Setting Up Emacs</a>
 <ul>
-<li><a href="#org51a01f7">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
-<li><a href="#org24a4607">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
+<li><a href="#orgc191722">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
+<li><a href="#orgebed061">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
 </ul>
 </li>
 </ul>
@@ -272,24 +272,30 @@ Copyright 2026 Mitch Richling. All rights reserved.
 <li><a href="#ruby-example">4.2. Example</a></li>
 </ul>
 </li>
-<li><a href="#mrscpi-scripts">5. <code>mrSCPI</code> Scripts</a>
+<li><a href="#mrscpi-scripts">5. <code>mrSCPI</code> Scripts &amp; One Liners</a>
 <ul>
-<li><a href="#org096e182">5.1. <code>mrSCPI</code> Script Syntax</a></li>
+<li><a href="#mrscpi-scripts-idns">5.1. <code>mrSCPI</code> Script Example</a></li>
+<li><a href="#mrscpi-scripts-runs">5.2. Running <code>mrSCPI</code> Scripts</a></li>
+<li><a href="#mrscpi-scripts-1line">5.3. Running <code>mrSCPI</code> One Liners</a></li>
+<li><a href="#mrscpi-scripts-cmdln">5.4. <code>mrSCPI</code> Combining Scripts &amp; One-Liners (Command Line Arguments)</a></li>
+<li><a href="#mrscpi-scripts-syntax">5.5. <code>mrSCPI</code> Script Syntax</a></li>
 </ul>
 </li>
-<li><a href="#rcfile">6. <code>SCPIrcFile</code> Class</a>
+<li><a href="#lib-vs-script">6. <code>mrSCPI</code> Library Use Vs. <code>mrSCPI</code> Scripts</a></li>
+<li><a href="#rcfile">7. <code>SCPIrcFile</code> Class</a>
 <ul>
-<li><a href="#orgd14bfa9">6.1. <code>mrNetwork.rb</code></a></li>
-<li><a href="#org2eff352">6.2. <code>teAlias.rb</code></a></li>
-<li><a href="#rcfile-example">6.3. Example RC file</a></li>
+<li><a href="#rcfile-example">7.1. Simple RC file</a></li>
+<li><a href="#rcfile-myrc">7.2. My RC file</a></li>
+<li><a href="#org62b43f1">7.3. <code>mrNetwork.rb</code></a></li>
+<li><a href="#org5290856">7.4. <code>teAlias.rb</code></a></li>
 </ul>
 </li>
-<li><a href="#features">7. Features (current &amp; future)</a></li>
-<li><a href="#faq">8. FAQ</a>
+<li><a href="#features">8. Features (current &amp; future)</a></li>
+<li><a href="#faq">9. FAQ</a>
 <ul>
-<li><a href="#faq-require">8.1. Why don't you use a simple <code>require</code> to load <code>mrSCPI</code> in Ruby scripts?</a></li>
-<li><a href="#faq-examples">8.2. Where can I find more examples?</a></li>
-<li><a href="#faq-lxi">8.3. Where is LXI support?</a></li>
+<li><a href="#faq-require">9.1. Why don't you use a simple <code>require</code> to load <code>mrSCPI</code> in Ruby scripts?</a></li>
+<li><a href="#faq-examples">9.2. Where can I find more examples?</a></li>
+<li><a href="#faq-lxi">9.3. Where is LXI support?</a></li>
 </ul>
 </li>
 </ul>
@@ -313,7 +319,7 @@ Systems designed from the ground up to support very complex use cases frequently
 captured the phenomenon quite clearly when he said:
 </p>
 
-<pre class="example" id="orgc9c19a8">
+<pre class="example" id="org69d9f46">
 Perl makes easy things easy and hard things possible. 
 Professional programming languages tend to make all things equally difficult.
 </pre>
@@ -339,11 +345,11 @@ Links:
 </p>
 
 <ul class="org-ul">
-<li>Documentation: <a href="https://richmit.github.io/mrSCPI/">https://richmit.github.io/mrSCPI/</a></li>
+<li>Documentation: <a href="https://richmit.github.io/mrSCPI/index.html">https://richmit.github.io/mrSCPI/index.html</a></li>
 <li>RDoc API Documentation: <a href="https://richmit.github.io/mrSCPI/rdoc/index.html">https://richmit.github.io/mrSCPI/rdoc/index.html</a></li>
 <li>Additional examples: <a href="https://github.com/richmit/TestEquipmentScripts">https://github.com/richmit/TestEquipmentScripts</a></li>
 <li>Github repo: <a href="https://github.com/richmit/mrSCPI">https://github.com/richmit/mrSCPI</a></li>
-<li>Changelog: <a href="https://richmit.github.io/mrSCPI/rdoc/changelog.html">https://richmit.github.io/mrSCPI/rdoc/changelog.html</a></li>
+<li>Changelog: <a href="https://richmit.github.io/mrSCPI/changelog.html">https://richmit.github.io/mrSCPI/changelog.html</a></li>
 </ul>
 <hr />
 </blockquote>
@@ -357,7 +363,7 @@ The <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> ecosyste
 </p>
 
 <dl class="org-dl">
-<dt>Ruby API (See the <a href="#ruby">Ruby API</a> section for more detail)</dt><dd>For complex test automation requiring a real programming language.  
+<dt>Ruby API (See the <a href="#ruby">Ruby API</a> section for more detail)</dt><dd>For complex test automation requiring a real programming language.
 This stateful API is unlike most test automation APIs and naturally compliments the way many <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks are preformed &#x2026; Or at least the way I tend to use <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a>. <code>;)</code></dd>
 </dl>
 
@@ -378,7 +384,7 @@ This stateful API is unlike most test automation APIs and naturally compliments 
 </div>
 
 <dl class="org-dl">
-<dt><a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts (See the <a href="#mrscpi-scripts">Scripts</a> section for more detail) </dt><dd>An efficient scripting language for simple <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks.  
+<dt><a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts (See the <a href="#mrscpi-scripts">Scripts</a> section for more detail) </dt><dd>An efficient scripting language for simple <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> tasks.
 Full <a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support is included enabling instrument control right from your laboratory notebook!</dd>
 </dl>
 
@@ -403,7 +409,6 @@ If you don't have any interest in <a href="https://www.gnu.org/software/emacs/">
 </p>
 </blockquote>
 
-
 <p>
 <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> really has nothing to do with <a href="https://www.gnu.org/software/emacs/">Emacs</a>; however, as an enthusiastic <a href="https://www.gnu.org/software/emacs/">Emacs</a> user, I wanted to be able to use <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> from inside
 <a href="https://www.gnu.org/software/emacs/">Emacs</a>!  To that end I have developed a bit of <a href="https://www.gnu.org/software/emacs/">Emacs</a> software to seamlessly integrate <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> into <a href="https://www.gnu.org/software/emacs/">Emacs</a>.  For me, because <a href="https://www.gnu.org/software/emacs/">Emacs</a>
@@ -411,8 +416,8 @@ plays a central role in my workflow, this is one of the most important aspects o
 section provides some insight into my workflow.  If you are not interested in <a href="https://www.gnu.org/software/emacs/">Emacs</a>, then you can safely skip this section.
 </p>
 </div>
-<div id="outline-container-orgd456f4f" class="outline-3">
-<h3 id="orgd456f4f"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
+<div id="outline-container-orga5337d5" class="outline-3">
+<h3 id="orga5337d5"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I always have my laboratory notebook open at the bench &#x2013; just an <a href="https://orgmode.org/"><code>org-mode</code></a> document loaded up in <a href="https://www.gnu.org/software/emacs/">Emacs</a> running on my bench computer. I have
@@ -433,13 +438,13 @@ Then, when I come back to my experiment some time later, I can have <a href="htt
 </p>
 </div>
 </div>
-<div id="outline-container-orgb77913d" class="outline-3">
-<h3 id="orgb77913d"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
+<div id="outline-container-org348ccd0" class="outline-3">
+<h3 id="org348ccd0"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of cource I include in my notes littel bits of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code for common
+I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of course I include in my notes little bits of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code for common
 things I do with my test equipment.  I could simply put my cursor on those code bits in <a href="https://orgmode.org/"><code>org-mode</code></a> and execute them, but I wanted a quicker way to access
-these code snippits. So I added an <a href="https://www.gnu.org/software/emacs/">Emacs</a> function that finds all the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> code bits in an <a href="https://orgmode.org/"><code>org-mode</code></a> document, and produces a GUI window full
+these code snippets. So I added an <a href="https://www.gnu.org/software/emacs/">Emacs</a> function that finds all the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> code bits in an <a href="https://orgmode.org/"><code>org-mode</code></a> document, and produces a GUI window full
 of buttons to run them.  This has proven to be super handy, and saves me a ton of time at the bench.  Here is an example of one of my button buffers:
 </p>
 
@@ -451,8 +456,8 @@ of buttons to run them.  This has proven to be super handy, and saves me a ton o
 </div>
 </div>
 </div>
-<div id="outline-container-org53baf1f" class="outline-3">
-<h3 id="org53baf1f"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
+<div id="outline-container-org5543a44" class="outline-3">
+<h3 id="org5543a44"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code &amp; results
@@ -467,16 +472,16 @@ from <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, <a hre
 </div>
 </div>
 </div>
-<div id="outline-container-org8dc174c" class="outline-3">
-<h3 id="org8dc174c"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
+<div id="outline-container-org1f6afbc" class="outline-3">
+<h3 id="org1f6afbc"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 I put the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
 If you have some other organizational structure for your auxiliary <a href="https://www.gnu.org/software/emacs/">Emacs</a> files, then feel free to use it!
 </p>
 </div>
-<div id="outline-container-org51a01f7" class="outline-4">
-<h4 id="org51a01f7"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
+<div id="outline-container-orgc191722" class="outline-4">
+<h4 id="orgc191722"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
@@ -490,8 +495,8 @@ A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code
 </div>
 </div>
 </div>
-<div id="outline-container-org24a4607" class="outline-4">
-<h4 id="org24a4607"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
+<div id="outline-container-orgebed061" class="outline-4">
+<h4 id="orgebed061"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 A language module for <a href="https://orgmode.org/"><code>org-mode</code></a> Babel may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el">emacs/ob-mrscpi.el</a>.  The magical
@@ -527,9 +532,9 @@ in that they stay in effect until changed. Using the API always follows the same
 </p>
 
 <ol class="org-ol">
-<li>Create an <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> object (The <code>:url</code>, <code>:ip_address</code>, <code>:net_protocol</code>, and <code>:net_port</code> parameters are used by new)</li>
-<li>Set parameters regarding how you want to run <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> commands</li>
-<li>Set the <code>:cmd</code> parameter to execute an <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> command</li>
+<li>Create an <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> object (The <code>:url</code>, <code>:ip_address</code>, <code>:net_protocol</code>, and <code>:net_port</code> parameters are used by new).</li>
+<li>Set parameters regarding how we wish to run <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> commands and what to do with the results.</li>
+<li>Set the <code>:cmd</code> parameter to execute an <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> command.</li>
 <li>Go back to 2) till everything is done</li>
 </ol>
 
@@ -542,27 +547,18 @@ See the documentation for the <a href="rdoc/SCPIsession.html"><code>SCPIsession<
 <h3 id="ruby-example"><span class="section-number-3">4.2.</span> Example</h3>
 <div class="outline-text-3" id="text-ruby-example">
 <p>
-In the following example, we pull a PNG screenshot from a Rigol DHO2000/4000 series oscilloscope.  
+In the following example, we run the <code>*IDN?</code> command on my DMM.  This is about the simplest thing we can do with <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> &#x2013; a single instrument
+connection through which we send a single command.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ruby">
-<span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ARGV</span>[0] <span style="color: #00ffff;">then</span>
-  <span style="color: #b0c4de;">puts</span>(<span style="color: #fa8072;">"This script will pull a PNG screenshot from a Rigol DHO2000/4000 series oscilloscope."</span>)
-  <span style="color: #b0c4de;">puts</span>(<span style="color: #fa8072;">"The screenshot file looks like DATESTAMP_DHO.png"</span>)
-  <span style="color: #b0c4de;">exit</span>
-<span style="color: #00ffff;">end</span>
-
+<pre class="src src-ruby"><span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Search for mrSCPI.rb on my shell PATH variable and load it up.</span>
 <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
 
-imgFileName = <span style="color: #fa8072;">"</span><span style="color: #7fffd4;">#{Time.now.localtime.strftime('%Y%m%d%H%M%S')}</span><span style="color: #fa8072;">_DHO.png"</span>
-theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span>                =&gt; <span style="color: #fa8072;">'@dho4k'</span>,
-                                 <span style="color: #8470ff; font-weight: bold;">:result_macro_block</span> =&gt; <span style="color: #8470ff; font-weight: bold;">true</span>,
-                                 <span style="color: #8470ff; font-weight: bold;">:print_result</span>       =&gt; <span style="color: #8470ff; font-weight: bold;">true</span>,
-                                 <span style="color: #8470ff; font-weight: bold;">:out_file</span>           =&gt; imgFileName,
-                                 <span style="color: #8470ff; font-weight: bold;">:cmd</span>                =&gt; <span style="color: #fa8072;">':DISPlay:DATA? PNG'</span>
-                                )
-<span style="color: #b0c4de;">puts</span>(<span style="color: #fa8072;">"screenshot_dho4k.rb: Screen image captured to: </span><span style="color: #7fffd4;">#{imgFileName}</span><span style="color: #fa8072;">"</span>)
+theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span> =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Connect using "nickname" to my DMM</span>
+                                 <span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">"*IDN?"</span>)     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send the *ION command to the instrument</span>
+
+<span style="color: #b0c4de;">puts</span>(<span style="color: #fa8072;">"The Result: </span><span style="color: #7fffd4;">#{theSPCIsession.result.inspect}</span><span style="color: #fa8072;">"</span>)  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Print out what we received</span>
 </pre>
 </div>
 
@@ -570,69 +566,123 @@ theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span styl
 All the magic is in the <code>SCPIsession.new</code> call:
 </p>
 <ul class="org-ul">
-<li>First we tell it where to connect with <code>:url</code></li>
-<li>Next we tell <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> that we expect to get a IEEE 488.2 binary block, and that we want <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> to extract that block.</li>
-<li>With the next two lines we tell <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> to print the result into a file</li>
+<li>First we tell it where to connect with <code>:url</code>.</li>
 <li>Lastly we tell it the command to use.</li>
 </ul>
 
-
 <p>
-You can find this script in my
-<a href="https://github.com/richmit/TestEquipmentScripts"><code>TestEquipmentScripts</code></a> github repo with the filename
-<a href="https://github.com/richmit/TestEquipmentScripts/blob/main/screenshot_dho4k.rb"><code>screenshot_dho4k.rb</code></a>.
+Source code: <a href="https://github.com/richmit/mrSCPI/blob/main/examples/idn.rb"><code>idn.rb</code></a>.
 </p>
 </div>
 </div>
 </div>
 <div id="outline-container-mrscpi-scripts" class="outline-2">
-<h2 id="mrscpi-scripts"><span class="section-number-2">5.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts</h2>
+<h2 id="mrscpi-scripts"><span class="section-number-2">5.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts &amp; One Liners</h2>
 <div class="outline-text-2" id="text-mrscpi-scripts">
 <p>
-Even if you only want to know about scripts, I encourage you to read the section on <a href="#api-philosophy">Ruby API Structure &amp; Philosophy</a>.  To begin,
-here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script version of the Ruby script given in that section:
+Even if you only want to know about scripts, I encourage you to read the section on <a href="#api-philosophy">Ruby API Structure &amp; Philosophy</a>.
+</p>
+</div>
+<div id="outline-container-mrscpi-scripts-idns" class="outline-3">
+<h3 id="mrscpi-scripts-idns"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Example</h3>
+<div class="outline-text-3" id="text-mrscpi-scripts-idns">
+<p>
+To begin, here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script that mirrors the <a href="#ruby-example">example Ruby script given above</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #ffa500;">#!/usr/bin/env -S mrSCPI.rb</span>
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a  </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname" for my DMM</span>
+<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?    </span><span style="color: #ffa500;"># Run the *IDN? command</span>
 
-<span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
-<span style="color: #00ffff;">:eval</span> <span style="color: #7fffd4;">imgFileName</span>=<span style="color: #6495ed;">Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" </span><span style="color: #ffa500;"># Filename for PNG</span>
-<span style="color: #00ffff;">:result_macro_block</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                   <span style="color: #ffa500;"># Expect/Extract a block</span>
-<span style="color: #00ffff;">:print_result</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                         <span style="color: #ffa500;"># Print the block</span>
-<span style="color: #00ffff;">:out_file</span> <span style="color: #7fffd4;">${imgFileName}</span><span style="color: #fa8072;">                                                   </span><span style="color: #ffa500;">#   into a filename</span>
-<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">:DISPlay:DATA? PNG                                                    </span><span style="color: #ffa500;"># Send the command</span>
 </pre>
 </div>
 
 <p>
-Notice how the code parallels the <a href="#ruby-example">Ruby script above</a>.  Essentially the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script is what was inside the <code>SCPIsession.new</code> call in
-the Ruby script!  Also note the shebang line (<code>#!/usr/bin/env mrSCPI.rb</code>).  This is how we make a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script executable on the command line &#x2013; just
-like a shell script.  The script above may be found in the <a href="https://github.com/richmit/mrSCPI/blob/main/examples/"><code>example</code></a> directory of the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>
-git repository as, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi"><code>dho4ksc.mrscpi</code></a>,
+Notice how the code parallels the <a href="#ruby-example">Ruby script above</a>; however, there is one important difference &#x2013; we don't need to explicitly print out
+the result from the command.  When run in "script mode", <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> echos the command and result to STDOUT.  From an API standpoint, this means the
+following three parameters have different default values:
 </p>
 
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<caption class="t-above"><span class="table-number">Table 1:</span> Parameters With Different "script mode" vs "Library Mode" Defaults</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">parameter</th>
+<th scope="col" class="org-left">script mode</th>
+<th scope="col" class="org-left">Library mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>:print_result</code></td>
+<td class="org-left">true</td>
+<td class="org-left">false</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>:print_result_puts</code></td>
+<td class="org-left">true</td>
+<td class="org-left">false</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>:print_cmd</code></td>
+<td class="org-left">true</td>
+<td class="org-left">false</td>
+</tr>
+</tbody>
+</table>
+
 <p>
-Let's take a look at another simple script.
+We can adjust the <a href="#ruby-example">Ruby example above</a> to work in the same way:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a                      </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname"</span>
-<span style="color: #00ffff;">:name</span> <span style="color: #fa8072;">ids                         </span><span style="color: #ffa500;"># We name the next :cmd that will run</span>
-<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?                        </span><span style="color: #ffa500;"># Creates ids variable and stores command result in it</span>
-<span style="color: #00ffff;">:skip_if</span> <span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">~34401[aA]         </span><span style="color: #ffa500;"># Checks the result against a regular expression, and skips the next command if it matches</span>
-<span style="color: #00ffff;">:stop</span> <span style="color: #fa8072;">Unknown Device: </span><span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">      </span><span style="color: #ffa500;"># This line is skipped if the previous one was true.  Note :stop ends the script.</span>
-<span style="color: #00ffff;">:print</span> <span style="color: #fa8072;">Known Device: 34401A       </span><span style="color: #ffa500;"># The normal script end -- when the regex above matches indicating a recognized device</span>
+<pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
+
+theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span>  =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Connect using "nickname" to my DMM</span>
+                                 <span style="color: #8470ff; font-weight: bold;">:echo</span> =&gt; <span style="color: #8470ff; font-weight: bold;">true</span>,        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Automatically print command and result</span>
+                                 <span style="color: #8470ff; font-weight: bold;">:cmd</span>  =&gt; <span style="color: #fa8072;">"*IDN?"</span>)     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send the *ION command to the instrument</span>
 </pre>
 </div>
 
 <p>
-The script above, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/example.mrscpi"><code>example.mrscpi</code></a>, may be found in the <code>example</code> directory.  From
-that directory, we can run it like so:
+Source code: <a href="https://github.com/richmit/mrSCPI/blob/main/examples/idn_echo.rb"><code>idn_echo.rb</code></a>.
+</p>
+
+<p>
+Notice the addition of the <code>:echo</code> parameter (which sets <code>:print_result</code>, <code>:print_result_puts</code>, &amp; <code>:print_cmd</code> at one time).  Also note that we have removed
+the <code>puts</code> call in the <a href="#ruby-example">previous example</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-mrscpi-scripts-runs" class="outline-3">
+<h3 id="mrscpi-scripts-runs"><span class="section-number-3">5.2.</span> Running <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts</h3>
+<div class="outline-text-3" id="text-mrscpi-scripts-runs">
+<p>
+Note the shebang line (<code>#!/usr/bin/env -S mrSCPI.rb -f</code>) in the <a href="#mrscpi-scripts-idns">first script example</a>.  This is how we make a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script
+executable on the command line &#x2013; just like a shell script.  From the For <code>example</code> directory, we can run this script in a shell like this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mrSCPI.rb -f example.mrscpi
+<pre class="src src-sh">./idn_echo.mrscpi
+</pre>
+</div>
+
+<p>
+We can also run scripts by invoking <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> directly and using the <code>-f</code> option like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mrSCPI.rb -f idn.mrscpi
 </pre>
 </div>
 
@@ -641,13 +691,18 @@ Note that scripts can also be provided on <code>STDIN</code>.  If we continue wi
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mrSCPI.rb -f STDIN &lt;example.mrscpi
+<pre class="src src-sh">mrSCPI.rb -f STDIN &lt;idn.mrscpi
 </pre>
 </div>
-
+</div>
+</div>
+<div id="outline-container-mrscpi-scripts-1line" class="outline-3">
+<h3 id="mrscpi-scripts-1line"><span class="section-number-3">5.3.</span> Running <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> One Liners</h3>
+<div class="outline-text-3" id="text-mrscpi-scripts-1line">
 <p>
-Scripts can be described on the command line with arguments instead of being put in a script file.  You simply replace the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script commands with
-arguments of the same name.  For small scripts with just a couple commands, this can be very handy.  Here is an example:
+Scripts can be described on the command line with arguments instead of being put in a script file &#x2013; something of an extension of the traditional UNIX "one
+liner script" concept.  For the most part we replace the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script commands with arguments of the same name.  Notice that it parallels
+<a href="#mrscpi-scripts-idns">first script example above</a>:
 </p>
 
 <div class="org-src-container">
@@ -658,26 +713,27 @@ arguments of the same name.  For small scripts with just a couple commands, this
 <p>
 Note the quotes on the command are required because the asterisk (*) and question mark (?) have special meaning for the shell.
 </p>
-
+</div>
+</div>
+<div id="outline-container-mrscpi-scripts-cmdln" class="outline-3">
+<h3 id="mrscpi-scripts-cmdln"><span class="section-number-3">5.4.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Combining Scripts &amp; One-Liners (Command Line Arguments)</h3>
+<div class="outline-text-3" id="text-mrscpi-scripts-cmdln">
 <p>
-It is possible to combine command line script components arguments <b>with</b> a script file.  When we do this it is as if we prepend the script file with the
-commands given as arguments.  One thing to note is that the first <code>:url</code> option will override any subsequent instances &#x2013; this is also true for <code>:ip_address</code>,
-<code>:net_port</code>, &amp; <code>:net_protocol</code> as well.  For example we could do something like this to connect to an alternate DMM:
+What if you wanted to make the <code>URL</code> part of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script be passed from the command line.  You could resort to using a one-liner, but <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>
+provides another way.  <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> has the ability to <i>combine</i> one-liner commands with commands found in a script file.  When we do this it is as if we
+prepend the script file with the commands given on the command line.  One thing to note is that the first <code>:url</code> option will override any subsequent instances
+&#x2013; this is also true for <code>:ip_address</code>, <code>:net_port</code>, &amp; <code>:net_protocol</code> as well.  For example we could do something like this to connect to an alternate DMM:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mrSCPI.rb --url @dmm2 example.mrscpi
+<pre class="src src-sh">./idn_echo.mrscpi --url @dmm2
 </pre>
 </div>
 
 <p>
-If we set the verbosity to level 2 (with -V 2), we will see a warning printed about the second <code>:url</code> command being ignored.
-</p>
-
-<p>
-A common technique is to parameterize things with variables, and then set those variables on the command line.  For example, suppose we wish to set our power
-supply up with the first two channels providing analog voltage rails and the third channel providing a voltage for a microcontroller.  We might use a script
-like the following:
+A common technique is to parameterize things with variables, provide default values for the variables in the script, and then override one or more variables
+on the command line.  For example, suppose we wish to set our power supply up with the first two channels providing analog voltage rails and the third channel
+providing a voltage for a microcontroller.  We might use a script like the following:
 </p>
 
 <div class="org-src-container">
@@ -692,12 +748,11 @@ like the following:
 </div>
 
 <p>
-The script above, <a href="https://github.com/richmit/mrSCPI/blob/main/examples/power_setup_example.mrscpi"><code>power_setup_example.mrscpi</code></a>, may be found in the
-<code>example</code> directory.  From that directory, we could set the variables and call the script like this:
+Source code: <a href="https://github.com/richmit/mrSCPI/blob/main/examples/power_setup.mrscpi"><code>power_setup.mrscpi</code></a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mrSCPI.rb -D <span style="color: #7fffd4;">analog_voltage</span>=15 -D <span style="color: #7fffd4;">digitial_voltage</span>=3.3 power_setup_example.mrscpi
+<pre class="src src-sh">mrSCPI.rb -D <span style="color: #7fffd4;">analog_voltage</span>=15 -D <span style="color: #7fffd4;">digitial_voltage</span>=3.3 power_setup.mrscpi
 </pre>
 </div>
 
@@ -706,7 +761,7 @@ If we wanted the default values, then we could have just used this:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mrSCPI.rb -f power_setup_example.mrscpi
+<pre class="src src-sh">mrSCPI.rb -f power_setup.mrscpi
 </pre>
 </div>
 
@@ -714,40 +769,272 @@ If we wanted the default values, then we could have just used this:
 Inside of <a href="https://www.gnu.org/software/emacs/">Emacs</a> in an <a href="https://orgmode.org/"><code>org-mode</code></a> code block, we could set these variables via the <code>src</code> header arguments like so:
 </p>
 
-<pre class="example" id="org07f112b">
-#+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
+<div class="org-src-container">
+<pre class="src src-org-mode">#+begin_src mrscpi :output verbatum :var analog_voltage="15" digitial_voltage="3.3"
 </pre>
+</div>
 
 <p>
 Note that the "new" commands (<code>:url</code>, <code>:ip_address</code>, <code>:net_port</code>, &amp; <code>:net_protocol</code>) can not be parameterized with variables, but they can be overridden.
 </p>
 </div>
-<div id="outline-container-org096e182" class="outline-3">
-<h3 id="org096e182"><span class="section-number-3">5.1.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
-<div class="outline-text-3" id="text-5-1">
+</div>
+<div id="outline-container-mrscpi-scripts-syntax" class="outline-3">
+<h3 id="mrscpi-scripts-syntax"><span class="section-number-3">5.5.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Script Syntax</h3>
+<div class="outline-text-3" id="text-mrscpi-scripts-syntax">
 <p>
-Script syntax is very simple.  Each line starts with an <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> command, and each command is a parameter for one of the following classes:
+<a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts and one-liners construct an <code>SCPIsequence</code> object in the background.  <code>SCPIsequence</code> objects provide a container
+<a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> for a script/one-liner object.  As such <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts may contain constructions and syntax that is not part of
+the <code>SCPIsession</code> object:
+</p>
+
+<ul class="org-ul">
+<li>Infrastructure to parse <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts into Ruby objects.</li>
+<li>Simple conditionals and loops.</li>
+<li>Ruby expression parsing and evaluation.</li>
+<li>Variable interpolation.</li>
+</ul>
+
+<p>
+This example runs <code>*IDN?</code>, and performs different actions based on the result (illustrating conditionals &amp; variable interpolation):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a                      </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname"</span>
+<span style="color: #00ffff;">:name</span> <span style="color: #fa8072;">ids                         </span><span style="color: #ffa500;"># We name the next :cmd that will run</span>
+<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?                        </span><span style="color: #ffa500;"># Creates ids variable and stores command result in it</span>
+<span style="color: #00ffff;">:skip_if</span> <span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">~34401[aA]         </span><span style="color: #ffa500;"># Checks the result against a regular expression, and skips the next command if it matches</span>
+<span style="color: #00ffff;">:stop</span> <span style="color: #fa8072;">Unknown Device: </span><span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">      </span><span style="color: #ffa500;"># This line is skipped if the previous one was true.  Note :stop ends the script.</span>
+<span style="color: #00ffff;">:print</span> <span style="color: #fa8072;">Known Device: 34401A       </span><span style="color: #ffa500;"># The normal script end -- when the regex above matches indicating a recognized device</span>
+</pre>
+</div>
+
+<p>
+Source code: <a href="https://github.com/richmit/mrSCPI/blob/main/examples/conditional.mrscpi"><code>conditional.mrscpi</code></a>.
+</p>
+
+<p>
+This example we construct a filename based on today's date and then store an oscilloscope screenshot in the file (illustrating Ruby code evaluation &amp; variable interpolation):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
+<span style="color: #00ffff;">:eval</span> <span style="color: #7fffd4;">imgFileName</span>=<span style="color: #6495ed;">Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" </span><span style="color: #ffa500;"># Filename for PNG</span>
+<span style="color: #00ffff;">:result_macro_block</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                   <span style="color: #ffa500;"># Expect/Extract a block</span>
+<span style="color: #00ffff;">:echo</span> <span style="color: #8470ff; font-weight: bold;">false</span>                                                                <span style="color: #ffa500;"># Do not echo the command</span>
+<span style="color: #00ffff;">:out_file</span> <span style="color: #7fffd4;">${imgFileName}</span><span style="color: #fa8072;">                                                   </span><span style="color: #ffa500;">#   into a filename</span>
+<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">:DISPlay:DATA? PNG                                                    </span><span style="color: #ffa500;"># Send the command</span>
+</pre>
+</div>
+
+<p>
+Source code: <a href="https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi"><code>dho4ksc.mrscpi</code></a>.
+</p>
+
+<p>
+The entirety of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script syntax may be compactly stated:
+</p>
+
+<blockquote>
+<p>
+Each line of a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script with an <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> command, and each command is a parameter for one of the following classes:
 </p>
 
 <ul class="org-ul">
 <li><a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a></li>
 <li><a href="rdoc/SCPIsequence.html"><code>SCPIsequence</code></a></li>
 </ul>
+
+<p>
+Syntax for the command arguments is completely defined by the <code>@optValToStr</code> member of <code>SCPIsequence</code>.
+</p>
+</blockquote>
 </div>
+</div>
+</div>
+<div id="outline-container-lib-vs-script" class="outline-2">
+<h2 id="lib-vs-script"><span class="section-number-2">6.</span> <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Library Use Vs. <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Scripts</h2>
+<div class="outline-text-2" id="text-lib-vs-script">
+<p>
+If all we need to do is execute a simple list of linear <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> commands on a instrument, then a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script or one-liner is probably the most
+direct option.  If the application requires complex logic, sophisticated data structures, or involved calculations; then using a Ruby script and <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> as a
+library is usually the best choice.  Between these two extremes, the choice between using <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> as a library <code>required</code> by a Ruby script vs a
+<a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script is largely up to personal preference.
+</p>
+
+<p>
+Passing IEEE-488.2 binary block format data as SCPI command arguments is an example of something that is much easier to do when using Ruby directly.  This is
+because in library mode we can pass parameters directly to an <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> object as native Ruby types. This makes library
+mode a bit more flexible from a data processing perspective.
+</p>
+
+<div class="org" id="org6bad757">
+<p>
+In the code below we provide 8192, 14-bit sample points as an IEEE-488.2 binary data block containing 16-bit integers to an Agilent 33210A arbitrary
+waveform generator.  This function generator can accept ASCII formatted floats, ASCII formatted integers, and binary integers.  With only 8k points there
+isn't much practical benefit to using binary mode, but it gives us a nice way to demonstrate how to do so with mrSCPI!
+</p>
+
+</div>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
+
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Number of data points for our curve.</span>
+size = 8192
+
+<span style="color: #00ffff;">if</span> (size &lt; 1) <span style="color: #00ffff;">then</span>
+  <span style="color: #63b8ff;">STDERR</span>.puts(<span style="color: #fa8072;">"ERROR: Data size too small!"</span>)
+  <span style="color: #b0c4de;">exit</span>
+<span style="color: #00ffff;">elsif</span> (size &gt; 8192) <span style="color: #00ffff;">then</span>
+  <span style="color: #63b8ff;">STDERR</span>.puts(<span style="color: #fa8072;">"ERROR: Data size too big!!"</span>)
+  <span style="color: #b0c4de;">exit</span>
+<span style="color: #00ffff;">end</span>
+
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Populate floating point data: fdata</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">We evaluate |sin(t)| over [0, 2pi].</span>
+fdata = <span style="color: #63b8ff;">Array</span>.new(size)
+fdata.each_index <span style="color: #00ffff;">do</span> |i|
+  fdata[i] = (<span style="color: #63b8ff;">Math</span>.sin(2 * <span style="color: #63b8ff;">Math</span>::<span style="color: #63b8ff;">PI</span> * i.to_f / size.to_f)).abs
+<span style="color: #00ffff;">end</span>
+
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Populate short integer data: sdata</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">We convert and scale the data in fdata, and store it in sdata.</span>
+fmin = fdata.min
+fmax = fdata.max
+
+bmin = -8191
+bmax =  8191
+
+<span style="color: #00ffff;">if</span> ((fmax - fmin) &lt; 1.0e-8) <span style="color: #00ffff;">then</span>
+  <span style="color: #63b8ff;">STDERR</span>.puts(<span style="color: #fa8072;">"WARNING: Curve is constant."</span>)
+  m = 0
+  b = 0
+<span style="color: #00ffff;">else</span>
+  m = (bmax - bmin).to_f / (fmax - fmin)
+  b = bmax.to_f - m * fmax
+<span style="color: #00ffff;">end</span>
+
+sdata = <span style="color: #63b8ff;">Array</span>.new(size)
+fdata.each_with_index <span style="color: #00ffff;">do</span> |v, i|
+  sdata[i] = [[(m * v + b).to_i, bmax].min, bmin].max
+<span style="color: #00ffff;">end</span>
+
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Construct a string with the contents of the IEEE-488.2 binary block with our waveform data.</span>
+blen    = (size * 2).to_s
+blenlen = blen.length.to_s
+bdata   = <span style="color: #fa8072;">"#"</span> + blenlen + blen + sdata.pack(<span style="color: #fa8072;">'n*'</span>)
+
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send everything to the device</span>
+theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span>         =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Change for your instrument's IP address</span>
+                                 <span style="color: #8470ff; font-weight: bold;">:result_type</span> =&gt; <span style="color: #8470ff; font-weight: bold;">nil</span>)         <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">None of the following commands have any output to capture</span>
+theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">'*RST'</span>})                          <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Reset the unit to defaults.</span>
+theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':DATA:DAC VOLATILE, '</span> + bdata }) <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send our data</span>
+theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':FUNCtion:USER VOLATILE'</span>})       <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Set the ARB waveform to 'VOLATILE'.</span>
+theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':APPLy:USER 2000,4,0'</span>})          <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">2 kHz, 4 Vpp, 0 V offset</span>
+</pre>
+</div>
+
+<p>
+Source code: <a href="https://github.com/richmit/mrSCPI/blob/main/examples/bin_scpi_arg.rb"><code>bin_scpi_arg.rb</code></a>.
+</p>
 </div>
 </div>
 <div id="outline-container-rcfile" class="outline-2">
-<h2 id="rcfile"><span class="section-number-2">6.</span> <code>SCPIrcFile</code> Class</h2>
+<h2 id="rcfile"><span class="section-number-2">7.</span> <code>SCPIrcFile</code> Class</h2>
 <div class="outline-text-2" id="text-rcfile">
 <p>
 <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> can use a configuration file to keep track of things like IP addresses, port numbers, protocols, and firewall details.  The
 <a href="rdoc/SCPIrcFile.html"><code>SCPIrcFile</code></a> class is the primary interface to the information in the RC file.  For the details, see the class
-documentation.  The basics can be illustrated with a couple examples:
+documentation.
 </p>
 </div>
-<div id="outline-container-orgd14bfa9" class="outline-3">
-<h3 id="orgd14bfa9"><span class="section-number-3">6.1.</span> <code>mrNetwork.rb</code></h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-rcfile-example" class="outline-3">
+<h3 id="rcfile-example"><span class="section-number-3">7.1.</span> Simple RC file</h3>
+<div class="outline-text-3" id="text-rcfile-example">
+<p>
+Here is an example of a very simple RC file with four devices (an HP universal counter, Agilent arbitrary waveform generator, a Keysight DMM, and a Tektronix
+oscilloscope) each using a different connection protocol (Prologix Ethernet to GPIB, raw TCP/IP sockets, Serial over TCP/IP, and T4K &#x2013; a specialized HTTP
+mode for TDS3000B scopes).  This configuration has no network subnet configuration at all.  Two nicknames are provided for each address &#x2013; the first being the
+equipment model number (like <code>53131a</code> or <code>tds3000b</code>) and the second being more descriptive (<code>counter</code>, <code>awg</code>, <code>dmm</code>, <code>oscope</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-perl">nickname 53131a   counter =&gt; plgx:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234
+nickname 33210a   awg     =&gt;  raw:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:5025
+nickname 34401a   dmm     =&gt; soip:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10001
+nickname tds3052b oscope  =&gt;  t3k:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-rcfile-myrc" class="outline-3">
+<h3 id="rcfile-myrc"><span class="section-number-3">7.2.</span> My RC file</h3>
+<div class="outline-text-3" id="text-rcfile-myrc">
+<p>
+My home network has the following configuration:
+</p>
+<ul class="org-ul">
+<li>Everything on my bench is in the 172.16.3.X subnet.</li>
+<li>Everything on my computer desk is in the 172.16.1.X subnet.</li>
+<li>Equipment on the bench is allowed to communicate with each other.</li>
+<li>Systems on the computer desk are allowed to communicate to bench equipment.</li>
+<li>The only bench access provided outside these two subnets is via an SSH bastion server using SSH tunnels.</li>
+</ul>
+
+<p>
+So when I'm at my bench or computer desk I can access the test equipment directly &#x2013; for example I can access my AWG directly via
+<code>raw://awg-agilent.home.mitchr.me:5025</code>.  When I'm anyplace else on my home network I need to use an SSH tunnel &#x2013; for example I can access my AWG through an
+SSH tunnel via <code>raw://127.0.0.1:9001</code>.  The <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> RC file allows us to define alternate addresses for instruments based upon which network from which
+we are connecting.  So with <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> I can always use the alias "<code>33210a</code>" to connect to my AWG regardless of where I'm running the script.
+</p>
+
+<p>
+I actually generate this configuration file via a bit of code inside the org-mode document for my <a href="https://richmit.github.io/TestEquipmentNotes/">Test
+Equipment Notes</a>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-perl"><span style="color: #ffa500;">#####################################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">SCPI Nicknames ####################################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">........CNAME......nicknames.................Directly Connected Network....................ssh to bench-pi...........</span>
+nickname 33210ae    33210a    aawge  aawg  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:5025  ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9001
+nickname 33210aw              aawgw        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:443 ssh@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9002
+nickname 34401ap              dmmp         =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9003
+nickname 34401as    34401a    dmms   dmm   =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10001     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9004
+nickname 53131ap    53131a    countp count =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9005
+nickname dg2052e    dg2052    dg2ke  dg2k  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:5555    ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9006
+nickname dg2052w              dg2kw        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9007
+nickname dho4204e   dho4204   dho4ke dho4k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:5555 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9008
+nickname dho4204w             dho4kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9009
+nickname dmm6500e   dmm6500   6500e  6500  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:5025 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9010
+nickname dmm6500w             6500w        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9011
+nickname hmc8043e   hmc8043   pse    ps    =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:5025       ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9012
+nickname hmc8043w             psw          =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9013
+nickname sds2504xpe sds2504xp sig2ke sig2k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:5025   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9014
+nickname sds2504xpw           sig2kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9015
+nickname serialw              serial       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9016
+nickname tds2024s             tek2ks tek2k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10002     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9017
+nickname tds3052bh  tds3052b  tek3kh tek3k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9018
+nickname tds3052bp            tek3kp       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9019
+nickname tds3052bs            tek3ks       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10003     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9020
+nickname tds3052bw            tek3kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9021
+nickname test                              =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234                   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234
+
+<span style="color: #ffa500;">#####################################################################################################################</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Networks ##########################################################################################################</span>
+<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Name...Subnet.Mask.....Comment...............................................................................</span>
+network direct 172.16.3.0/23   <span style="color: #ff7f24;"># Bench network with test equipment &amp; bench-pi</span>
+network direct 172.16.1.0/23   <span style="color: #ff7f24;"># Computer desk beside bench</span>
+network ssh    172.16.2.0/24   <span style="color: #ff7f24;"># Isolated work network</span>
+network ssh    172.16.4.0/24   <span style="color: #ff7f24;"># Isolated office network</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org62b43f1" class="outline-3">
+<h3 id="org62b43f1"><span class="section-number-3">7.3.</span> <code>mrNetwork.rb</code></h3>
+<div class="outline-text-3" id="text-7-3">
 <p>
 This script simply prints out the name of the current host's network as specified in the <code>.mrSCPIrc</code> file.
 </p>
@@ -774,7 +1061,7 @@ This script simply prints out the name of the current host's network as specifie
 <p>
 Other than finding and loading <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, the source above only has one line of code that actually performs any work &#x2013; the last line instantiates an
 <a href="rdoc/SCPIrcFile.html"><code>SCPIrcFile</code></a> object and prints out the network name found in the RC file for the current host.  For example, if we run
-this script on my laptop, it will print "<code>ssh</code>" because that's what I've named the network in <a href="#rcfile-example">my personal <code>.mrSCPIrc</code></a> file:
+this script on my laptop, it will print "<code>ssh</code>" because that's what I've named the network in <a href="#rcfile-myrc">my personal <code>.mrSCPIrc</code></a> file:
 </p>
 
 <div class="org-src-container">
@@ -782,16 +1069,16 @@ this script on my laptop, it will print "<code>ssh</code>" because that's what I
 </pre>
 </div>
 
-<pre class="example" id="org3086afd">
+<pre class="example" id="org59d1396">
 "ssh"
 </pre>
 </div>
 </div>
-<div id="outline-container-org2eff352" class="outline-3">
-<h3 id="org2eff352"><span class="section-number-3">6.2.</span> <code>teAlias.rb</code></h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-org5290856" class="outline-3">
+<h3 id="org5290856"><span class="section-number-3">7.4.</span> <code>teAlias.rb</code></h3>
+<div class="outline-text-3" id="text-7-4">
 <p>
-This sciprt looks up connection information in the <code>.mrSCPIrc</code> file.
+This script looks up connection information in the <code>.mrSCPIrc</code> file.
 </p>
 
 <div class="org-src-container">
@@ -837,191 +1124,37 @@ This sciprt looks up connection information in the <code>.mrSCPIrc</code> file.
 </div>
 
 <p>
-For example, if I wanted to know how to connect to my power supply I could run:
+For example, if I wanted to fire up my web browser and connect to my SDS 2504X+ oscope, I might do this on the command line (zsh):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">../src/teAlias.rb ps
-</pre>
-</div>
-
-<p>
-As mentioned in the <a href="#rcfile-example">section discussing my personal <code>.mrSCPIrc</code></a> file, my bench network is separate from the rest of my home network.
-Because of this the connection strings are different depending on where you are connecting from.  If connecting from a computer on my bench, we will get a
-different answer than if connecting from my living room.
-</p>
-
-<p>
-From the living room:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">../src/teAlias.rb @ps
-</pre>
-</div>
-
-<pre class="example" id="orgd58f156">
-raw://127.0.0.1:9012
-</pre>
-
-<p>
-From the bench:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">../src/teAlias.rb @ps
-</pre>
-</div>
-
-<pre class="example" id="orgee127b9">
-raw://ps-rns.home.mitchr.me:5025
-</pre>
-</div>
-</div>
-<div id="outline-container-rcfile-example" class="outline-3">
-<h3 id="rcfile-example"><span class="section-number-3">6.3.</span> Example RC file</h3>
-<div class="outline-text-3" id="text-rcfile-example">
-<p>
-Here is an example of what my RC file looks like.  I have a subnets for bench (172.16.3.1).  The only access from outside these networks is via SSH to the
-bench computer (a raspberry pi named "<code>bench-pi</code>").  So when I'm on my bench I can access the test equipment directly, but otherwise I must access the
-equipment via SSH tunnels to the bastion server.  This configuration file makes it so that I can specify a connection URL like "<code>@awg</code>", and connect to my
-33210a AWG regardless of where I'm running the script &#x2013; i.e. the library figures out what network I'm on, and expands "<code>@awg</code>" into the right thing.
-</p>
-
-<p>
-Note that only the first two sections (nicknames &amp; networks) contain RC file entries.  The rest is notes to myself about my network setup.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-perl"><span style="color: #ffa500;">#####################################################################################################################</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">SCPI Nicknames ####################################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">........CNAME......nicknames.................Directly Connected Network....................ssh to bench-pi...........</span>
-nickname 33210ae    33210a    aawge  aawg  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:5025  ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9001   
-nickname 33210aw              aawgw        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:443 ssh@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9002   
-nickname 34401ap              dmmp         =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9003   
-nickname 34401as    34401a    dmms   dmm   =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10001     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9004   
-nickname 53131ap    53131a    countp count =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9005   
-nickname dg2052e    dg2052    dg2ke  dg2k  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:5555    ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9006   
-nickname dg2052w              dg2kw        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>awg-rigol.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9007   
-nickname dho4204e   dho4204   dho4ke dho4k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:5555 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9008   
-nickname dho4204w             dho4kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-rigol.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9009   
-nickname dmm6500e   dmm6500   6500e  6500  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:5025 ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9010   
-nickname dmm6500w             6500w        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>dmm-keithley.home.mitchr.me:80  ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9011   
-nickname hmc8043e   hmc8043   pse    ps    =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:5025       ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9012   
-nickname hmc8043w             psw          =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>ps-rns.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9013   
-nickname sds2504xpe sds2504xp sig2ke sig2k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:5025   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9014   
-nickname sds2504xpw           sig2kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-sig.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9015   
-nickname serialw              serial       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:80        ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9016   
-nickname tds2024s             tek2ks tek2k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10002     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9017   
-nickname tds3052bh  tds3052b  tek3kh tek3k =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80     ssh@<span style="color: #7fffd4; text-decoration: underline;">t3k</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9018   
-nickname tds3052bp            tek3kp       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9019   
-nickname tds3052bs            tek3ks       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10003     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9020   
-nickname tds3052bw            tek3kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9021   
-nickname test                              =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234                   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234
-
-<span style="color: #ffa500;">#####################################################################################################################</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Networks ##########################################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Name...Subnet.Mask.....Comment...............................................................................</span>
-network direct 172.16.3.0/23   <span style="color: #ff7f24;"># Bench network with test equipment &amp; bench-pi</span>
-network direct 172.16.1.0/23   <span style="color: #ff7f24;"># Computer desk beside bench</span>
-network ssh    172.16.2.0/24   <span style="color: #ff7f24;"># Isolated work network</span>
-network ssh    172.16.4.0/24   <span style="color: #ff7f24;"># Isolated office network</span>
-</pre>
-</div>
-
-<p>
-The SSH tunnels can be automatically created when we ssh to <code>bench-pi</code> by placing them in the user specific ssh config file (<code>~/.ssh/config</code>):
-</p>
-
-<div class="org-src-container">
-<pre class="src src-text">Host bench-pi.home.mitchr.me bench-pi
-  ForwardX11 no
-  ForwardAgent no
-  IdentitiesOnly yes
-  PreferredAuthentications publickey
-  IdentityFile ~/.ssh/id_rsa_benchpi_202601031412.priv
-  LocalForward 127.0.0.1:5900 oscope-sig.home.mitchr.me:5900
-  LocalForward 127.0.0.1:9001 awg-agilent.home.mitchr.me:5025
-  LocalForward 127.0.0.1:9002 awg-agilent.home.mitchr.me:443
-  LocalForward 127.0.0.1:9003 gpib-rover.home.mitchr.me:1234
-  LocalForward 127.0.0.1:9004 serial.home.mitchr.me:10001
-  LocalForward 127.0.0.1:9005 gpib-rover.home.mitchr.me:1234
-  LocalForward 127.0.0.1:9006 awg-rigol.home.mitchr.me:5555
-  LocalForward 127.0.0.1:9007 awg-rigol.home.mitchr.me:80
-  LocalForward 127.0.0.1:9008 oscope-rigol.home.mitchr.me:5555
-  LocalForward 127.0.0.1:9009 oscope-rigol.home.mitchr.me:80
-  LocalForward 127.0.0.1:9010 dmm-keithley.home.mitchr.me:5025
-  LocalForward 127.0.0.1:9011 dmm-keithley.home.mitchr.me:80
-  LocalForward 127.0.0.1:9012 ps-rns.home.mitchr.me:5025
-  LocalForward 127.0.0.1:9013 ps-rns.home.mitchr.me:80
-  LocalForward 127.0.0.1:9014 oscope-sig.home.mitchr.me:5025
-  LocalForward 127.0.0.1:9015 oscope-sig.home.mitchr.me:80
-  LocalForward 127.0.0.1:9016 serial.home.mitchr.me:80
-  LocalForward 127.0.0.1:9017 serial.home.mitchr.me:10002
-  LocalForward 127.0.0.1:9018 oscope-tek.home.mitchr.me:80
-  LocalForward 127.0.0.1:9019 gpib-rover.home.mitchr.me:1234
-  LocalForward 127.0.0.1:9020 serial.home.mitchr.me:10003
-  LocalForward 127.0.0.1:9021 oscope-tek.home.mitchr.me:80
+<pre class="src src-sh">edge $(teAlias.rb sds2504xpw)
 </pre>
 </div>
 </div>
 </div>
 </div>
 <div id="outline-container-features" class="outline-2">
-<h2 id="features"><span class="section-number-2">7.</span> Features (current &amp; future)</h2>
+<h2 id="features"><span class="section-number-2">8.</span> Features (current &amp; future)</h2>
 <div class="outline-text-2" id="text-features">
 <ul class="org-ul">
-<li>Broad platform support
-<ul class="org-ul">
-<li>Minimal runtime requirements (base ruby install)</li>
-<li>Broad OS compatibility (Windows, OSX, Linux, Raspberry Pi OS, etc&#x2026;)</li>
-</ul></li>
-<li>Modern Ruby API for interacting with instruments via SCPI
-<ul class="org-ul">
-<li>Stateful programming model that compliments the structure of <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> itself</li>
-<li>Good control over output (commands, debug, results, etc&#x2026;)</li>
-</ul></li>
+<li>Broad platform support:  If Ruby works, then <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> should work.</li>
+<li>Modern Ruby API for interacting with instruments via SCPI with a stateful programming model complimenting the structure of <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> itself.</li>
 <li>Simple <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripting language
 <ul class="org-ul">
 <li>All the goodness of the Ruby API, but for simple applications</li>
 <li>Usage that parallels how the Ruby API is used in practice</li>
 <li>Shebang support for "executable" scripts on UNIX/Linux/Windows MSYS2</li>
-<li>Support simple programming constructs
-<ul class="org-ul">
-<li>Conditionals</li>
-<li>Goto/labels</li>
-<li>Variables (with variable interpolation)</li>
-<li>Evaluate ruby one liners and assign results to a variable</li>
-<li>Stop execution with optional message</li>
-<li>Print things</li>
-</ul></li>
-<li><a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support (execution and header variables)</li>
+<li>Support simple programming constructs (conditionals, looping, variables, etc&#x2026;)</li>
+<li><a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel support (both execution and header variables)</li>
 <li><a href="https://www.gnu.org/software/emacs/">Emacs</a> language mode (highlight <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code &amp; identify common syntax errors)</li>
 </ul></li>
 <li>Protocol/Communication Features
 <ul class="org-ul">
-<li><a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over raw TCP/IP sockets
-<ul class="org-ul">
-<li>Support for instruments that don't close the TCP connection after the client closes for write</li>
-</ul></li>
-<li>Serial (RS-232/RS-485) <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over Ethernet via a network attached serial console server
-<ul class="org-ul">
-<li>Correctly control DTE via TCP/IP socket close</li>
-<li>Console server port mapping is directly supported via instrument nicknames</li>
-</ul></li>
-<li>GPIB <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over Ethernet with a Prologix lan controller
-<ul class="org-ul">
-<li>Correctly configures Prologix controllers to provide :raw mode access</li>
-<li>Preserves Prologix EPROM values &#x2013; and extends life of device memory</li>
-<li>Uses <code>:read_timeout_first_byte</code> to set Prologix <code>++read_tmo_ms</code></li>
-<li>Uses <code>:eol</code> to set Prologix <code>++eos</code></li>
-<li>Transparently avoids "Query Unterminated" and "-420" errors by using <code>++auto 0</code> and calling <code>++read</code></li>
-<li>Support Prologix specific commands for when to do GPIB reads</li>
-</ul></li>
-<li><a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over HTTP for TDS3000B series oscilloscopes
-<ul class="org-ul">
-<li>Works around the lack of raw sockets support by scraping the instrument's web server</li>
-</ul></li>
+<li><a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over raw TCP/IP sockets</li>
+<li>Serial (RS-232/RS-485 with DTE support) <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over Ethernet via a network attached serial console server.</li>
+<li>GPIB <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over Ethernet with a Prologix lan controller</li>
+<li><a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> over HTTP for TDS3000B series oscilloscopes (working around the lack of raw sockets support)</li>
 </ul></li>
 <li>Flexible timing control
 <ul class="org-ul">
@@ -1031,44 +1164,27 @@ The SSH tunnels can be automatically created when we ssh to <code>bench-pi</code
 <li>Delay before retrying an I/O operation</li>
 <li>Delay after a command is run and all I/O processed, but before returning a value (or running the next command)</li>
 </ul></li>
-<li>Features for <a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="https://orgmode.org/"><code>org-mode</code></a> support
-<ul class="org-ul">
-<li>Option to always return an exit code of 0 &#x2013; <code>org</code> throws away output from commands with a non-zero exit code</li>
-<li>Option to not send things to <code>STDERR</code> &#x2013; <code>org</code> only captures <code>STDOUT</code></li>
-<li>Option for running <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> scripts on <code>STDIN</code></li>
-<li>Support for prepending script options/commands via command line</li>
-</ul></li>
 <li>A set of standard post-processing steps for results
 <ul class="org-ul">
 <li>Standard string processing operations:
 <ul class="org-ul">
-<li>chop (end of line characters)</li>
-<li>trim white space</li>
+<li>Chop (end of line characters)</li>
+<li>Trim whitespace</li>
 <li>Extract last word</li>
 <li>Extract a 488.2 binary block data payload</li>
-<li>split into an array
+<li>Split into an array
 <ul class="org-ul">
 <li>Binary data can be unpack'ed into native types</li>
 <li>Binary return blocks can be split into header and payload</li>
-<li>Strings can be split on 
-<ul class="org-ul">
-<li>commas</li>
-<li>semicolons</li>
-<li>whitespace</li>
-<li>vertical whitespace</li>
-<li>regular expressions</li>
-<li>fixed strings or character sets</li>
-<li>scan (TODO: future feature)</li>
+<li>Strings can be split on commas, semicolons, whitespace, vertical whitespace, regular expressions, fixed strings, or character sets</li>
 </ul></li>
-</ul></li>
-<li>compress sequences of one or more white-space characters into single spaces</li>
-<li>regex to extract (TODO: future feature)</li>
+<li>Compress sequences of one or more white-space characters into single spaces</li>
 </ul></li>
 <li>Convert results into numeric Ruby types
 <ul class="org-ul">
-<li>float or array of floats</li>
-<li>integer or array of integers</li>
-<li>boolean or array of booleans (actually tri-state: true, false, or nil)</li>
+<li>Float or array of floats</li>
+<li>Integer or array of integers</li>
+<li>Boolean or array of booleans (actually tri-state: true, false, or nil)</li>
 </ul></li>
 </ul></li>
 <li>Global Configuration File
@@ -1082,11 +1198,11 @@ The SSH tunnels can be automatically created when we ssh to <code>bench-pi</code
 </div>
 </div>
 <div id="outline-container-faq" class="outline-2">
-<h2 id="faq"><span class="section-number-2">8.</span> FAQ</h2>
+<h2 id="faq"><span class="section-number-2">9.</span> FAQ</h2>
 <div class="outline-text-2" id="text-faq">
 </div>
 <div id="outline-container-faq-require" class="outline-3">
-<h3 id="faq-require"><span class="section-number-3">8.1.</span> Why don't you use a simple <code>require</code> to load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> in Ruby scripts?</h3>
+<h3 id="faq-require"><span class="section-number-3">9.1.</span> Why don't you use a simple <code>require</code> to load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> in Ruby scripts?</h3>
 <div class="outline-text-3" id="text-faq-require">
 <p>
 In my scripts, I normally load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> by searching my <code>PATH</code> environment variable like this:
@@ -1099,30 +1215,82 @@ In my scripts, I normally load <a href="https://richmit.github.io/mrSCPI/"><code
 
 <p>
 Why?  I normally put <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> on my path, but I don't want to contaminate my Ruby <code>LOAD_PATH</code> by including a generic <code>bin</code> directory.  This is just a
-personal preference in the way I set up my operating environment.  I expect most people will use something like the followingto load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>:
+personal preference in the way I set up my operating environment.  I expect most people will use something like the following to load <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>:
 </p>
 
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
 </pre>
 </div>
+
+<p>
+For the scripts shipped in the <code>src</code> directory I do something quite elaborate allowing much more flexible control over which <code>'mrSCPI.rb</code> file gets used.
+This way I can use various different versions of the library when I'm doing development work on the project.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>] <span style="color: #00ffff;">then</span>                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">First look in MRSCPIPATH</span>
+  <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">File</span>.join(<span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>], <span style="color: #fa8072;">'mrSCPI.rb'</span>)        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Note if MRSCPIPATH is set and require fails, then we want the script to fail!</span>
+<span style="color: #00ffff;">else</span>
+  <span style="color: #00ffff;">begin</span>                                                  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look in path with the script is</span>
+    <span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+  <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>
+    <span style="color: #00ffff;">begin</span>                                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on LOADPATH</span>
+      <span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+    <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>                                     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on PATH</span>
+      <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
+    <span style="color: #00ffff;">end</span>
+  <span style="color: #00ffff;">end</span>
+<span style="color: #00ffff;">end</span>
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-faq-examples" class="outline-3">
-<h3 id="faq-examples"><span class="section-number-3">8.2.</span> Where can I find more examples?</h3>
+<h3 id="faq-examples"><span class="section-number-3">9.2.</span> Where can I find more examples?</h3>
 <div class="outline-text-3" id="text-faq-examples">
 <p>
-I have <a href="https://github.com/richmit/TestEquipmentScripts">another repository</a> for scripts related to test equipment that contains several <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts.
+My <a href="https://github.com/richmit/TestEquipmentScripts">TestEquipmentScripts</a> github repository contains scripts related to test equipment.  Many of those
+scripts use <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> ruby scripts (library mode)
+<ul class="org-ul">
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/getwave_dho4k.rb">getwave_dho4k.rb</a></li>
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/getwave_sig2k.rb">getwave_sig2k.rb</a></li>
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/screenshot_dho4k.rb">screenshot_dho4k.rb</a> (Very similar to the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script discussed <a href="#mrscpi-scripts-syntax">above</a> and available <a href="https://github.com/richmit/mrSCPI/blob/main/examples/dho4ksc.mrscpi">here</a>)</li>
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/screenshot_sig2k.rb">screenshot_sig2k.rb</a></li>
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/screenshot_tek3k.rb">screenshot_tek3k.rb</a></li>
+</ul></li>
+<li><a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> one-liners
+<ul class="org-ul">
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/getwave_sig2k.sh">getwave_sig2k.sh</a></li>
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/getwave_tek2k.sh">getwave_tek2k.sh</a></li>
+<li><a href="https://github.com/richmit/TestEquipmentScripts/blob/main/getwave_tek3k-serial.sh">getwave_tek3k-serial.sh</a></li>
+</ul></li>
+</ul>
+
+<p>
+My <a href="https://richmit.github.io/TestEquipmentNotes/">Test Equipment Notes</a> have a TON of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script examples embedded inside the
+<a href="https://raw.githubusercontent.com/richmit/TestEquipmentNotes/refs/heads/main/index.org">org-mode source</a>.
 </p>
 </div>
 </div>
 <div id="outline-container-faq-lxi" class="outline-3">
-<h3 id="faq-lxi"><span class="section-number-3">8.3.</span> Where is LXI support?</h3>
+<h3 id="faq-lxi"><span class="section-number-3">9.3.</span> Where is LXI support?</h3>
 <div class="outline-text-3" id="text-faq-lxi">
 <p>
-The <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> class recognizes the protocol symbol <code>:lxi</code>; however, I have no plans on implementing direct LXI support in
-<a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>.  One of the goals of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> is to be simple and essentially free of external software dependencies, and the complexity of the LXI protocol
-would necessitate external dependencies.
+The <a href="rdoc/SCPIsession.html"><code>SCPIsession</code></a> class recognizes the protocol symbol <code>:lxi</code> in order to provide a meaningful error message.
+</p>
+
+<p>
+I have no plans on implementing direct LXI support in <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>.  One of the most important goals of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> is to be simple and free of external
+software dependencies beyond a simple Ruby install. The complexity of the LXI protocol would necessitate external dependencies like <code>liblxi</code> and <code>libtirpc</code>.
+</p>
+
+<p>
+If LXI is really what you need, then I suggest giving <a href="https://github.com/lxi-tools/lxi-tools">lxi-tools</a> a try.
 </p>
 </div>
 </div>
