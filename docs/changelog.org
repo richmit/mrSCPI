@@ -39,6 +39,7 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
    - Completely reworked documentation
    - Examples are better orginized
    - Added binary argument example
+   - Removed mrOnBench.rb script
  - 2026-03-23 ::
    - :echo now sets :print_result_puts too
  - 2026-02-09 ::
