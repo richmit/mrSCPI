@@ -222,11 +222,12 @@ end
 #   - +1+: Errors
 #   - +2+: Warnings
 #   - +3+: Information
-#   - +4+: Debug-4
-#   - +5+: Debug-5 Same as Debug4 (TODO: Future Feature)
-#   - +6+: Debug-6 Same as Debug4 (TODO: Future Feature)
-#   - +7+: Debug-7 Same as Debug4 (TODO: Future Feature)
+#   - +4+: Debug-4 A bit more than INFO
+#   - +5+: Debug-5 Reserved for future use
+#   - +6+: Debug-6 Reserved for future use
+#   - +7+: Debug-7 Reserved for future use
 #   - +8+: Debug-8 Print out data structures
+#   - +9+: Debug-9 Reserved for future use
 # - +:exit_on_error+(L/Boolean):: Exit if an error is encountered (DEFAULT: true)
 #   See: PrintyPrintyBangBang
 # - +:exit_0+(L/Boolean):: Abnormal exits are always zero -- required for org-mode (DEFAULT: +false+)
@@ -281,9 +282,9 @@ end
 #   This can dramatically speed up query commands, but requires the instrument send an "end of transmission" character.  For Prologix devices, an EOT
 #   character may be defined; however, this can interfere when binary data is to be transmitted from an instrument.
 # - +:good_eot_std+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+.
-# - +:good_eot_crlf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r\n"</tt> if +true+, and to +nil+ if +false+. TODO
-# - +:good_eot_lf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+. TODO
-# - +:good_eot_cr+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r"</tt> if +true+, and to +nil+ if +false+. TODO
+# - +:good_eot_crlf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r\n"</tt> if +true+, and to +nil+ if +false+.
+# - +:good_eot_lf+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\n"</tt> if +true+, and to +nil+ if +false+.
+# - +:good_eot_cr+(P/Boolean):: Set +:read_eot_sentinel+ to <tt>"\r"</tt> if +true+, and to +nil+ if +false+.
 # - +:socket_close_write+(Boolean):: For raw & soip do a write_close on the TCP socket after sending command string (DEFAULT: +false+)
 # - +:socket_close+(Boolean):: For raw & soip do a close on the TCP socket after reading is complete (DEFAULT: +false+)
 # - +:read_buffer_size+(Integer/bytes):: Maximum number of bytes to attempt to read at once (DEFAULT: +1048576+)
@@ -941,7 +942,6 @@ class SCPIsession
         when :float
           thingyWeReturn = thingyWeReturn.map { |x| ((x.is_a?(String) || x.is_a?(Numeric)) ? x.to_f : x) }
         when :int
-          # TODO: Add support for hex, oct, & binary integers
           thingyWeReturn = thingyWeReturn.map { |x| ((x.is_a?(String) || x.is_a?(Numeric)) ? x.to_f : x) }
         when :bool
           thingyWeReturn = thingyWeReturn.map { |x| (x.is_a?(String) ? (x.strip.match?(@re.a(:o488_TRUEx)) ? true : (x.strip.match?(@re.a(:o488_FALSEx)) ? false : nil)) : x) }

@@ -55,6 +55,8 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 #+MACRO: SCPI [[https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments][=SCPI=]]
 #+MACRO: PROLOGIX Prologix
 #+MACRO: MRSCPISRC [[https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb][=mrSCPI.rb=]]
+#+MACRO: SCPISESSIONDOC [[file:rdoc/SCPIsession.html][=SCPIsession=]]
+#+MACRO: SCPISEQUENCEDOC [[file:rdoc/SCPIsequence.html][=SCPIsequence=]]
 #+MACRO: LXITOOLS [[https://github.com/lxi-tools/lxi-tools][lxi-tools]]
 
 * Introduction
@@ -87,7 +89,7 @@ SCPIsession.new(:url => '@tek2k',
 #+end_src
 
  - {{{MRSCPISRC}}} command ::
-   A CLI command providing sophisticated {{{SCPI}}} functionality from the command line -- much like {{{LXITOOLS}}}.
+   A CLI command providing sophisticated {{{SCPI}}} functionality from the command line -- a bit like {{{LXITOOLS}}}.
 
 #+begin_src bash
 mrSCPI.rb --url @tek2k --cmd '*IDN?'
@@ -193,18 +195,18 @@ just basic {{{ORGMODE}}} support.  I load these things up at the very end of the
 :END:
 
 In essence any {{{SCPI}}} program is about managing a communication session state between computer and instrument.  The heart of {{{MRSCPI}}} is the
-[[file:rdoc/SCPIsession.html][=SCPIsession=]] class which encapsulates and manages session state.  Session state is represented by named parameters (key-value
+{{{SCPISESSIONDOC}}} class which encapsulates and manages session state.  Session state is represented by named parameters (key-value
 pairs).  For example the parameter =:ip_address= stores the IP address for the connection.  As another example, the =:print_results= parameter stores a
 boolean value that determines if the results from {{{SCPI}}} commands will be printed.  A few parameters, like =:ip_address=, may only be set when the
-[[file:rdoc/SCPIsession.html][=SCPIsession=]] is created.  Other parameters, like =:print_results= may be freely changed at any time.  Parameters are sticky
+{{{SCPISESSIONDOC}}} is created.  Other parameters, like =:print_results= may be freely changed at any time.  Parameters are sticky
 in that they stay in effect until changed. Using the API always follows the same basic outline:
 
-  1) Create an [[file:rdoc/SCPIsession.html][=SCPIsession=]] object (The =:url=, =:ip_address=, =:net_protocol=, and =:net_port= parameters are used by new).
+  1) Create an {{{SCPISESSIONDOC}}} object (The =:url=, =:ip_address=, =:net_protocol=, and =:net_port= parameters are used by new).
   2) Set parameters regarding how we wish to run {{{SCPI}}} commands and what to do with the results.
   3) Set the =:cmd= parameter to execute an {{{SCPI}}} command.
   4) Go back to 2) till everything is done
 
-See the documentation for the [[file:rdoc/SCPIsession.html][=SCPIsession=]] class for information about all the parameters.
+See the documentation for the {{{SCPISESSIONDOC}}} class for information about all the parameters.
 
 ** Example
 :PROPERTIES:
@@ -441,8 +443,8 @@ The entirety of {{{MRSCPI}}} script syntax may be compactly stated:
 #+begin_quote
 Each line of a {{{MRSCPI}}} script with an {{{MRSCPI}}} command, and each command is a parameter for one of the following classes:
 
-  - [[file:rdoc/SCPIsession.html][=SCPIsession=]]
-  - [[file:rdoc/SCPIsequence.html][=SCPIsequence=]]
+  - {{{SCPISESSIONDOC}}}
+  - {{{SCPISEQUENCEDOC}}}
 
 Syntax for the command arguments is completely defined by the ~@optValToStr~ member of =SCPIsequence=.
 #+end_quote
@@ -458,7 +460,7 @@ library is usually the best choice.  Between these two extremes, the choice betw
 {{{MRSCPI}}} script is largely up to personal preference.
 
 Passing IEEE-488.2 binary block format data as SCPI command arguments is an example of something that is much easier to do when using Ruby directly.  This is
-because in library mode we can pass parameters directly to an [[file:rdoc/SCPIsession.html][=SCPIsession=]] object as native Ruby types. This makes library
+because in library mode we can pass parameters directly to an {{{SCPISESSIONDOC}}} object as native Ruby types. This makes library
 mode a bit more flexible from a data processing perspective.
 
 #+begin_src sh :results output verbatum :exports results :wrap "org"
@@ -535,7 +537,6 @@ theSPCIsession.set({:cmd => ':APPLy:USER 2000,4,0'})          # 2 kHz, 4 Vpp, 0 
 #+end_src
 
 Source code: [[https://github.com/richmit/mrSCPI/blob/main/examples/bin_scpi_arg.rb][=bin_scpi_arg.rb=]].
-
 
 * =SCPIrcFile= Class
 :PROPERTIES:
@@ -720,7 +721,7 @@ For example, if I wanted to fire up my web browser and connect to my SDS 2504X+ 
 edge $(teAlias.rb sds2504xpw)
 #+end_src
 
-* Features (current & future)
+* Features
 :PROPERTIES:
 :CUSTOM_ID: features
 :END:
@@ -813,7 +814,6 @@ else
 end
 #+end_src
 
-
 ** Where can I find more examples?
 :PROPERTIES:
 :CUSTOM_ID: faq-examples
@@ -841,9 +841,9 @@ My [[https://richmit.github.io/TestEquipmentNotes/][Test Equipment Notes]] have 
 :CUSTOM_ID: faq-lxi
 :END:
 
-The [[file:rdoc/SCPIsession.html][=SCPIsession=]] class recognizes the protocol symbol =:lxi= in order to provide a meaningful error message.
+The {{{SCPISESSIONDOC}}} class recognizes the protocol symbol =:lxi= in order to provide a meaningful error message.
 
 I have no plans on implementing direct LXI support in {{{MRSCPI}}}.  One of the most important goals of {{{MRSCPI}}} is to be simple and free of external
 software dependencies beyond a simple Ruby install. The complexity of the LXI protocol would necessitate external dependencies like ~liblxi~ and ~libtirpc~.
 
-If LXI is really what you need, then I suggest giving [[https://github.com/lxi-tools/lxi-tools][lxi-tools]] a try.
+If LXI is really what you need, then I suggest giving {{{LXITOOLS}}} a try.
