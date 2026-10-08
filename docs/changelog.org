@@ -35,6 +35,8 @@
 Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 
 
+ - 2026-10-08 ::
+   - Migrated Emacs code into an Emacs Package, and moved it into a new repository: https://github.com/richmit/mrscpi-in-emacs
  - 2026-03-24 ::
    - Completely reworked documentation
    - Examples are better orginized

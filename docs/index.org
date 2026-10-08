@@ -158,31 +158,7 @@ from {{{MRSCPI}}}, {{{OCTAVE}}}, {{{SH}}}, and {{{PARAVIEW}}} in one document:
 
 ** Setting Up Emacs
 
-I put the {{{MRSCPI}}} stuff in my {{{EMACS}}} dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
-If you have some other organizational structure for your auxiliary {{{EMACS}}} files, then feel free to use it!
-
-*** Editing {{{MRSCPI}}} Code: =mrscpi-mode=
-
-A simple mode for {{{MRSCPI}}} scripts is provided in [[https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el][emacs/mrscpi-mode.el]].  This should be *before* your {{{ORGMODE}}} config.
-
-#+begin_src elisp
-(if (file-exists-p "~/.emacs.d/mrscpi-mode.el")
-    (progn (autoload 'mrscpi-mode "~/.emacs.d/mrscpi-mode.el" "Mode for mrSCPI files")
-           (add-to-list 'auto-mode-alist '("\\.mrscpi$" . mrscpi-mode))))
-#+end_src
-
-*** {{{ORGMODE}}} Babel Support: =ob-mrscpi.el= & =mrscpi-buttons.el=
-
-A language module for {{{ORGMODE}}} Babel may be found in [[https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el][emacs/ob-mrscpi.el]].  The magical
-button maker may be found in [[https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-buttons.el][emacs/mrscpi-buttons.el]] -- you don't need this one for
-just basic {{{ORGMODE}}} support.  I load these things up at the very end of the {{{ORGMODE}}} setup block in my =init.el= file:
-
-#+begin_src elisp
-(if (and (file-exists-p "~/.emacs.d/ob-mrscpi.el") (file-exists-p "~/bin/mrSCPI.rb"))
-    (load "~/.emacs.d/ob-mrscpi.el"))
-(if (and (file-exists-p "~/.emacs.d/mrscpi-buttons.el") (file-exists-p "~/bin/mrSCPI.rb"))
-    (load "~/.emacs.d/mrscpi-buttons.el"))
-#+end_src
+The {{{MRSCPI}}} {{{EMACS}}} support package along with installation instructions may be found here:  [[https://github.com/richmit/mrscpi-in-emacs][mrscpi-in-emacs]]
 
 * Ruby API
 :PROPERTIES:
@@ -790,7 +766,7 @@ personal preference in the way I set up my operating environment.  I expect most
 require_relative 'mrSCPI.rb'
 #+end_src
 
-For the scripts shipped in the ~src~ directory I do something quite elaborate allowing much more flexible control over which ~'mrSCPI.rb~ file gets used.
+For the scripts shipped in the ~src~ directory I do something quite elaborate allowing much more flexible control over which ~mrSCPI.rb~ file gets used.
 This way I can use various different versions of the library when I'm doing development work on the project.
 
 #+begin_src sh :results output verbatum :exports results :wrap "src ruby :eval never :tangle no"
@@ -800,7 +776,7 @@ cat ../src/mrNetwork.rb | grep -A 11 MRSCPIPATH
 #+RESULTS:
 #+begin_src ruby :eval never :tangle no
 if ENV['MRSCPIPATH'] then                                # First look in MRSCPIPATH
-  require File.join(ENV['MRSCPIPATH'], 'mrSCPI.rb')        # Note if MRSCPIPATH is set and require fails, then we want the script to fail!
+  require File.join(ENV['MRSCPIPATH'], 'mrSCPI.rb')        # The script should fail if MRSCPIPATH is set and require fails
 else
   begin                                                  # Then look in path with the script is
     require_relative 'mrSCPI.rb'

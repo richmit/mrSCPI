@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-24 Tue 10:15 -->
+<!-- 2026-10-08 Thu 12:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>mrSCPI</title>
@@ -234,12 +234,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2026-03-24 10:15:31</i></td>
+<td class="org-left"><i>2026-10-08 12:37:48</i></td>
 </tr>
 
 <tr>
 <td class="org-right"><b>Generated:</b></td>
-<td class="org-left"><i>2026-03-24 10:15:38</i></td>
+<td class="org-left"><i>2026-10-08 12:37:49</i></td>
 </tr>
 </tbody>
 </table>
@@ -255,15 +255,10 @@ Copyright 2026 Mitch Richling. All rights reserved.
 <li><a href="#interfaces">2. Interfaces</a></li>
 <li><a href="#emacs-interface">3. Emacs as a <code>mrSCPI</code> Interface</a>
 <ul>
-<li><a href="#org10c8a5d">3.1. The Laboratory Notebook</a></li>
-<li><a href="#org7c1e3c4">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
-<li><a href="#org3449343">3.3. Integrated Data Capture and Analysis</a></li>
-<li><a href="#orgd831565">3.4. Setting Up Emacs</a>
-<ul>
-<li><a href="#org8bae17a">3.4.1. Editing <code>mrSCPI</code> Code: <code>mrscpi-mode</code></a></li>
-<li><a href="#org8302810">3.4.2. <code>org-mode</code> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></a></li>
-</ul>
-</li>
+<li><a href="#org038a955">3.1. The Laboratory Notebook</a></li>
+<li><a href="#org29d1cae">3.2. Test Equipment Notes &amp; Macro Buttons</a></li>
+<li><a href="#org1a4d827">3.3. Integrated Data Capture and Analysis</a></li>
+<li><a href="#org806f60d">3.4. Setting Up Emacs</a></li>
 </ul>
 </li>
 <li><a href="#ruby">4. Ruby API</a>
@@ -286,11 +281,11 @@ Copyright 2026 Mitch Richling. All rights reserved.
 <ul>
 <li><a href="#rcfile-example">7.1. Simple RC file</a></li>
 <li><a href="#rcfile-myrc">7.2. My RC file</a></li>
-<li><a href="#orgde5812f">7.3. <code>mrNetwork.rb</code></a></li>
-<li><a href="#orgbb88b90">7.4. <code>teAlias.rb</code></a></li>
+<li><a href="#orga275965">7.3. <code>mrNetwork.rb</code></a></li>
+<li><a href="#orga01d5e7">7.4. <code>teAlias.rb</code></a></li>
 </ul>
 </li>
-<li><a href="#features">8. Features (current &amp; future)</a></li>
+<li><a href="#features">8. Features</a></li>
 <li><a href="#faq">9. FAQ</a>
 <ul>
 <li><a href="#faq-require">9.1. Why don't you use a simple <code>require</code> to load <code>mrSCPI</code> in Ruby scripts?</a></li>
@@ -319,7 +314,7 @@ Systems designed from the ground up to support very complex use cases frequently
 captured the phenomenon quite clearly when he said:
 </p>
 
-<pre class="example" id="org2b839d0">
+<pre class="example" id="org8e682ee">
 Perl makes easy things easy and hard things possible. 
 Professional programming languages tend to make all things equally difficult.
 </pre>
@@ -375,7 +370,7 @@ This stateful API is unlike most test automation APIs and naturally compliments 
 </div>
 
 <dl class="org-dl">
-<dt><a href="https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb"><code>mrSCPI.rb</code></a> command</dt><dd>A CLI command providing sophisticated <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> functionality from the command line &#x2013; much like <a href="https://github.com/lxi-tools/lxi-tools">lxi-tools</a>.</dd>
+<dt><a href="https://github.com/richmit/mrSCPI/blob/main/src/mrSCPI.rb"><code>mrSCPI.rb</code></a> command</dt><dd>A CLI command providing sophisticated <a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instruments"><code>SCPI</code></a> functionality from the command line &#x2013; a bit like <a href="https://github.com/lxi-tools/lxi-tools">lxi-tools</a>.</dd>
 </dl>
 
 <div class="org-src-container">
@@ -416,8 +411,8 @@ plays a central role in my workflow, this is one of the most important aspects o
 section provides some insight into my workflow.  If you are not interested in <a href="https://www.gnu.org/software/emacs/">Emacs</a>, then you can safely skip this section.
 </p>
 </div>
-<div id="outline-container-org10c8a5d" class="outline-3">
-<h3 id="org10c8a5d"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
+<div id="outline-container-org038a955" class="outline-3">
+<h3 id="org038a955"><span class="section-number-3">3.1.</span> The Laboratory Notebook</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I always have my laboratory notebook open at the bench &#x2013; just an <a href="https://orgmode.org/"><code>org-mode</code></a> document loaded up in <a href="https://www.gnu.org/software/emacs/">Emacs</a> running on my bench computer. I have
@@ -438,8 +433,8 @@ Then, when I come back to my experiment some time later, I can have <a href="htt
 </p>
 </div>
 </div>
-<div id="outline-container-org7c1e3c4" class="outline-3">
-<h3 id="org7c1e3c4"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
+<div id="outline-container-org29d1cae" class="outline-3">
+<h3 id="org29d1cae"><span class="section-number-3">3.2.</span> Test Equipment Notes &amp; Macro Buttons</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 I keep general test equipment notes in a couple <a href="https://orgmode.org/"><code>org-mode</code></a> files.  Of course I include in my notes little bits of <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> script code for common
@@ -456,8 +451,8 @@ of buttons to run them.  This has proven to be super handy, and saves me a ton o
 </div>
 </div>
 </div>
-<div id="outline-container-org3449343" class="outline-3">
-<h3 id="org3449343"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
+<div id="outline-container-org1a4d827" class="outline-3">
+<h3 id="org1a4d827"><span class="section-number-3">3.3.</span> Integrated Data Capture and Analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://orgmode.org/"><code>org-mode</code></a> allows us to integrate live code and results from different tools together into a single document.  In this example we integrate code &amp; results
@@ -472,46 +467,12 @@ from <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a>, <a hre
 </div>
 </div>
 </div>
-<div id="outline-container-orgd831565" class="outline-3">
-<h3 id="orgd831565"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
+<div id="outline-container-org806f60d" class="outline-3">
+<h3 id="org806f60d"><span class="section-number-3">3.4.</span> Setting Up Emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-I put the <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> stuff in my <a href="https://www.gnu.org/software/emacs/">Emacs</a> dot file directory.  Of course it doesn't need to be in the dot file directory.  That's just where I put it.
-If you have some other organizational structure for your auxiliary <a href="https://www.gnu.org/software/emacs/">Emacs</a> files, then feel free to use it!
+The <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> <a href="https://www.gnu.org/software/emacs/">Emacs</a> support package along with installation instructions may be found here:  <a href="https://github.com/richmit/mrscpi-in-emacs">mrscpi-in-emacs</a>
 </p>
-</div>
-<div id="outline-container-org8bae17a" class="outline-4">
-<h4 id="org8bae17a"><span class="section-number-4">3.4.1.</span> Editing <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> Code: <code>mrscpi-mode</code></h4>
-<div class="outline-text-4" id="text-3-4-1">
-<p>
-A simple mode for <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> scripts is provided in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-mode.el">emacs/mrscpi-mode.el</a>.  This should be <b>before</b> your <a href="https://orgmode.org/"><code>org-mode</code></a> config.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #00ffff;">if</span> (file-exists-p <span style="color: #fa8072;">"~/.emacs.d/mrscpi-mode.el"</span>)
-    (<span style="color: #00ffff;">progn</span> (autoload 'mrscpi-mode <span style="color: #fa8072;">"~/.emacs.d/mrscpi-mode.el"</span> <span style="color: #f08080;">"Mode for mrSCPI files"</span>)
-           (add-to-list 'auto-mode-alist '(<span style="color: #fa8072;">"\\.mrscpi$"</span> . mrscpi-mode))))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org8302810" class="outline-4">
-<h4 id="org8302810"><span class="section-number-4">3.4.2.</span> <a href="https://orgmode.org/"><code>org-mode</code></a> Babel Support: <code>ob-mrscpi.el</code> &amp; <code>mrscpi-buttons.el</code></h4>
-<div class="outline-text-4" id="text-3-4-2">
-<p>
-A language module for <a href="https://orgmode.org/"><code>org-mode</code></a> Babel may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/ob-mrscpi.el">emacs/ob-mrscpi.el</a>.  The magical
-button maker may be found in <a href="https://github.com/richmit/mrSCPI/blob/main/emacs/mrscpi-buttons.el">emacs/mrscpi-buttons.el</a> &#x2013; you don't need this one for
-just basic <a href="https://orgmode.org/"><code>org-mode</code></a> support.  I load these things up at the very end of the <a href="https://orgmode.org/"><code>org-mode</code></a> setup block in my <code>init.el</code> file:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #00ffff;">if</span> (<span style="color: #00ffff;">and</span> (file-exists-p <span style="color: #fa8072;">"~/.emacs.d/ob-mrscpi.el"</span>) (file-exists-p <span style="color: #fa8072;">"~/bin/mrSCPI.rb"</span>))
-    (load <span style="color: #fa8072;">"~/.emacs.d/ob-mrscpi.el"</span>))
-(<span style="color: #00ffff;">if</span> (<span style="color: #00ffff;">and</span> (file-exists-p <span style="color: #fa8072;">"~/.emacs.d/mrscpi-buttons.el"</span>) (file-exists-p <span style="color: #fa8072;">"~/bin/mrSCPI.rb"</span>))
-    (load <span style="color: #fa8072;">"~/.emacs.d/mrscpi-buttons.el"</span>))
-</pre>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -552,12 +513,12 @@ connection through which we send a single command.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ruby"><span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Search for mrSCPI.rb on my shell PATH variable and load it up.</span>
-<span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
+<pre class="src src-ruby"><span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Search for mrSCPI.rb on my shell PATH variable and load it up.
+</span><span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
 
-theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span> =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Connect using "nickname" to my DMM</span>
-                                 <span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">"*IDN?"</span>)     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send the *ION command to the instrument</span>
-
+theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span> =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Connect using "nickname" to my DMM
+</span>                                 <span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">"*IDN?"</span>)     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send the *ION command to the instrument
+</span>
 <span style="color: #b0c4de;">puts</span>(<span style="color: #fa8072;">"The Result: </span><span style="color: #7fffd4;">#{theSPCIsession.result.inspect}</span><span style="color: #fa8072;">"</span>)  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Print out what we received</span>
 </pre>
 </div>
@@ -591,9 +552,9 @@ To begin, here is a <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</co
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a  </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname" for my DMM</span>
-<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?    </span><span style="color: #ffa500;"># Run the *IDN? command</span>
-
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a  </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname" for my DMM</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?    </span><span style="color: #ffa500;"># Run the *IDN? command</span><span style="color: #ff7f24;">
+</span>
 </pre>
 </div>
 
@@ -648,9 +609,9 @@ We can adjust the <a href="#ruby-example">Ruby example above</a> to work in the 
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
 
-theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span>  =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Connect using "nickname" to my DMM</span>
-                                 <span style="color: #8470ff; font-weight: bold;">:echo</span> =&gt; <span style="color: #8470ff; font-weight: bold;">true</span>,        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Automatically print command and result</span>
-                                 <span style="color: #8470ff; font-weight: bold;">:cmd</span>  =&gt; <span style="color: #fa8072;">"*IDN?"</span>)     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send the *ION command to the instrument</span>
+theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span>  =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Connect using "nickname" to my DMM
+</span>                                 <span style="color: #8470ff; font-weight: bold;">:echo</span> =&gt; <span style="color: #8470ff; font-weight: bold;">true</span>,        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Automatically print command and result
+</span>                                 <span style="color: #8470ff; font-weight: bold;">:cmd</span>  =&gt; <span style="color: #fa8072;">"*IDN?"</span>)     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send the *ION command to the instrument</span>
 </pre>
 </div>
 
@@ -800,12 +761,12 @@ This example runs <code>*IDN?</code>, and performs different actions based on th
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a                      </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname"</span>
-<span style="color: #00ffff;">:name</span> <span style="color: #fa8072;">ids                         </span><span style="color: #ffa500;"># We name the next :cmd that will run</span>
-<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?                        </span><span style="color: #ffa500;"># Creates ids variable and stores command result in it</span>
-<span style="color: #00ffff;">:skip_if</span> <span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">~34401[aA]         </span><span style="color: #ffa500;"># Checks the result against a regular expression, and skips the next command if it matches</span>
-<span style="color: #00ffff;">:stop</span> <span style="color: #fa8072;">Unknown Device: </span><span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">      </span><span style="color: #ffa500;"># This line is skipped if the previous one was true.  Note :stop ends the script.</span>
-<span style="color: #00ffff;">:print</span> <span style="color: #fa8072;">Known Device: 34401A       </span><span style="color: #ffa500;"># The normal script end -- when the regex above matches indicating a recognized device</span>
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@34401a                      </span><span style="color: #ffa500;"># @34401a is an instrument connection "nickname"</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:name</span> <span style="color: #fa8072;">ids                         </span><span style="color: #ffa500;"># We name the next :cmd that will run</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">*IDN?                        </span><span style="color: #ffa500;"># Creates ids variable and stores command result in it</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:skip_if</span> <span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">~34401[aA]         </span><span style="color: #ffa500;"># Checks the result against a regular expression, and skips the next command if it matches</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:stop</span> <span style="color: #fa8072;">Unknown Device: </span><span style="color: #7fffd4;">${ids}</span><span style="color: #fa8072;">      </span><span style="color: #ffa500;"># This line is skipped if the previous one was true.  Note :stop ends the script.</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:print</span> <span style="color: #fa8072;">Known Device: 34401A       </span><span style="color: #ffa500;"># The normal script end -- when the regex above matches indicating a recognized device</span>
 </pre>
 </div>
 
@@ -818,12 +779,12 @@ This example we construct a filename based on today's date and then store an osc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span>
-<span style="color: #00ffff;">:eval</span> <span style="color: #7fffd4;">imgFileName</span>=<span style="color: #6495ed;">Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" </span><span style="color: #ffa500;"># Filename for PNG</span>
-<span style="color: #00ffff;">:result_macro_block</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                   <span style="color: #ffa500;"># Expect/Extract a block</span>
-<span style="color: #00ffff;">:echo</span> <span style="color: #8470ff; font-weight: bold;">false</span>                                                                <span style="color: #ffa500;"># Do not echo the command</span>
-<span style="color: #00ffff;">:out_file</span> <span style="color: #7fffd4;">${imgFileName}</span><span style="color: #fa8072;">                                                   </span><span style="color: #ffa500;">#   into a filename</span>
-<span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">:DISPlay:DATA? PNG                                                    </span><span style="color: #ffa500;"># Send the command</span>
+<pre class="src src-mrscpi"><span style="color: #00ffff;">:url</span> <span style="color: #fa8072;">@dho4k                                                                </span><span style="color: #ffa500;"># Connect to my DHO4k</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:eval</span> <span style="color: #7fffd4;">imgFileName</span>=<span style="color: #6495ed;">Time.now.localtime.strftime('%Y%m%d%H%M%S') + "_DHO.png" </span><span style="color: #ffa500;"># Filename for PNG</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:result_macro_block</span> <span style="color: #8470ff; font-weight: bold;">true</span>                                                   <span style="color: #ffa500;"># Expect/Extract a block</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:echo</span> <span style="color: #8470ff; font-weight: bold;">false</span>                                                                <span style="color: #ffa500;"># Do not echo the command</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:out_file</span> <span style="color: #7fffd4;">${imgFileName}</span><span style="color: #fa8072;">                                                   </span><span style="color: #ffa500;">#   into a filename</span><span style="color: #ff7f24;">
+</span><span style="color: #00ffff;">:cmd</span> <span style="color: #00fa9a; font-weight: bold;">:DISPlay:DATA? PNG                                                    </span><span style="color: #ffa500;"># Send the command</span>
 </pre>
 </div>
 
@@ -868,7 +829,7 @@ because in library mode we can pass parameters directly to an <a href="rdoc/SCPI
 mode a bit more flexible from a data processing perspective.
 </p>
 
-<div class="org" id="orgd189e04">
+<div class="org" id="org1faed47">
 <p>
 In the code below we provide 8192, 14-bit sample points as an IEEE-488.2 binary data block containing 16-bit integers to an Agilent 33210A arbitrary
 waveform generator.  This function generator can accept ASCII formatted floats, ASCII formatted integers, and binary integers.  With only 8k points there
@@ -880,8 +841,8 @@ isn't much practical benefit to using binary mode, but it gives us a nice way to
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
 
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Number of data points for our curve.</span>
-size = 8192
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Number of data points for our curve.
+</span>size = 8192
 
 <span style="color: #00ffff;">if</span> (size &lt; 1) <span style="color: #00ffff;">then</span>
   <span style="color: #63b8ff;">STDERR</span>.puts(<span style="color: #fa8072;">"ERROR: Data size too small!"</span>)
@@ -891,16 +852,16 @@ size = 8192
   <span style="color: #b0c4de;">exit</span>
 <span style="color: #00ffff;">end</span>
 
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Populate floating point data: fdata</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">We evaluate |sin(t)| over [0, 2pi].</span>
-fdata = <span style="color: #63b8ff;">Array</span>.new(size)
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Populate floating point data: fdata
+</span><span style="color: #ffa500;"># </span><span style="color: #ff7f24;">We evaluate |sin(t)| over [0, 2pi].
+</span>fdata = <span style="color: #63b8ff;">Array</span>.new(size)
 fdata.each_index <span style="color: #00ffff;">do</span> |i|
   fdata[i] = (<span style="color: #63b8ff;">Math</span>.sin(2 * <span style="color: #63b8ff;">Math</span>::<span style="color: #63b8ff;">PI</span> * i.to_f / size.to_f)).abs
 <span style="color: #00ffff;">end</span>
 
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Populate short integer data: sdata</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">We convert and scale the data in fdata, and store it in sdata.</span>
-fmin = fdata.min
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Populate short integer data: sdata
+</span><span style="color: #ffa500;"># </span><span style="color: #ff7f24;">We convert and scale the data in fdata, and store it in sdata.
+</span>fmin = fdata.min
 fmax = fdata.max
 
 bmin = -8191
@@ -920,18 +881,18 @@ fdata.each_with_index <span style="color: #00ffff;">do</span> |v, i|
   sdata[i] = [[(m * v + b).to_i, bmax].min, bmin].max
 <span style="color: #00ffff;">end</span>
 
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Construct a string with the contents of the IEEE-488.2 binary block with our waveform data.</span>
-blen    = (size * 2).to_s
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Construct a string with the contents of the IEEE-488.2 binary block with our waveform data.
+</span>blen    = (size * 2).to_s
 blenlen = blen.length.to_s
 bdata   = <span style="color: #fa8072;">"#"</span> + blenlen + blen + sdata.pack(<span style="color: #fa8072;">'n*'</span>)
 
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send everything to the device</span>
-theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span>         =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Change for your instrument's IP address</span>
-                                 <span style="color: #8470ff; font-weight: bold;">:result_type</span> =&gt; <span style="color: #8470ff; font-weight: bold;">nil</span>)         <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">None of the following commands have any output to capture</span>
-theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">'*RST'</span>})                          <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Reset the unit to defaults.</span>
-theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':DATA:DAC VOLATILE, '</span> + bdata }) <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send our data</span>
-theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':FUNCtion:USER VOLATILE'</span>})       <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Set the ARB waveform to 'VOLATILE'.</span>
-theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':APPLy:USER 2000,4,0'</span>})          <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">2 kHz, 4 Vpp, 0 V offset</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send everything to the device
+</span>theSPCIsession = <span style="color: #63b8ff;">SCPIsession</span>.new(<span style="color: #8470ff; font-weight: bold;">:url</span>         =&gt; <span style="color: #fa8072;">'@33210a'</span>,   <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Change for your instrument's IP address
+</span>                                 <span style="color: #8470ff; font-weight: bold;">:result_type</span> =&gt; <span style="color: #8470ff; font-weight: bold;">nil</span>)         <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">None of the following commands have any output to capture
+</span>theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">'*RST'</span>})                          <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Reset the unit to defaults.
+</span>theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':DATA:DAC VOLATILE, '</span> + bdata }) <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Send our data
+</span>theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':FUNCtion:USER VOLATILE'</span>})       <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Set the ARB waveform to 'VOLATILE'.
+</span>theSPCIsession.set({<span style="color: #8470ff; font-weight: bold;">:cmd</span> =&gt; <span style="color: #fa8072;">':APPLy:USER 2000,4,0'</span>})          <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">2 kHz, 4 Vpp, 0 V offset</span>
 </pre>
 </div>
 
@@ -995,10 +956,10 @@ Equipment Notes</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-perl"><span style="color: #ffa500;">#####################################################################################################################</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">SCPI Nicknames ####################################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">........CNAME......nicknames.................Directly Connected Network....................ssh to bench-pi...........</span>
-nickname 33210ae    33210a    aawge  aawg  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:5025  ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9001
+<pre class="src src-perl"><span style="color: #ffa500;">#####################################################################################################################</span><span style="color: #ff7f24;">
+</span><span style="color: #ffa500;"># </span><span style="color: #ff7f24;">SCPI Nicknames ####################################################################################################
+</span><span style="color: #ffa500;">#</span><span style="color: #ff7f24;">........CNAME......nicknames.................Directly Connected Network....................ssh to bench-pi...........
+</span>nickname 33210ae    33210a    aawge  aawg  =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:5025  ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9001
 nickname 33210aw              aawgw        =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>awg-agilent.home.mitchr.me:443 ssh@<span style="color: #7fffd4; text-decoration: underline;">https</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9002
 nickname 34401ap              dmmp         =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>gpib-rover.home.mitchr.me:1234  ssh@<span style="color: #7fffd4; text-decoration: underline;">plgx</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9003
 nickname 34401as    34401a    dmms   dmm   =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>serial.home.mitchr.me:10001     ssh@<span style="color: #7fffd4; text-decoration: underline;">soip</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9004
@@ -1021,35 +982,35 @@ nickname tds3052bs            tek3ks       =&gt; direct@<span style="color: #7ff
 nickname tds3052bw            tek3kw       =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>oscope-tek.home.mitchr.me:80    ssh@<span style="color: #7fffd4; text-decoration: underline;">http</span>:<span style="color: #fa8072;">//</span>127.0.0.1:9021
 nickname test                              =&gt; direct@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234                   ssh@<span style="color: #7fffd4; text-decoration: underline;">raw</span>:<span style="color: #fa8072;">//</span>127.0.0.1:1234
 
-<span style="color: #ffa500;">#####################################################################################################################</span>
-<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Networks ##########################################################################################################</span>
-<span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Name...Subnet.Mask.....Comment...............................................................................</span>
-network direct 172.16.3.0/23   <span style="color: #ff7f24;"># Bench network with test equipment &amp; bench-pi</span>
-network direct 172.16.1.0/23   <span style="color: #ff7f24;"># Computer desk beside bench</span>
-network ssh    172.16.2.0/24   <span style="color: #ff7f24;"># Isolated work network</span>
-network ssh    172.16.4.0/24   <span style="color: #ff7f24;"># Isolated office network</span>
+<span style="color: #ffa500;">#####################################################################################################################</span><span style="color: #ff7f24;">
+</span><span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Networks ##########################################################################################################
+</span><span style="color: #ffa500;">#</span><span style="color: #ff7f24;">.......Name...Subnet.Mask.....Comment...............................................................................
+</span>network direct 172.16.3.0/23   <span style="color: #ff7f24;"># Bench network with test equipment &amp; bench-pi
+</span>network direct 172.16.1.0/23   <span style="color: #ff7f24;"># Computer desk beside bench
+</span>network ssh    172.16.2.0/24   <span style="color: #ff7f24;"># Isolated work network
+</span>network ssh    172.16.4.0/24   <span style="color: #ff7f24;"># Isolated office network</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgde5812f" class="outline-3">
-<h3 id="orgde5812f"><span class="section-number-3">7.3.</span> <code>mrNetwork.rb</code></h3>
+<div id="outline-container-orga275965" class="outline-3">
+<h3 id="orga275965"><span class="section-number-3">7.3.</span> <code>mrNetwork.rb</code></h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 This script simply prints out the name of the current host's network as specified in the <code>.mrSCPIrc</code> file.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ruby"><span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>] <span style="color: #00ffff;">then</span>                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">First look in MRSCPIPATH</span>
-  <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">File</span>.join(<span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>], <span style="color: #fa8072;">'mrSCPI.rb'</span>)        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Note if MRSCPIPATH is set and require fails, then we want the script to fail!</span>
-<span style="color: #00ffff;">else</span>
-  <span style="color: #00ffff;">begin</span>                                                  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look in path with the script is</span>
-    <span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+<pre class="src src-ruby"><span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>] <span style="color: #00ffff;">then</span>                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">First look in MRSCPIPATH
+</span>  <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">File</span>.join(<span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>], <span style="color: #fa8072;">'mrSCPI.rb'</span>)        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Note if MRSCPIPATH is set and require fails, then we want the script to fail!
+</span><span style="color: #00ffff;">else</span>
+  <span style="color: #00ffff;">begin</span>                                                  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look in path with the script is
+</span>    <span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
   <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>
-    <span style="color: #00ffff;">begin</span>                                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on LOADPATH</span>
-      <span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
-    <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>                                     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on PATH</span>
-      <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
+    <span style="color: #00ffff;">begin</span>                                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on LOADPATH
+</span>      <span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+    <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>                                     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on PATH
+</span>      <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
     <span style="color: #00ffff;">end</span>
   <span style="color: #00ffff;">end</span>
 <span style="color: #00ffff;">end</span>
@@ -1069,29 +1030,29 @@ this script on my laptop, it will print "<code>ssh</code>" because that's what I
 </pre>
 </div>
 
-<pre class="example" id="org5306189">
+<pre class="example" id="orgdf0b7d7">
 "ssh"
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbb88b90" class="outline-3">
-<h3 id="orgbb88b90"><span class="section-number-3">7.4.</span> <code>teAlias.rb</code></h3>
+<div id="outline-container-orga01d5e7" class="outline-3">
+<h3 id="orga01d5e7"><span class="section-number-3">7.4.</span> <code>teAlias.rb</code></h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 This script looks up connection information in the <code>.mrSCPIrc</code> file.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ruby"><span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>] <span style="color: #00ffff;">then</span>                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">First look in MRSCPIPATH</span>
-  <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">File</span>.join(<span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>], <span style="color: #fa8072;">'mrSCPI.rb'</span>)        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Note if MRSCPIPATH is set and require fails, then we want the script to fail!</span>
-<span style="color: #00ffff;">else</span>
-  <span style="color: #00ffff;">begin</span>                                                  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look in path with the script is</span>
-    <span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+<pre class="src src-ruby"><span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>] <span style="color: #00ffff;">then</span>                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">First look in MRSCPIPATH
+</span>  <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">File</span>.join(<span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>], <span style="color: #fa8072;">'mrSCPI.rb'</span>)        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Note if MRSCPIPATH is set and require fails, then we want the script to fail!
+</span><span style="color: #00ffff;">else</span>
+  <span style="color: #00ffff;">begin</span>                                                  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look in path with the script is
+</span>    <span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
   <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>
-    <span style="color: #00ffff;">begin</span>                                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on LOADPATH</span>
-      <span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
-    <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>                                     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on PATH</span>
-      <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
+    <span style="color: #00ffff;">begin</span>                                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on LOADPATH
+</span>      <span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+    <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>                                     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on PATH
+</span>      <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
     <span style="color: #00ffff;">end</span>
   <span style="color: #00ffff;">end</span>
 <span style="color: #00ffff;">end</span>
@@ -1135,7 +1096,7 @@ For example, if I wanted to fire up my web browser and connect to my SDS 2504X+ 
 </div>
 </div>
 <div id="outline-container-features" class="outline-2">
-<h2 id="features"><span class="section-number-2">8.</span> Features (current &amp; future)</h2>
+<h2 id="features"><span class="section-number-2">8.</span> Features</h2>
 <div class="outline-text-2" id="text-features">
 <ul class="org-ul">
 <li>Broad platform support:  If Ruby works, then <a href="https://richmit.github.io/mrSCPI/"><code>mrSCPI</code></a> should work.</li>
@@ -1224,21 +1185,21 @@ personal preference in the way I set up my operating environment.  I expect most
 </div>
 
 <p>
-For the scripts shipped in the <code>src</code> directory I do something quite elaborate allowing much more flexible control over which <code>'mrSCPI.rb</code> file gets used.
+For the scripts shipped in the <code>src</code> directory I do something quite elaborate allowing much more flexible control over which <code>mrSCPI.rb</code> file gets used.
 This way I can use various different versions of the library when I'm doing development work on the project.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ruby"><span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>] <span style="color: #00ffff;">then</span>                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">First look in MRSCPIPATH</span>
-  <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">File</span>.join(<span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>], <span style="color: #fa8072;">'mrSCPI.rb'</span>)        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Note if MRSCPIPATH is set and require fails, then we want the script to fail!</span>
-<span style="color: #00ffff;">else</span>
-  <span style="color: #00ffff;">begin</span>                                                  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look in path with the script is</span>
-    <span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+<pre class="src src-ruby"><span style="color: #00ffff;">if</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>] <span style="color: #00ffff;">then</span>                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">First look in MRSCPIPATH
+</span>  <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">File</span>.join(<span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'MRSCPIPATH'</span>], <span style="color: #fa8072;">'mrSCPI.rb'</span>)        <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">The script should fail if MRSCPIPATH is set and require fails
+</span><span style="color: #00ffff;">else</span>
+  <span style="color: #00ffff;">begin</span>                                                  <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look in path with the script is
+</span>    <span style="color: #b0c4de;">require_relative</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
   <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>
-    <span style="color: #00ffff;">begin</span>                                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on LOADPATH</span>
-      <span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
-    <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>                                     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on PATH</span>
-      <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
+    <span style="color: #00ffff;">begin</span>                                                <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on LOADPATH
+</span>      <span style="color: #b0c4de;">require</span> <span style="color: #fa8072;">'mrSCPI.rb'</span>
+    <span style="color: #00ffff;">rescue</span> <span style="color: #63b8ff;">LoadError</span>                                     <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Then look on PATH
+</span>      <span style="color: #b0c4de;">require</span> <span style="color: #63b8ff;">ENV</span>[<span style="color: #fa8072;">'PATH'</span>].split(<span style="color: #63b8ff;">File</span>::<span style="color: #63b8ff;">PATH_SEPARATOR</span>).map {|x| <span style="color: #63b8ff;">File</span>.join(x, <span style="color: #fa8072;">'mrSCPI.rb'</span>)}.find {|x| <span style="color: #63b8ff;">FileTest</span>.exist?(x)}
     <span style="color: #00ffff;">end</span>
   <span style="color: #00ffff;">end</span>
 <span style="color: #00ffff;">end</span>

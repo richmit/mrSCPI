@@ -1,1 +1,3 @@
-This directory contains some Emacs support files for mrSCPI.
+mrSCPI Emacs support has been migrated to an Emacs package:
+
+      https://github.com/richmit/mrscpi-in-emacs

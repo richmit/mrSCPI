@@ -30,7 +30,7 @@
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 if ENV['MRSCPIPATH'] then                                # First look in MRSCPIPATH
-  require File.join(ENV['MRSCPIPATH'], 'mrSCPI.rb')        # Note if MRSCPIPATH is set and require fails, then we want the script to fail!
+  require File.join(ENV['MRSCPIPATH'], 'mrSCPI.rb')        # The script should fail if MRSCPIPATH is set and require fails
 else
   begin                                                  # Then look in path with the script is
     require_relative 'mrSCPI.rb'
